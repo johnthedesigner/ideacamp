@@ -1,0 +1,13 @@
+# macOS
+.DS_Store
+
+# Vercel
+.vercel
+
+# Local env
+.env
+.env.*
+!.env.example
+
+# Dependencies (none required, but just in case)
+node_modules

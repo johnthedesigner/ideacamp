@@ -1,0 +1,45 @@
+/* feedback.css — Badge, Alert. */
+
+/* Badge — small rounded-rectangle tag (radius-sm), dark-on-bright. */
+.badge {
+  display: inline-flex; align-items: center; gap: var(--space-1);
+  padding: var(--space-1) var(--space-2);
+  font-family: var(--type-label-family);
+  font-size: var(--type-label-size);
+  font-weight: var(--type-label-weight);
+  letter-spacing: var(--type-label-letter-spacing);
+  text-transform: uppercase;
+  line-height: 1.2;
+  border-radius: var(--radius-sm);
+  white-space: nowrap;
+}
+.badge-neutral { background: var(--color-primary-container); color: var(--color-on-primary-container); }
+.badge-primary { background: var(--color-primary); color: var(--color-on-primary); }
+.badge-outline { background: transparent; color: var(--color-on-surface); border: var(--border-width-sm) solid var(--color-border-strong); }
+/* semantic + categorical — dark ink on bright fills */
+.badge-success { background: var(--color-success); color: var(--color-on-success); }
+.badge-warning { background: var(--color-warning); color: var(--color-on-warning); }
+.badge-error   { background: var(--color-error);   color: var(--color-on-error); }
+.badge-blue   { background: var(--color-accent-blue);   color: var(--color-on-primary); }
+.badge-pink   { background: var(--color-accent-pink);   color: var(--color-on-secondary); }
+.badge-yellow { background: var(--color-accent-yellow); color: var(--color-on-warning); }
+.badge-mint   { background: var(--color-accent-mint);   color: var(--color-on-success); }
+.badge-coral  { background: var(--color-accent-coral);  color: var(--color-on-error); }
+.badge-lilac  { background: var(--color-accent-lilac);  color: var(--color-on-primary); }
+
+/* Alert — full border + tinted surface (NO side-stripe). role="status"/"alert". */
+.alert {
+  display: flex; gap: var(--space-3); align-items: flex-start;
+  padding: var(--space-3) var(--space-4);
+  border: var(--border-width-sm) solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface-raised);
+  color: var(--color-on-surface);
+  font-size: var(--type-body-sm-size);
+  line-height: var(--type-body-sm-line-height);
+}
+.alert .alert-icon { flex: none; width: 20px; height: 20px; margin-top: 1px; }
+.alert-success { background: color-mix(in oklab, var(--color-success) 16%, var(--color-surface)); border-color: var(--color-success); }
+.alert-warning { background: color-mix(in oklab, var(--color-warning) 20%, var(--color-surface)); border-color: var(--color-warning); }
+.alert-error   { background: color-mix(in oklab, var(--color-error) 14%, var(--color-surface));   border-color: var(--color-error); }
+.alert-info    { background: var(--color-primary-container); border-color: color-mix(in oklab, var(--color-primary) 40%, var(--color-surface)); }

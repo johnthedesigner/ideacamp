@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Case study — A predictive analytics tool, 0→1 · Ideacamp</title>
+<meta name="description" content="How a predictive analytics tool went from first concept to a product in customers' hands: the 0→1 design, the system beneath it, and what shipped.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Geist:wght@400;500;600&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles/index.css">
+<style>
+  /* page-specific composition — tokens only */
+  .nav { position: sticky; top: 0; z-index: 20; background: color-mix(in srgb, var(--color-surface) 88%, transparent); backdrop-filter: blur(10px); border-bottom: var(--border-width-sm) solid var(--color-border); }
+  .nav-inner { max-width: 1200px; margin: 0 auto; height: 64px; padding: 0 var(--layout-page-gutter); display: flex; align-items: center; justify-content: space-between; }
+  .brand { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; color: var(--color-on-surface); }
+  .brand .mark { width: 30px; height: 30px; border-radius: var(--radius-sm); background: var(--color-primary); display: grid; place-items: center; }
+  .brand .name { font-family: var(--type-heading-md-family); font-weight: 800; font-size: 20px; letter-spacing: -0.02em; }
+
+  .measure { max-width: 720px; margin-inline: auto; padding-inline: var(--layout-page-gutter); }
+  .hero { padding: var(--space-16) 0 var(--space-8); }
+  .hero .meta { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-6); margin-top: var(--space-6); }
+  .hero .meta div { display: grid; gap: 2px; }
+  .prose { padding: var(--space-8) 0; }
+  .prose > * + * { margin-top: var(--space-5); }
+  .prose h2 { margin-top: var(--space-12); }
+  .prose p { color: color-mix(in oklab, var(--color-on-surface) 88%, var(--color-surface)); }
+  .pullquote { border: 0; margin: var(--space-12) 0; padding: 0; }
+  .pullquote p { font-family: var(--type-heading-md-family); font-weight: 500; font-size: 26px; line-height: 1.35; letter-spacing: -0.01em; color: var(--color-on-surface); }
+  .metrics { background: var(--color-night); color: var(--color-on-night); padding: var(--space-12) 0; margin: var(--space-12) 0; }
+  .metrics-grid { max-width: 1200px; margin: 0 auto; padding: 0 var(--layout-page-gutter); display: grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr)); gap: var(--space-8); }
+  .metric .n { font-family: var(--type-display-family); font-weight: 800; font-size: 52px; letter-spacing: -0.03em; line-height: 1; }
+  .metric.blue .n { color: var(--color-accent-yellow); }
+  .metric .l { color: color-mix(in oklab, var(--color-on-night) 72%, var(--color-night)); margin-top: var(--space-2); }
+  .cta { text-align: center; padding: var(--space-16) var(--layout-page-gutter); }
+  .footer { border-top: var(--border-width-sm) solid var(--color-border); padding: var(--space-8) var(--layout-page-gutter); color: var(--color-on-surface-muted); }
+  .footer-inner { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; flex-wrap: wrap; gap: var(--space-4); }
+  @media (max-width: 768px) { .hero { padding-top: var(--space-12); } .metric .n { font-size: 40px; } }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="index.html">
+      <span class="mark"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2c1 3 2.5 3.5 3.5 4.5A5 5 0 0 1 17 10a5 5 0 1 1-10 0c0-.3 0-.6.1-.9a2 2 0 1 0 3.3-2C8 4.5 11 2 12 2Z"/><path d="m5 22 14-4"/><path d="m5 18 14 4"/></svg></span>
+      <span class="name">Ideacamp</span>
+    </a>
+    <a class="btn btn-primary btn-sm" href="index.html#intake">Start an intake</a>
+  </div>
+</header>
+
+<main>
+  <div class="measure hero">
+    <span class="badge badge-blue">Case study · 0→1</span>
+    <h1 class="text-display" style="margin-top:var(--space-4); font-size:clamp(40px,6vw,72px)">A predictive analytics tool, from zero to shipped</h1>
+    <p class="text-body-lg text-muted" style="margin-top:var(--space-4)">Founding design for a new analytics product: the first concept, the system beneath it, and the flows that put forecasting in customers' hands.</p>
+    <div class="meta">
+      <div><span class="text-label text-muted">Role</span><span class="text-body-sm">0→1 product design lead</span></div>
+      <div><span class="text-label text-muted">Scope</span><span class="text-body-sm">Direction, system, 5 core flows</span></div>
+      <div><span class="text-label text-muted">Timeline</span><span class="text-body-sm">Concept → ship</span></div>
+    </div>
+  </div>
+
+  <div class="measure prose">
+    <h2 class="text-heading-lg">The problem</h2>
+    <p class="text-body-lg">The team had a forecasting engine and no product around it. Analysts trusted the numbers; everyone else met a wall of configuration. The job was to turn a capability into something a non-analyst could open on a Monday and act on by lunch.</p>
+    <p class="text-body-lg">There was no design system, no shared language for charts, and no agreement on what "confidence" should look like on screen. Every decision compounded, so the foundation had to come first.</p>
+
+    <h2 class="text-heading-lg">The approach</h2>
+    <p class="text-body-lg">I started with the smallest honest version of the product and designed outward. Direction and a token foundation in week one, so color, type, and spacing stopped being debated per screen. Then the core flows, each specced tightly enough that engineering could build without a meeting.</p>
+
+    <blockquote class="pullquote">
+      <p>The forecast was never the hard part. Making a busy person believe it, in three seconds, was.</p>
+    </blockquote>
+
+    <p class="text-body-lg">Confidence became the spine of the interface: a single, accessible color scale for certainty, reused everywhere a prediction appeared. Because it was tokenized, one adjustment tuned the whole product.</p>
+  </div>
+
+  <section class="metrics">
+    <div class="metrics-grid">
+      <div class="metric blue"><div class="n">5</div><div class="l">Core flows designed and specced</div></div>
+      <div class="metric blue"><div class="n">1 wk</div><div class="l">To a working token foundation</div></div>
+      <div class="metric blue"><div class="n">0</div><div class="l">Design-review meetings to ship</div></div>
+    </div>
+  </section>
+
+  <div class="measure prose">
+    <h2 class="text-heading-lg">What shipped</h2>
+    <p class="text-body-lg">A product a first-time user could read without training: a forecast view, a driver breakdown, and an alerting flow, all sharing one system. The handoff included the tokens, the component scaffold, and written rationale for the decisions that mattered.</p>
+  </div>
+
+  <div class="measure" style="padding-bottom: var(--space-8)">
+    <div class="card card-night">
+      <span class="text-label" style="color:var(--color-accent-yellow)">What carried over</span>
+      <p class="text-body-lg" style="margin-top:var(--space-3)">The token pipeline built here is the same approach Ideacamp ships in the Brand-to-Token and Foundation Sprint engagements. Nothing bespoke, nothing you can't maintain.</p>
+    </div>
+  </div>
+</main>
+
+<section class="cta">
+  <h2 class="text-heading-lg">Have a 0→1 problem that looks like this?</h2>
+  <p class="text-body-lg text-muted" style="max-width:52ch;margin:var(--space-3) auto var(--space-6)">Start an intake. Ten minutes, no meeting. You'll have a written scope, a fixed price, and a start date within 2 business days.</p>
+  <a class="btn btn-primary btn-lg" href="index.html#intake">Start an intake →</a>
+</section>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <span>Ideacamp · ideacamp.co · © 2026</span>
+    <a href="mailto:hello@ideacamp.co">hello@ideacamp.co</a>
+  </div>
+</footer>
+
+</body>
+</html>

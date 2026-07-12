@@ -1,0 +1,12 @@
+/* index.css — the design system entry point (barrel).
+   Link this ONE file; it pulls in tokens, base, and every component partial.
+   Order matters: tokens (custom properties) → base (reset/root) → components. */
+
+@import "./tokens/tokens.css";
+@import "./base.css";
+
+@import "./components/button.css";
+@import "./components/form.css";
+@import "./components/feedback.css";
+@import "./components/overlay.css";
+@import "./components/surface.css";

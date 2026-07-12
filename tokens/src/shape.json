@@ -1,0 +1,79 @@
+{
+  "radius": {
+    "none": {
+      "$type": "dimension",
+      "$value": "0px",
+      "$description": "Squared. Data tables, code blocks, image containers, dense form grids — never rounded regardless of system personality."
+    },
+    "sm": {
+      "$type": "dimension",
+      "$value": "8px",
+      "$description": "Chips / badges, tooltips, small inline controls."
+    },
+    "md": {
+      "$type": "dimension",
+      "$value": "12px",
+      "$description": "Interactive tier: buttons (all variants share this tier), inputs, selects, textareas. The signature rounded-rectangle (deliberately not full-pill)."
+    },
+    "lg": {
+      "$type": "dimension",
+      "$value": "18px",
+      "$description": "Container tier: cards, panels, sheets."
+    },
+    "xl": {
+      "$type": "dimension",
+      "$value": "22px",
+      "$description": "Prominent containers: modals / dialogs, large feature cards, the intake form panel."
+    },
+    "full": {
+      "$type": "dimension",
+      "$value": "9999px",
+      "$description": "Genuinely circular/pill elements only: avatars, decorative dots, the marquee band. NOT default buttons or CTAs."
+    }
+  },
+
+  "border-width": {
+    "sm": {
+      "$type": "dimension",
+      "$value": "1px",
+      "$description": "Default borders and dividers (cards, inputs at rest)."
+    },
+    "md": {
+      "$type": "dimension",
+      "$value": "2px",
+      "$description": "Emphasis / selected state borders."
+    },
+    "focus": {
+      "$type": "dimension",
+      "$value": "3px",
+      "$description": "Focus ring width (rendered as outline, offset 2px, color = border-focus)."
+    }
+  },
+
+  "shadow": {
+    "sm": {
+      "$type": "shadow",
+      "$description": "Cards at rest. Two-layer, violet-tinted ink (from #1A1830) — never pure black.",
+      "$value": [
+        { "offsetX": "0px", "offsetY": "1px", "blur": "2px", "spread": "0px", "color": "rgba(26,24,48,0.06)" },
+        { "offsetX": "0px", "offsetY": "1px", "blur": "3px", "spread": "0px", "color": "rgba(26,24,48,0.05)" }
+      ]
+    },
+    "md": {
+      "$type": "shadow",
+      "$description": "Raised / hover state (lifted cards, primary buttons). Two-layer violet-tinted ink.",
+      "$value": [
+        { "offsetX": "0px", "offsetY": "6px",  "blur": "16px", "spread": "0px", "color": "rgba(26,24,48,0.08)" },
+        { "offsetX": "0px", "offsetY": "2px",  "blur": "4px",  "spread": "0px", "color": "rgba(26,24,48,0.05)" }
+      ]
+    },
+    "lg": {
+      "$type": "shadow",
+      "$description": "Overlays / dialogs. Two-layer violet-tinted ink; separates surface-overlay from the page.",
+      "$value": [
+        { "offsetX": "0px", "offsetY": "16px", "blur": "40px", "spread": "0px", "color": "rgba(26,24,48,0.12)" },
+        { "offsetX": "0px", "offsetY": "4px",  "blur": "10px", "spread": "0px", "color": "rgba(26,24,48,0.06)" }
+      ]
+    }
+  }
+}

@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    overflow-x: hidden;
+    --bg: #FBF5E9;
+    --surface: #F5ECD7;
+    --ink: #23253F;
+    --ink2: #5B5E7B;
+    --line: #E3D9BE;
+    --accent: #D14E12;
+    --accent-ink: #FFFFFF;
+    --sun: #FFC53D;
+    --night: #1C1E36;
+    --accent-on-night: #FF9C66;
+    --tilt: -2deg;
+    --tilt2: 1.4deg;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Geist", "Helvetica Neue", sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  * { box-sizing: border-box; }
+  input, textarea, select, button { font: inherit; color: inherit; }
+  a { color: var(--accent); }
+  a:hover { color: var(--ink); }
+  ::selection { background: var(--sun); color: var(--night); }
+  @keyframes rise { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+  @keyframes marquee { to { transform: translateX(-50%); } }
+  @keyframes flicker {
+    0%, 100% { transform: scale(1) rotate(-1deg); opacity: 1; }
+    45% { transform: scale(1.06) rotate(1deg); opacity: 0.92; }
+    70% { transform: scale(0.97) rotate(-2deg); opacity: 1; }
+  }
+</style>
+</helmet>
+
+<div style="min-width: 320px">
+
+  <!-- ============ NAV ============ -->
+  <header data-screen-label="Nav" style="position: sticky; top: 0; z-index: 50; background: var(--bg); border-bottom: 1.5px solid var(--ink)">
+    <div style="max-width: 1180px; margin: 0 auto; padding: 0 28px; height: 66px; display: flex; align-items: center; justify-content: space-between; gap: 24px">
+      <a href="#top" style="display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--ink)">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2c1 3 2.5 3.5 3.5 4.5A5 5 0 0 1 17 10a5 5 0 1 1-10 0c0-.3 0-.6.1-.9a2 2 0 1 0 3.3-2C8 4.5 11 2 12 2Z"></path><path d="m5 22 14-4"></path><path d="m5 18 14 4"></path></svg>
+        <span style="font-family: 'Bricolage Grotesque', sans-serif; font-size: 22px; font-weight: 800; letter-spacing: -0.02em">Ideacamp</span>
+      </a>
+      <nav style="display: flex; align-items: center; gap: 26px; font-family: 'Geist Mono', monospace; font-size: 12.5px; letter-spacing: 0.04em">
+        <a href="#offers" style="text-decoration: none; color: var(--ink2)" style-hover="color: var(--ink)">Offers</a>
+        <a href="#process" style="text-decoration: none; color: var(--ink2)" style-hover="color: var(--ink)">Process</a>
+        <a href="#proof" style="text-decoration: none; color: var(--ink2)" style-hover="color: var(--ink)">Proof</a>
+        <a href="#faq" style="text-decoration: none; color: var(--ink2)" style-hover="color: var(--ink)">Questions</a>
+        <a href="#intake" style="text-decoration: none; background: var(--accent); color: var(--accent-ink); padding: 10px 18px; font-weight: 600; font-family: 'Geist', sans-serif; font-size: 14px; border-radius: 999px; border: 1.5px solid var(--ink); box-shadow: 2.5px 2.5px 0 var(--ink)" style-hover="box-shadow: 0.5px 0.5px 0 var(--ink); transform: translate(2px, 2px)">Start an intake</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ============ HERO ============ -->
+  <section id="top" data-screen-label="Hero">
+    <div style="max-width: 1180px; margin: 0 auto; padding: 96px 28px 72px 28px">
+      <p style="margin: 0 0 30px 0; display: flex; align-items: center; gap: 10px; font-family: 'Geist Mono', monospace; font-size: 12.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); animation: rise 0.6s ease both">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2c1 3 2.5 3.5 3.5 4.5A5 5 0 0 1 17 10a5 5 0 1 1-10 0c0-.3 0-.6.1-.9a2 2 0 1 0 3.3-2C8 4.5 11 2 12 2Z"></path><path d="m5 22 14-4"></path><path d="m5 18 14 4"></path></svg>
+        Ideacamp · A productized design studio
+      </p>
+      <h1 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(48px, 7vw, 96px); line-height: 0.98; letter-spacing: -0.03em; max-width: 14ch; text-wrap: balance; animation: rise 0.6s 0.08s ease both">{{ headlineLead }}<span style="background: var(--sun); padding: 0 0.14em; border-radius: 6px; box-decoration-break: clone; -webkit-box-decoration-break: clone">{{ headlineLast }}</span></h1>
+      <div style="display: flex; flex-wrap: wrap; gap: 48px; align-items: flex-end; justify-content: space-between; margin-top: 44px; animation: rise 0.6s 0.16s ease both">
+        <p style="margin: 0; font-size: 19px; line-height: 1.55; color: var(--ink2); max-width: 50ch; text-wrap: pretty">Design systems and 0→1 product design, sold as products: a defined deliverable, a defined timeline, a defined price. Async-first, so progress never waits on a meeting and your calendar stays yours.</p>
+        <div style="display: flex; align-items: center; gap: 18px; flex-wrap: wrap">
+          <a href="#intake" style="text-decoration: none; background: var(--accent); color: var(--accent-ink); padding: 17px 30px; font-weight: 600; font-size: 17px; border-radius: 999px; border: 1.5px solid var(--ink); box-shadow: 3.5px 3.5px 0 var(--ink); display: inline-flex; align-items: center; gap: 10px" style-hover="box-shadow: 0.5px 0.5px 0 var(--ink); transform: translate(3px, 3px)">
+            Start an intake
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2c1 3 2.5 3.5 3.5 4.5A5 5 0 0 1 17 10a5 5 0 1 1-10 0c0-.3 0-.6.1-.9a2 2 0 1 0 3.3-2C8 4.5 11 2 12 2Z"></path><path d="m5 22 14-4"></path><path d="m5 18 14 4"></path></svg>
+          </a>
+          <span style="font-family: 'Geist Mono', monospace; font-size: 12.5px; color: var(--ink2)">10 minutes. No meeting.</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Marquee strip -->
+    <div style="transform: rotate(-1deg) translateY(6px); margin: 20px -16px 0 -16px; border-top: 1.5px solid var(--ink); border-bottom: 1.5px solid var(--ink); background: var(--sun); overflow: hidden">
+      <div style="display: flex; width: max-content; animation: marquee 26s linear infinite; padding: 11px 0; font-family: 'Geist Mono', monospace; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--night); white-space: nowrap">
+        <span style="padding-right: 40px">Fixed scope · Fixed price · Some offers need zero meetings · Async-first · Written scope in 2 business days · One or two engagements at a time · 14+ years of product design ·&nbsp;</span>
+        <span style="padding-right: 40px">Fixed scope · Fixed price · Some offers need zero meetings · Async-first · Written scope in 2 business days · One or two engagements at a time · 14+ years of product design ·&nbsp;</span>
+      </div>
+    </div>
+
+    <!-- Credibility strip -->
+    <div style="max-width: 1180px; margin: 0 auto; padding: 56px 28px 80px 28px">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px">
+        <div style="border: 1.5px solid var(--ink); border-radius: 14px; padding: 22px 24px; background: var(--bg); box-shadow: 3px 3px 0 var(--ink)">
+          <p style="margin: 0; font-family: 'Geist Mono', monospace; font-size: 11.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent)">Experience</p>
+          <p style="margin: 8px 0 0 0; font-size: 15.5px; line-height: 1.45; font-weight: 500">14+ years in product design</p>
+        </div>
+        <div style="border: 1.5px solid var(--ink); border-radius: 14px; padding: 22px 24px; background: var(--bg); box-shadow: 3px 3px 0 var(--ink)">
+          <p style="margin: 0; font-family: 'Geist Mono', monospace; font-size: 11.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent)">Track record</p>
+          <p style="margin: 8px 0 0 0; font-size: 15.5px; line-height: 1.45; font-weight: 500">Founding designer in AI. 0→1 design lead at Tableau</p>
+        </div>
+        <div style="border: 1.5px solid var(--ink); border-radius: 14px; padding: 22px 24px; background: var(--bg); box-shadow: 3px 3px 0 var(--ink)">
+          <p style="margin: 0; font-family: 'Geist Mono', monospace; font-size: 11.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent)">Specialty</p>
+          <p style="margin: 8px 0 0 0; font-size: 15.5px; line-height: 1.45; font-weight: 500">Design systems, tokens, accessible color</p>
+        </div>
+        <div style="border: 1.5px solid var(--ink); border-radius: 14px; padding: 22px 24px; background: var(--bg); box-shadow: 3px 3px 0 var(--ink)">
+          <p style="margin: 0; font-family: 'Geist Mono', monospace; font-size: 11.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent)">Capacity</p>
+          <p style="margin: 8px 0 0 0; font-size: 15.5px; line-height: 1.45; font-weight: 500">One or two engagements at a time</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 01 THE MODEL ============ -->
+  <section data-screen-label="The model" style="border-top: 1.5px solid var(--ink)">
+    <div style="max-width: 1180px; margin: 0 auto; padding: 88px 28px">
+      <div style="display: flex; align-items: center; gap: 18px; margin-bottom: 52px">
+        <span style="display: inline-flex; align-items: center; justify-content: center; width: 38px; height: 38px; border-radius: 999px; border: 1.5px solid var(--ink); background: var(--sun); font-family: 'Geist Mono', monospace; font-size: 13px; font-weight: 500">01</span>
+        <h2 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: clamp(32px, 3.6vw, 48px); letter-spacing: -0.02em">How camp runs</h2>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 28px">
+        <div style="border: 1.5px solid var(--ink); border-radius: 16px; padding: 28px; background: var(--surface)">
+          <h3 style="margin: 0 0 10px 0; font-family: 'Bricolage Grotesque', sans-serif; font-size: 22px; font-weight: 700">Async-first</h3>
+          <p style="margin: 0; font-size: 16px; line-height: 1.6; color: var(--ink2); text-wrap: pretty">Work arrives as written docs, recorded walkthroughs, and working files. You review on your schedule. Progress never depends on getting people into a room.</p>
+        </div>
+        <div style="border: 1.5px solid var(--ink); border-radius: 16px; padding: 28px; background: var(--surface)">
+          <h3 style="margin: 0 0 10px 0; font-family: 'Bricolage Grotesque', sans-serif; font-size: 22px; font-weight: 700">Bounded sync</h3>
+          <p style="margin: 0; font-size: 16px; line-height: 1.6; color: var(--ink2); text-wrap: pretty">Live calls happen in scheduled windows, Wednesdays and Fridays. Some offers need zero meetings. Long stretches of deep work produce better design, faster.</p>
+        </div>
+        <div style="border: 1.5px solid var(--ink); border-radius: 16px; padding: 28px; background: var(--surface)">
+          <h3 style="margin: 0 0 10px 0; font-family: 'Bricolage Grotesque', sans-serif; font-size: 22px; font-weight: 700">Limited capacity</h3>
+          <p style="margin: 0; font-size: 16px; line-height: 1.6; color: var(--ink2); text-wrap: pretty">One or two active engagements at a time, never more. That is quality control. Your project gets a senior designer's full attention, not a slice of it.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 02 PROCESS ============ -->
+  <section id="process" data-screen-label="Process" style="border-top: 1.5px solid var(--ink); background: var(--surface)">
+    <div style="max-width: 1180px; margin: 0 auto; padding: 88px 28px">
+      <div style="display: flex; align-items: center; gap: 18px; margin-bottom: 52px">
+        <span style="display: inline-flex; align-items: center; justify-content: center; width: 38px; height: 38px; border-radius: 999px; border: 1.5px solid var(--ink); background: var(--sun); font-family: 'Geist Mono', monospace; font-size: 13px; font-weight: 500">02</span>
+        <h2 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: clamp(32px, 3.6vw, 48px); letter-spacing: -0.02em">Intake to handoff, no trail guide needed</h2>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 28px">
+        <div>
+          <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 18px">
+            <span style="display: inline-flex; align-items: center; justify-content: center; width: 34px; height: 34px; border-radius: 999px; background: var(--accent); color: var(--accent-ink); border: 1.5px solid var(--ink); font-family: 'Geist Mono', monospace; font-size: 14px">1</span>
+            <span style="flex: 1; border-top: 2px dashed var(--ink2); opacity: 0.5"></span>
+          </div>
+          <h3 style="margin: 0 0 8px 0; font-family: 'Bricolage Grotesque', sans-serif; font-size: 24px; font-weight: 700">Intake</h3>
+          <p style="margin: 0; font-size: 15px; line-height: 1.6; color: var(--ink2)">A short form about your product and problem. Ten minutes, no meeting.</p>
+        </div>
+        <div>
+          <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 18px">
+            <span style="display: inline-flex; align-items: center; justify-content: center; width: 34px; height: 34px; border-radius: 999px; background: var(--accent); color: var(--accent-ink); border: 1.5px solid var(--ink); font-family: 'Geist Mono', monospace; font-size: 14px">2</span>
+            <span style="flex: 1; border-top: 2px dashed var(--ink2); opacity: 0.5"></span>
+          </div>
+          <h3 style="margin: 0 0 8px 0; font-family: 'Bricolage Grotesque', sans-serif; font-size: 24px; font-weight: 700">Scope</h3>
+          <p style="margin: 0; font-size: 15px; line-height: 1.6; color: var(--ink2)">A written scope, a fixed price, and a start date within 2 business days. An optional 30-minute call in a Wednesday or Friday window.</p>
+        </div>
+        <div>
+          <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 18px">
+            <span style="display: inline-flex; align-items: center; justify-content: center; width: 34px; height: 34px; border-radius: 999px; background: var(--accent); color: var(--accent-ink); border: 1.5px solid var(--ink); font-family: 'Geist Mono', monospace; font-size: 14px">3</span>
+            <span style="flex: 1; border-top: 2px dashed var(--ink2); opacity: 0.5"></span>
+          </div>
+          <h3 style="margin: 0 0 8px 0; font-family: 'Bricolage Grotesque', sans-serif; font-size: 24px; font-weight: 700">Build</h3>
+          <p style="margin: 0; font-size: 15px; line-height: 1.6; color: var(--ink2)">Async delivery: working files, written rationale, recorded walkthroughs. You always know where things stand.</p>
+        </div>
+        <div>
+          <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 18px">
+            <span style="display: inline-flex; align-items: center; justify-content: center; width: 34px; height: 34px; border-radius: 999px; background: var(--accent); color: var(--accent-ink); border: 1.5px solid var(--ink); font-family: 'Geist Mono', monospace; font-size: 14px">4</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2c1 3 2.5 3.5 3.5 4.5A5 5 0 0 1 17 10a5 5 0 1 1-10 0c0-.3 0-.6.1-.9a2 2 0 1 0 3.3-2C8 4.5 11 2 12 2Z"></path><path d="m5 22 14-4"></path><path d="m5 18 14 4"></path></svg>
+          </div>
+          <h3 style="margin: 0 0 8px 0; font-family: 'Bricolage Grotesque', sans-serif; font-size: 24px; font-weight: 700">Handoff</h3>
+          <p style="margin: 0; font-size: 15px; line-height: 1.6; color: var(--ink2)">Documentation included, plus one structured revision round defined in the scope doc.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 03 OFFERS ============ -->
+  <section id="offers" data-screen-label="Offers" style="border-top: 1.5px solid var(--ink)">
+    <div style="max-width: 1180px; margin: 0 auto; padding: 88px 28px">
+      <div style="display: flex; align-items: center; gap: 18px; margin-bottom: 16px">
+        <span style="display: inline-flex; align-items: center; justify-content: center; width: 38px; height: 38px; border-radius: 999px; border: 1.5px solid var(--ink); background: var(--sun); font-family: 'Geist Mono', monospace; font-size: 13px; font-weight: 500">03</span>
+        <h2 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: clamp(32px, 3.6vw, 48px); letter-spacing: -0.02em">The offers</h2>
+      </div>
+      <p style="margin: 0 0 52px 56px; font-size: 17px; line-height: 1.6; color: var(--ink2); max-width: 58ch; text-wrap: pretty">Every offer states what it promises, what you get, how long it takes, how much of your time it needs, and what it costs. That transparency is the product.</p>
+
+      <div style="display: grid; gap: 28px">
+
+        <!-- Offer A -->
+        <article style="border: 1.5px solid var(--ink); border-radius: 18px; background: var(--bg); padding: 36px 36px 40px 36px; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; position: relative" style-hover="box-shadow: 4px 4px 0 var(--ink); transform: translate(-2px, -2px)">
+          <span style="position: absolute; top: -14px; right: 32px; transform: rotate(var(--tilt2)); background: var(--sun); border: 1.5px solid var(--ink); border-radius: 999px; padding: 6px 14px; font-family: 'Geist Mono', monospace; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500">Start here</span>
+          <div>
+            <span style="display: inline-flex; align-items: center; justify-content: center; width: 42px; height: 42px; border-radius: 999px; background: #D14E12; color: #fff; border: 1.5px solid var(--ink); font-family: 'Bricolage Grotesque', sans-serif; font-size: 19px; font-weight: 700; margin-bottom: 16px">A</span>
+            <h3 style="margin: 0 0 12px 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 30px; letter-spacing: -0.015em; line-height: 1.1">Design System Audit + Roadmap</h3>
+            <p style="margin: 0; font-size: 16px; line-height: 1.6; color: var(--ink2); text-wrap: pretty">Know exactly what's wrong with your design system and what to fix first.</p>
+          </div>
+          <div>
+            <p style="margin: 0 0 12px 0; font-family: 'Geist Mono', monospace; font-size: 11.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink2)">You get</p>
+            <ul style="margin: 0; padding: 0; list-style: none; display: grid; gap: 9px; font-size: 15px; line-height: 1.5">
+              <li style="display: flex; gap: 10px"><span style="width: 7px; height: 7px; border-radius: 999px; background: #D14E12; margin-top: 7px; flex-shrink: 0"></span>Written audit: tokens, components, accessibility, workflow</li>
+              <li style="display: flex; gap: 10px"><span style="width: 7px; height: 7px; border-radius: 999px; background: #D14E12; margin-top: 7px; flex-shrink: 0"></span>Prioritized roadmap</li>
+              <li style="display: flex; gap: 10px"><span style="width: 7px; height: 7px; border-radius: 999px; background: #D14E12; margin-top: 7px; flex-shrink: 0"></span>Recorded walkthrough</li>
+            </ul>
+          </div>
+          <div style="border-left: 2px dashed var(--line); padding-left: 28px; display: flex; flex-direction: column; gap: 10px; font-family: 'Geist Mono', monospace; font-size: 13px">
+            <div style="display: flex; justify-content: space-between; gap: 12px"><span style="color: var(--ink2)">Timeline</span><span>2 weeks</span></div>
+            <div style="display: flex; justify-content: space-between; gap: 12px"><span style="color: var(--ink2)">Your time</span><span>~1 hr, async</span></div>
+            <div style="display: flex; justify-content: space-between; gap: 12px"><span style="color: var(--ink2)">Meetings</span><span>None</span></div>
+            <p style="margin: 14px 0 0 0; font-family: 'Bricolage Grotesque', sans-serif; font-size: 40px; font-weight: 800; letter-spacing: -0.02em">$3,500</p>
+            <a href="#intake" style="text-decoration: none; font-family: 'Geist Mono', monospace; font-size: 13px; color: var(--accent); font-weight: 500" style-hover="color: var(--ink)">Start an intake →</a>
+          </div>
+        </article>
+
+        <!-- Offer B -->
+        <article style="border: 1.5px solid var(--ink); border-radius: 18px; background: var(--bg); padding: 36px 36px 40px 36px; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px" style-hover="box-shadow: 4px 4px 0 var(--ink); transform: translate(-2px, -2px)">
+          <div>
+            <span style="display: inline-flex; align-items: center; justify-content: center; width: 42px; height: 42px; border-radius: 999px; background: #3A5A9E; color: #fff; border: 1.5px solid var(--ink); font-family: 'Bricolage Grotesque', sans-serif; font-size: 19px; font-weight: 700; margin-bottom: 16px">B</span>
+            <h3 style="margin: 0 0 12px 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 30px; letter-spacing: -0.015em; line-height: 1.1">Brand-to-Token Pipeline</h3>
+            <p style="margin: 0; font-size: 16px; line-height: 1.6; color: var(--ink2); text-wrap: pretty">Your brand, converted into a production token system your engineers will actually use.</p>
+          </div>
+          <div>
+            <p style="margin: 0 0 12px 0; font-family: 'Geist Mono', monospace; font-size: 11.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink2)">You get</p>
+            <ul style="margin: 0; padding: 0; list-style: none; display: grid; gap: 9px; font-size: 15px; line-height: 1.5">
+              <li style="display: flex; gap: 10px"><span style="width: 7px; height: 7px; border-radius: 999px; background: #3A5A9E; margin-top: 7px; flex-shrink: 0"></span>DTCG-format token architecture</li>
+              <li style="display: flex; gap: 10px"><span style="width: 7px; height: 7px; border-radius: 999px; background: #3A5A9E; margin-top: 7px; flex-shrink: 0"></span>Style Dictionary pipeline with platform outputs</li>
+              <li style="display: flex; gap: 10px"><span style="width: 7px; height: 7px; border-radius: 999px; background: #3A5A9E; margin-top: 7px; flex-shrink: 0"></span>Figma variables setup</li>
+              <li style="display: flex; gap: 10px"><span style="width: 7px; height: 7px; border-radius: 999px; background: #3A5A9E; margin-top: 7px; flex-shrink: 0"></span>Accessible color scale system</li>
+              <li style="display: flex; gap: 10px"><span style="width: 7px; height: 7px; border-radius: 999px; background: #3A5A9E; margin-top: 7px; flex-shrink: 0"></span>Documentation</li>
+            </ul>
+          </div>
+          <div style="border-left: 2px dashed var(--line); padding-left: 28px; display: flex; flex-direction: column; gap: 10px; font-family: 'Geist Mono', monospace; font-size: 13px">
+            <div style="display: flex; justify-content: space-between; gap: 12px"><span style="color: var(--ink2)">Timeline</span><span>2–3 weeks</span></div>
+            <div style="display: flex; justify-content: space-between; gap: 12px"><span style="color: var(--ink2)">Your time</span><span>Kickoff + handoff</span></div>
+            <div style="display: flex; justify-content: space-between; gap: 12px"><span style="color: var(--ink2)">Meetings</span><span>2 max, Wed/Fri</span></div>
+            <p style="margin: 14px 0 0 0; font-family: 'Bricolage Grotesque', sans-serif; font-size: 40px; font-weight: 800; letter-spacing: -0.02em">$7,500</p>
+            <a href="#intake" style="text-decoration: none; font-family: 'Geist Mono', monospace; font-size: 13px; color: var(--accent); font-weight: 500" style-hover="color: var(--ink)">Start an intake →</a>
+          </div>
+        </article>
+
+        <!-- Offer C -->
+        <article style="border: 1.5px solid var(--ink); border-radius: 18px; background: var(--bg); padding: 36px 36px 40px 36px; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px" style-hover="box-shadow: 4px 4px 0 var(--ink); transform: translate(-2px, -2px)">
+          <div>
+            <span style="display: inline-flex; align-items: center; justify-content: center; width: 42px; height: 42px; border-radius: 999px; background: #2F7D4F; color: #fff; border: 1.5px solid var(--ink); font-family: 'Bricolage Grotesque', sans-serif; font-size: 19px; font-weight: 700; margin-bottom: 16px">C</span>
+            <h3 style="margin: 0 0 12px 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 30px; letter-spacing: -0.015em; line-height: 1.1">Design System Foundation Sprint</h3>
+            <p style="margin: 0; font-size: 16px; line-height: 1.6; color: var(--ink2); text-wrap: pretty">The foundation a design system needs to scale: tokens, type, color, core component scaffolding, and the documentation to maintain it.</p>
+          </div>
+          <div>
+            <p style="margin: 0 0 12px 0; font-family: 'Geist Mono', monospace; font-size: 11.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink2)">You get</p>
+            <ul style="margin: 0; padding: 0; list-style: none; display: grid; gap: 9px; font-size: 15px; line-height: 1.5">
+              <li style="display: flex; gap: 10px"><span style="width: 7px; height: 7px; border-radius: 999px; background: #2F7D4F; margin-top: 7px; flex-shrink: 0"></span>Full token set and pipeline</li>
+              <li style="display: flex; gap: 10px"><span style="width: 7px; height: 7px; border-radius: 999px; background: #2F7D4F; margin-top: 7px; flex-shrink: 0"></span>Accessible color system, light and dark</li>
+              <li style="display: flex; gap: 10px"><span style="width: 7px; height: 7px; border-radius: 999px; background: #2F7D4F; margin-top: 7px; flex-shrink: 0"></span>Type and spacing scales</li>
+              <li style="display: flex; gap: 10px"><span style="width: 7px; height: 7px; border-radius: 999px; background: #2F7D4F; margin-top: 7px; flex-shrink: 0"></span>Core component scaffold</li>
+              <li style="display: flex; gap: 10px"><span style="width: 7px; height: 7px; border-radius: 999px; background: #2F7D4F; margin-top: 7px; flex-shrink: 0"></span>Contribution and maintenance docs</li>
+            </ul>
+          </div>
+          <div style="border-left: 2px dashed var(--line); padding-left: 28px; display: flex; flex-direction: column; gap: 10px; font-family: 'Geist Mono', monospace; font-size: 13px">
+            <div style="display: flex; justify-content: space-between; gap: 12px"><span style="color: var(--ink2)">Timeline</span><span>3–4 weeks</span></div>
+            <div style="display: flex; justify-content: space-between; gap: 12px"><span style="color: var(--ink2)">Your time</span><span>30 min/wk + async</span></div>
+            <div style="display: flex; justify-content: space-between; gap: 12px"><span style="color: var(--ink2)">Meetings</span><span>Weekly, Wed/Fri</span></div>
+            <p style="margin: 14px 0 0 0; font-family: 'Bricolage Grotesque', sans-serif; font-size: 40px; font-weight: 800; letter-spacing: -0.02em">$12,500</p>
+            <a href="#intake" style="text-decoration: none; font-family: 'Geist Mono', monospace; font-size: 13px; color: var(--accent); font-weight: 500" style-hover="color: var(--ink)">Start an intake →</a>
+          </div>
+        </article>
+
+        <!-- Offer D -->
+        <article style="border: 1.5px solid var(--ink); border-radius: 18px; background: var(--night); color: #F4EFE3; padding: 36px 36px 40px 36px; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; position: relative; background-image: radial-gradient(1.5px at 12% 20%, rgba(255,244,214,0.7), transparent 60%), radial-gradient(1px at 34% 70%, rgba(255,244,214,0.5), transparent 60%), radial-gradient(1.5px at 58% 15%, rgba(255,244,214,0.6), transparent 60%), radial-gradient(1px at 78% 55%, rgba(255,244,214,0.5), transparent 60%), radial-gradient(1.5px at 92% 25%, rgba(255,244,214,0.6), transparent 60%)" style-hover="box-shadow: 4px 4px 0 var(--accent); transform: translate(-2px, -2px)">
+          <span style="position: absolute; top: -14px; right: 32px; transform: rotate(var(--tilt2)); background: var(--accent); color: var(--accent-ink); border: 1.5px solid var(--ink); border-radius: 999px; padding: 6px 14px; font-family: 'Geist Mono', monospace; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500">The founding-designer offer</span>
+          <div>
+            <span style="display: inline-flex; align-items: center; justify-content: center; width: 42px; height: 42px; border-radius: 999px; background: var(--sun); color: var(--night); border: 1.5px solid var(--sun); font-family: 'Bricolage Grotesque', sans-serif; font-size: 19px; font-weight: 700; margin-bottom: 16px">D</span>
+            <h3 style="margin: 0 0 12px 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 30px; letter-spacing: -0.015em; line-height: 1.1">0→1 Product Foundation</h3>
+            <p style="margin: 0; font-size: 16px; line-height: 1.6; color: #B9BACE; text-wrap: pretty">Founding-designer judgment for your first product: direction, system, and core flows, handoff-ready.</p>
+          </div>
+          <div>
+            <p style="margin: 0 0 12px 0; font-family: 'Geist Mono', monospace; font-size: 11.5px; letter-spacing: 0.12em; text-transform: uppercase; color: #B9BACE">You get</p>
+            <ul style="margin: 0; padding: 0; list-style: none; display: grid; gap: 9px; font-size: 15px; line-height: 1.5">
+              <li style="display: flex; gap: 10px"><span style="width: 7px; height: 7px; border-radius: 999px; background: var(--sun); margin-top: 7px; flex-shrink: 0"></span>Visual direction</li>
+              <li style="display: flex; gap: 10px"><span style="width: 7px; height: 7px; border-radius: 999px; background: var(--sun); margin-top: 7px; flex-shrink: 0"></span>Design system foundation</li>
+              <li style="display: flex; gap: 10px"><span style="width: 7px; height: 7px; border-radius: 999px; background: var(--sun); margin-top: 7px; flex-shrink: 0"></span>3–5 core product flows, designed and specced</li>
+              <li style="display: flex; gap: 10px"><span style="width: 7px; height: 7px; border-radius: 999px; background: var(--sun); margin-top: 7px; flex-shrink: 0"></span>Engineering handoff package</li>
+            </ul>
+          </div>
+          <div style="border-left: 2px dashed #3B3D5C; padding-left: 28px; display: flex; flex-direction: column; gap: 10px; font-family: 'Geist Mono', monospace; font-size: 13px">
+            <div style="display: flex; justify-content: space-between; gap: 12px"><span style="color: #B9BACE">Timeline</span><span>4–6 weeks</span></div>
+            <div style="display: flex; justify-content: space-between; gap: 12px"><span style="color: #B9BACE">Your time</span><span>30 min/wk + async</span></div>
+            <div style="display: flex; justify-content: space-between; gap: 12px"><span style="color: #B9BACE">Meetings</span><span>Weekly, Wed/Fri</span></div>
+            <p style="margin: 14px 0 0 0; font-family: 'Bricolage Grotesque', sans-serif; font-size: 40px; font-weight: 800; letter-spacing: -0.02em; color: var(--sun)">$18,000</p>
+            <a href="#intake" style="text-decoration: none; font-family: 'Geist Mono', monospace; font-size: 13px; color: var(--accent-on-night); font-weight: 500" style-hover="color: #F4EFE3">Start an intake →</a>
+          </div>
+        </article>
+      </div>
+
+      <!-- Add-on + agency note -->
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 28px; margin-top: 32px">
+        <div style="border: 1.5px solid var(--ink); border-radius: 16px; padding: 28px 30px; background: var(--surface); transform: rotate(var(--tilt))" style-hover="transform: rotate(0deg)">
+          <p style="margin: 0 0 10px 0; font-family: 'Geist Mono', monospace; font-size: 11.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent)">Add-on</p>
+          <h3 style="margin: 0 0 10px 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 24px">Data Visualization Color System</h3>
+          <p style="margin: 0 0 16px 0; font-size: 15px; line-height: 1.6; color: var(--ink2); text-wrap: pretty">Accessible categorical and sequential chart palettes, CVD-verified, sequenced, delivered as tokens.</p>
+          <p style="margin: 0; font-family: 'Geist Mono', monospace; font-size: 13.5px; font-weight: 500">$3,500 with B or C · $4,500 standalone</p>
+        </div>
+        <div style="border: 1.5px solid var(--ink); border-radius: 16px; padding: 28px 30px; background: var(--bg); transform: rotate(var(--tilt2))" style-hover="transform: rotate(0deg)">
+          <p style="margin: 0 0 10px 0; font-family: 'Geist Mono', monospace; font-size: 11.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent)">Agencies and studios</p>
+          <h3 style="margin: 0 0 10px 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 24px">White-label and overflow</h3>
+          <p style="margin: 0; font-size: 15px; line-height: 1.6; color: var(--ink2); text-wrap: pretty">The same offers, delivered under your banner. Your client relationship stays yours. Mention it in the intake and I'll scope it the same way.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 04 WHY (night band) ============ -->
+  <section data-screen-label="Why it works" style="background: var(--night); color: #F4EFE3; border-top: 1.5px solid var(--ink); background-image: radial-gradient(1.5px at 8% 22%, rgba(255,244,214,0.7), transparent 60%), radial-gradient(1px at 22% 75%, rgba(255,244,214,0.45), transparent 60%), radial-gradient(1.5px at 41% 12%, rgba(255,244,214,0.6), transparent 60%), radial-gradient(1px at 55% 60%, rgba(255,244,214,0.4), transparent 60%), radial-gradient(1.5px at 71% 30%, rgba(255,244,214,0.65), transparent 60%), radial-gradient(1px at 86% 80%, rgba(255,244,214,0.45), transparent 60%), radial-gradient(1.5px at 95% 15%, rgba(255,244,214,0.55), transparent 60%)">
+    <div style="max-width: 1180px; margin: 0 auto; padding: 100px 28px">
+      <div style="display: flex; align-items: center; gap: 18px; margin-bottom: 20px">
+        <span style="display: inline-flex; align-items: center; justify-content: center; width: 38px; height: 38px; border-radius: 999px; border: 1.5px solid var(--sun); color: var(--sun); font-family: 'Geist Mono', monospace; font-size: 13px">04</span>
+        <h2 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: clamp(32px, 3.6vw, 48px); letter-spacing: -0.02em">Around the fire, the pitch is simple</h2>
+      </div>
+      <div style="display: flex; justify-content: center; margin: 8px 0 48px 0">
+        <svg width="54" height="54" viewBox="0 0 24 24" fill="none" stroke="var(--accent-on-night)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="animation: flicker 2.8s ease-in-out infinite; filter: drop-shadow(0 0 18px rgba(255,156,102,0.55))"><path d="M12 2c1 3 2.5 3.5 3.5 4.5A5 5 0 0 1 17 10a5 5 0 1 1-10 0c0-.3 0-.6.1-.9a2 2 0 1 0 3.3-2C8 4.5 11 2 12 2Z"></path><path d="m5 22 14-4"></path><path d="m5 18 14 4"></path></svg>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 44px">
+        <div>
+          <p style="margin: 0 0 12px 0; font-family: 'Geist Mono', monospace; font-size: 12.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--sun)">Scope you can see</p>
+          <p style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-size: 24px; line-height: 1.35; font-weight: 500; text-wrap: pretty">No discovery-phase black hole. The price and the finish line are known before work starts.</p>
+        </div>
+        <div>
+          <p style="margin: 0 0 12px 0; font-family: 'Geist Mono', monospace; font-size: 12.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--sun)">Async by default</p>
+          <p style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-size: 24px; line-height: 1.35; font-weight: 500; text-wrap: pretty">Written rationale and recorded walkthroughs beat status meetings. Your calendar stays yours.</p>
+        </div>
+        <div>
+          <p style="margin: 0 0 12px 0; font-family: 'Geist Mono', monospace; font-size: 12.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--sun)">Systems thinking</p>
+          <p style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-size: 24px; line-height: 1.35; font-weight: 500; text-wrap: pretty">Everything ships with the structure to maintain it: tokens, docs, pipelines.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 05 PROOF ============ -->
+  <section id="proof" data-screen-label="Proof" style="border-top: 1.5px solid var(--ink)">
+    <div style="max-width: 1180px; margin: 0 auto; padding: 88px 28px">
+      <div style="display: flex; align-items: center; gap: 18px; margin-bottom: 52px">
+        <span style="display: inline-flex; align-items: center; justify-content: center; width: 38px; height: 38px; border-radius: 999px; border: 1.5px solid var(--ink); background: var(--sun); font-family: 'Geist Mono', monospace; font-size: 13px; font-weight: 500">05</span>
+        <h2 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: clamp(32px, 3.6vw, 48px); letter-spacing: -0.02em">Who's behind this</h2>
+      </div>
+      <div style="display: grid; grid-template-columns: minmax(300px, 1.2fr) minmax(300px, 1fr); gap: 56px; align-items: start">
+        <div>
+          <p style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-size: clamp(22px, 2.4vw, 30px); line-height: 1.4; font-weight: 500; text-wrap: pretty">I've spent 14 years designing products and the systems underneath them. Founding designer at an AI training platform. Product design lead on a 0→1 predictive analytics tool at Tableau. Since then, a deep specialization in design systems: token architecture in DTCG and Style Dictionary, theming, and accessible color systems.</p>
+          <p style="margin: 24px 0 0 0; font-size: 16px; line-height: 1.6; color: var(--ink2); max-width: 54ch; text-wrap: pretty">Every Ideacamp engagement is done by me. No juniors, no outsourcing, no handoffs between people you haven't met.</p>
+        </div>
+        <div style="display: grid; gap: 26px">
+          <a href="#intake" style="text-decoration: none; color: var(--ink); border: 1.5px solid var(--ink); border-radius: 16px; padding: 26px 28px; display: block; background: var(--bg); transform: rotate(var(--tilt2)); box-shadow: 3px 3px 0 var(--ink)" style-hover="transform: rotate(0deg)">
+            <p style="margin: 0 0 10px 0; font-family: 'Geist Mono', monospace; font-size: 11.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent)">Case study · 0→1</p>
+            <h3 style="margin: 0 0 8px 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 22px">From zero to a shipping analytics product</h3>
+            <p style="margin: 0 0 14px 0; font-size: 15px; line-height: 1.55; color: var(--ink2)">Led the 0→1 design of a predictive analytics tool at Tableau, from first concept to shipped product.</p>
+            <span style="font-family: 'Geist Mono', monospace; font-size: 12.5px; color: var(--accent); font-weight: 500">Full write-up coming soon →</span>
+          </a>
+          <a href="#intake" style="text-decoration: none; color: var(--ink); border: 1.5px solid var(--ink); border-radius: 16px; padding: 26px 28px; display: block; background: var(--surface); transform: rotate(var(--tilt)); box-shadow: 3px 3px 0 var(--ink)" style-hover="transform: rotate(0deg)">
+            <p style="margin: 0 0 10px 0; font-family: 'Geist Mono', monospace; font-size: 11.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent)">Case study · Systems</p>
+            <h3 style="margin: 0 0 8px 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 22px">A brand, rebuilt as tokens</h3>
+            <p style="margin: 0 0 14px 0; font-size: 15px; line-height: 1.55; color: var(--ink2)">Converted a brand language into a DTCG token pipeline that engineers ship from daily.</p>
+            <span style="font-family: 'Geist Mono', monospace; font-size: 12.5px; color: var(--accent); font-weight: 500">Full write-up coming soon →</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 06 QUESTIONS ============ -->
+  <section id="faq" data-screen-label="Questions" style="border-top: 1.5px solid var(--ink); background: var(--surface)">
+    <div style="max-width: 1180px; margin: 0 auto; padding: 88px 28px">
+      <div style="display: flex; align-items: center; gap: 18px; margin-bottom: 52px">
+        <span style="display: inline-flex; align-items: center; justify-content: center; width: 38px; height: 38px; border-radius: 999px; border: 1.5px solid var(--ink); background: var(--sun); font-family: 'Geist Mono', monospace; font-size: 13px; font-weight: 500">06</span>
+        <h2 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: clamp(32px, 3.6vw, 48px); letter-spacing: -0.02em">Questions worth answering</h2>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 44px 56px">
+        <div>
+          <h3 style="margin: 0 0 10px 0; font-family: 'Bricolage Grotesque', sans-serif; font-size: 19px; font-weight: 700">How do meetings work?</h3>
+          <p style="margin: 0; font-size: 15.5px; line-height: 1.6; color: var(--ink2); text-wrap: pretty">Live calls happen in scheduled windows on Wednesdays and Fridays. Several offers need none at all. Everything else moves async.</p>
+        </div>
+        <div>
+          <h3 style="margin: 0 0 10px 0; font-family: 'Bricolage Grotesque', sans-serif; font-size: 19px; font-weight: 700">My project doesn't fit an offer.</h3>
+          <p style="margin: 0; font-size: 15.5px; line-height: 1.6; color: var(--ink2); text-wrap: pretty">Send an intake anyway. Scoping is free, and that includes an honest no if it isn't a fit.</p>
+        </div>
+        <div>
+          <h3 style="margin: 0 0 10px 0; font-family: 'Bricolage Grotesque', sans-serif; font-size: 19px; font-weight: 700">What do you need to start?</h3>
+          <p style="margin: 0; font-size: 15.5px; line-height: 1.6; color: var(--ink2); text-wrap: pretty">Access to the relevant tools, your brand assets, and a decision-maker who responds within 24 hours.</p>
+        </div>
+        <div>
+          <h3 style="margin: 0 0 10px 0; font-family: 'Bricolage Grotesque', sans-serif; font-size: 19px; font-weight: 700">How do revisions work?</h3>
+          <p style="margin: 0; font-size: 15.5px; line-height: 1.6; color: var(--ink2); text-wrap: pretty">Every offer includes one structured revision round. What it covers is written into the scope doc, so there are no surprises.</p>
+        </div>
+        <div>
+          <h3 style="margin: 0 0 10px 0; font-family: 'Bricolage Grotesque', sans-serif; font-size: 19px; font-weight: 700">Who does the work?</h3>
+          <p style="margin: 0; font-size: 15.5px; line-height: 1.6; color: var(--ink2); text-wrap: pretty">One senior designer. No juniors, no outsourcing.</p>
+        </div>
+        <div>
+          <h3 style="margin: 0 0 10px 0; font-family: 'Bricolage Grotesque', sans-serif; font-size: 19px; font-weight: 700">Do you work with agencies?</h3>
+          <p style="margin: 0; font-size: 15.5px; line-height: 1.6; color: var(--ink2); text-wrap: pretty">Yes. White-label and overflow engagements run in these same shapes, and your client relationship stays yours. Mention it in the intake.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 07 INTAKE ============ -->
+  <section id="intake" data-screen-label="Intake" style="border-top: 1.5px solid var(--ink)">
+    <div style="max-width: 1180px; margin: 0 auto; padding: 96px 28px; display: grid; grid-template-columns: minmax(280px, 1fr) minmax(320px, 1.2fr); gap: 64px; align-items: start">
+      <div>
+        <div style="display: flex; align-items: center; gap: 18px; margin-bottom: 28px">
+          <span style="display: inline-flex; align-items: center; justify-content: center; width: 38px; height: 38px; border-radius: 999px; border: 1.5px solid var(--ink); background: var(--sun); font-family: 'Geist Mono', monospace; font-size: 13px; font-weight: 500">07</span>
+          <h2 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(36px, 4.2vw, 56px); letter-spacing: -0.025em">Start an intake</h2>
+        </div>
+        <p style="margin: 0 0 20px 0; font-size: 17px; line-height: 1.6; color: var(--ink2); text-wrap: pretty">Ten minutes, no meeting. Within 2 business days you'll have a written scope, a fixed price, and a start date. If it isn't a fit, I'll say so. Scoping is free.</p>
+        <div style="display: grid; gap: 10px; font-family: 'Geist Mono', monospace; font-size: 13px; color: var(--ink2)">
+          <p style="margin: 0">→ No sales call required</p>
+          <p style="margin: 0">→ Optional 30 min, Wed/Fri windows</p>
+          <p style="margin: 0">→ Agencies: mention white-label</p>
+        </div>
+      </div>
+
+      <sc-if value="{{ formVisible }}" hint-placeholder-val="{{ true }}">
+        <form onSubmit="{{ submitIntake }}" style="display: grid; gap: 22px; border: 1.5px solid var(--ink); border-radius: 18px; padding: 34px; background: var(--surface); box-shadow: 4px 4px 0 var(--ink)">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 22px">
+            <label style="display: grid; gap: 8px">
+              <span style="font-family: 'Geist Mono', monospace; font-size: 11.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink2)">Name</span>
+              <input type="text" name="name" required="required" autocomplete="name" style="background: var(--bg); border: 1.5px solid var(--ink); border-radius: 10px; padding: 13px 14px; width: 100%" style-focus="outline: 2.5px solid var(--accent); outline-offset: 1px">
+            </label>
+            <label style="display: grid; gap: 8px">
+              <span style="font-family: 'Geist Mono', monospace; font-size: 11.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink2)">Email</span>
+              <input type="email" name="email" required="required" autocomplete="email" style="background: var(--bg); border: 1.5px solid var(--ink); border-radius: 10px; padding: 13px 14px; width: 100%" style-focus="outline: 2.5px solid var(--accent); outline-offset: 1px">
+            </label>
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 22px">
+            <label style="display: grid; gap: 8px">
+              <span style="font-family: 'Geist Mono', monospace; font-size: 11.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink2)">Company</span>
+              <input type="text" name="company" autocomplete="organization" style="background: var(--bg); border: 1.5px solid var(--ink); border-radius: 10px; padding: 13px 14px; width: 100%" style-focus="outline: 2.5px solid var(--accent); outline-offset: 1px">
+            </label>
+            <label style="display: grid; gap: 8px">
+              <span style="font-family: 'Geist Mono', monospace; font-size: 11.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink2)">Which offer</span>
+              <select name="offer" style="background: var(--bg); border: 1.5px solid var(--ink); border-radius: 10px; padding: 13px 14px; width: 100%; appearance: auto" style-focus="outline: 2.5px solid var(--accent); outline-offset: 1px">
+                <option>A · Audit + Roadmap, $3,500</option>
+                <option>B · Brand-to-Token Pipeline, $7,500</option>
+                <option>C · Foundation Sprint, $12,500</option>
+                <option>D · 0→1 Product Foundation, $18,000</option>
+                <option>Add-on · Dataviz Color System</option>
+                <option>Not sure yet, help me pick</option>
+                <option>Agency / white-label inquiry</option>
+              </select>
+            </label>
+          </div>
+          <label style="display: grid; gap: 8px">
+            <span style="font-family: 'Geist Mono', monospace; font-size: 11.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink2)">When do you want to start</span>
+            <select name="timing" style="background: var(--bg); border: 1.5px solid var(--ink); border-radius: 10px; padding: 13px 14px; width: 100%; appearance: auto" style-focus="outline: 2.5px solid var(--accent); outline-offset: 1px">
+              <option>As soon as possible</option>
+              <option>Within a month</option>
+              <option>This quarter</option>
+              <option>Just exploring</option>
+            </select>
+          </label>
+          <label style="display: grid; gap: 8px">
+            <span style="font-family: 'Geist Mono', monospace; font-size: 11.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink2)">What are you building, and what's in the way?</span>
+            <textarea name="details" rows="5" required="required" style="background: var(--bg); border: 1.5px solid var(--ink); border-radius: 10px; padding: 13px 14px; width: 100%; resize: vertical" style-focus="outline: 2.5px solid var(--accent); outline-offset: 1px"></textarea>
+          </label>
+          <div style="display: flex; align-items: center; gap: 18px; flex-wrap: wrap">
+            <button type="submit" style="background: var(--accent); color: var(--accent-ink); border: 1.5px solid var(--ink); border-radius: 999px; padding: 16px 30px; font-weight: 600; font-size: 16px; cursor: pointer; box-shadow: 3px 3px 0 var(--ink)" style-hover="box-shadow: 0.5px 0.5px 0 var(--ink); transform: translate(2.5px, 2.5px)">Send intake</button>
+            <span style="font-family: 'Geist Mono', monospace; font-size: 12.5px; color: var(--ink2)">Scope + price within 2 business days</span>
+          </div>
+        </form>
+      </sc-if>
+      <sc-if value="{{ submitted }}" hint-placeholder-val="{{ false }}">
+        <div style="border: 1.5px solid var(--ink); border-radius: 18px; padding: 44px 40px; background: var(--night); color: #F4EFE3; box-shadow: 4px 4px 0 var(--ink); background-image: radial-gradient(1.5px at 15% 25%, rgba(255,244,214,0.7), transparent 60%), radial-gradient(1px at 45% 70%, rgba(255,244,214,0.5), transparent 60%), radial-gradient(1.5px at 80% 20%, rgba(255,244,214,0.6), transparent 60%)">
+          <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="var(--accent-on-night)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="animation: flicker 2.8s ease-in-out infinite; margin-bottom: 16px"><path d="M12 2c1 3 2.5 3.5 3.5 4.5A5 5 0 0 1 17 10a5 5 0 1 1-10 0c0-.3 0-.6.1-.9a2 2 0 1 0 3.3-2C8 4.5 11 2 12 2Z"></path><path d="m5 22 14-4"></path><path d="m5 18 14 4"></path></svg>
+          <p style="margin: 0 0 12px 0; font-family: 'Geist Mono', monospace; font-size: 12.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--sun)">You're in</p>
+          <p style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-size: 26px; line-height: 1.35; font-weight: 500; text-wrap: pretty">Thanks. You'll have a written scope, a fixed price, and a start date within 2 business days. If it isn't a fit, I'll tell you that instead.</p>
+        </div>
+      </sc-if>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer data-screen-label="Footer" style="border-top: 1.5px solid var(--ink); padding: 36px 28px; background: var(--surface)">
+    <div style="max-width: 1180px; margin: 0 auto; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; font-family: 'Geist Mono', monospace; font-size: 12.5px; color: var(--ink2)">
+      <div style="display: flex; align-items: center; gap: 10px">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2c1 3 2.5 3.5 3.5 4.5A5 5 0 0 1 17 10a5 5 0 1 1-10 0c0-.3 0-.6.1-.9a2 2 0 1 0 3.3-2C8 4.5 11 2 12 2Z"></path><path d="m5 22 14-4"></path><path d="m5 18 14 4"></path></svg>
+        <span>Ideacamp · ideacamp.co · © 2026</span>
+      </div>
+      <a href="mailto:hello@ideacamp.co" style="color: var(--ink2)" style-hover="color: var(--ink)">hello@ideacamp.co</a>
+    </div>
+  </footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{
+  &quot;headline&quot;: {
+    &quot;editor&quot;: &quot;enum&quot;,
+    &quot;default&quot;: &quot;Fixed scope. Fixed price. Design that ships.&quot;,
+    &quot;options&quot;: [
+      &quot;Fixed scope. Fixed price. Design that ships.&quot;,
+      &quot;Senior design, packaged like a product.&quot;,
+      &quot;Design systems and 0→1 product design, in fixed-scope engagements.&quot;
+    ],
+    &quot;tsType&quot;: &quot;string&quot;,
+    &quot;section&quot;: &quot;Copy&quot;
+  },
+  &quot;accent&quot;: {
+    &quot;editor&quot;: &quot;color&quot;,
+    &quot;default&quot;: &quot;#D14E12&quot;,
+    &quot;options&quot;: [&quot;#D14E12&quot;, &quot;#3A5A9E&quot;, &quot;#2F7D4F&quot;, &quot;#A8347F&quot;],
+    &quot;tsType&quot;: &quot;string&quot;,
+    &quot;section&quot;: &quot;Theme&quot;
+  },
+  &quot;stickers&quot;: {
+    &quot;editor&quot;: &quot;boolean&quot;,
+    &quot;default&quot;: true,
+    &quot;tsType&quot;: &quot;boolean&quot;,
+    &quot;section&quot;: &quot;Theme&quot;
+  }
+}">
+class Component extends DCLogic {
+  state = { submitted: false };
+
+  componentDidMount() { this.applyTokens(); }
+  componentDidUpdate() { this.applyTokens(); }
+
+  applyTokens() {
+    const accent = this.props.accent ?? '#D14E12';
+    const stickers = this.props.stickers ?? true;
+    const b = document.body.style;
+    b.setProperty('--accent', accent);
+    b.setProperty('--accent-on-night', 'color-mix(in oklab, ' + accent + ' 55%, white)');
+    b.setProperty('--tilt', stickers ? '-2deg' : '0deg');
+    b.setProperty('--tilt2', stickers ? '1.4deg' : '0deg');
+  }
+
+  renderVals() {
+    const h = this.props.headline ?? 'Fixed scope. Fixed price. Design that ships.';
+    const trimmed = h.trimEnd();
+    const i = trimmed.lastIndexOf(' ');
+    return {
+      headlineLead: i > 0 ? trimmed.slice(0, i + 1) : '',
+      headlineLast: i > 0 ? trimmed.slice(i + 1) : trimmed,
+      formVisible: !this.state.submitted,
+      submitted: this.state.submitted,
+      submitIntake: (e) => { e.preventDefault(); this.setState({ submitted: true }); }
+    };
+  }
+}
+</script>
+</body>
+</html>

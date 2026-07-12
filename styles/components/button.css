@@ -1,0 +1,50 @@
+/* button.css — Button, IconButton. Interactive tier: radius-md (12px). */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  min-height: 44px;                /* touch target (WCAG 2.5.5) */
+  padding: var(--space-3) var(--space-5);
+  font-family: var(--type-body-md-family);
+  font-size: var(--type-body-md-size);
+  font-weight: 600;
+  line-height: 1;
+  text-decoration: none;
+  white-space: nowrap;
+  border: var(--border-width-sm) solid transparent;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: background .15s ease, border-color .15s ease, transform .15s ease, box-shadow .15s ease;
+}
+.btn:active { transform: translateY(1px); }
+.btn:disabled, .btn[aria-disabled="true"] { opacity: .45; cursor: not-allowed; transform: none; }
+
+/* Primary — light text on deep blue */
+.btn-primary { background: var(--color-primary); color: var(--color-on-primary); box-shadow: var(--shadow-sm); }
+.btn-primary:hover:not(:disabled) { background: color-mix(in oklab, var(--color-primary) 88%, var(--color-on-surface)); box-shadow: var(--shadow-md); }
+.btn-primary:active { background: color-mix(in oklab, var(--color-primary) 80%, var(--color-on-surface)); }
+
+/* Secondary — dark ink on bright pink (dark-on-bright signature) */
+.btn-secondary { background: var(--color-secondary); color: var(--color-on-secondary); }
+.btn-secondary:hover:not(:disabled) { background: color-mix(in oklab, var(--color-secondary) 88%, var(--color-on-surface)); }
+.btn-secondary:active { background: color-mix(in oklab, var(--color-secondary) 80%, var(--color-on-surface)); }
+
+/* Outline — quiet, bordered */
+.btn-outline { background: var(--color-surface-raised); color: var(--color-on-surface); border-color: var(--color-on-surface); }
+.btn-outline:hover:not(:disabled) { background: var(--color-on-surface); color: var(--color-on-primary); }
+
+/* Ghost — no chrome until hovered */
+.btn-ghost { background: transparent; color: var(--color-on-surface); }
+.btn-ghost:hover:not(:disabled) { background: color-mix(in oklab, var(--color-on-surface) 7%, var(--color-surface)); }
+
+/* Sizes (radius stays md across sizes — the system's consistent interactive tier) */
+.btn-sm { min-height: 36px; padding: var(--space-2) var(--space-4); font-size: var(--type-body-sm-size); }
+.btn-lg { min-height: 52px; padding: var(--space-4) var(--space-6); font-size: var(--type-body-lg-size); }
+
+/* Icon-only — square 44px; requires aria-label */
+.btn-icon { width: 44px; min-height: 44px; padding: 0; }
+.btn-icon.btn-sm { width: 36px; min-height: 36px; }
+
+.btn svg { width: 1.15em; height: 1.15em; flex: none; }

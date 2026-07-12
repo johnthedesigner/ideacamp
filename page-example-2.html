@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Project workspace — Design System Foundation Sprint · Ideacamp</title>
+<meta name="description" content="Async delivery workspace: deliverables, recorded walkthroughs, timeline, and revisions for an active Ideacamp engagement.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Geist:wght@400;500;600&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles/index.css">
+<style>
+  /* app shell composition — tokens only */
+  .app { display: grid; grid-template-columns: 260px 1fr; min-height: 100vh; }
+  .side { background: var(--color-surface-raised); border-right: var(--border-width-sm) solid var(--color-border); padding: var(--space-6); position: sticky; top: 0; height: 100vh; }
+  .brand { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; color: var(--color-on-surface); margin-bottom: var(--space-8); }
+  .brand .mark { width: 30px; height: 30px; border-radius: var(--radius-sm); background: var(--color-primary); display: grid; place-items: center; }
+  .brand .name { font-family: var(--type-heading-md-family); font-weight: 800; font-size: 19px; letter-spacing: -0.02em; }
+  .proj { background: var(--color-surface); border: var(--border-width-sm) solid var(--color-border); border-radius: var(--radius-md); padding: var(--space-3) var(--space-4); margin-bottom: var(--space-6); }
+  .navlist { display: grid; gap: 2px; list-style: none; padding: 0; margin: 0; }
+  .navlist a { display: flex; align-items: center; gap: var(--space-3); padding: var(--space-3) var(--space-4); border-radius: var(--radius-md); text-decoration: none; color: var(--color-on-surface-muted); font-weight: 500; }
+  .navlist a:hover { background: color-mix(in oklab, var(--color-on-surface) 6%, var(--color-surface-raised)); color: var(--color-on-surface); }
+  .navlist a[aria-current="page"] { background: var(--color-primary-container); color: var(--color-on-primary-container); }
+
+  .main { padding: var(--space-8); max-width: 1100px; }
+  .topbar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--space-4); margin-bottom: var(--space-6); }
+  .stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px,1fr)); gap: var(--space-4); margin-bottom: var(--space-8); }
+  .stat .k { font-family: var(--type-display-family); font-weight: 800; font-size: 34px; letter-spacing: -0.02em; line-height: 1; }
+
+  table.data { width: 100%; border-collapse: collapse; }
+  table.data th { text-align: left; font-family: var(--type-label-family); font-size: var(--type-label-size); text-transform: uppercase; letter-spacing: var(--type-label-letter-spacing); color: var(--color-on-surface-muted); padding: var(--space-2) var(--space-3); border-bottom: var(--border-width-sm) solid var(--color-border); }
+  table.data td { padding: var(--space-3); border-bottom: var(--border-width-sm) solid var(--color-border); font-size: var(--type-body-sm-size); }
+  table.data tr:last-child td { border-bottom: 0; }
+  table.data td .name { font-weight: 500; color: var(--color-on-surface); }
+
+  .wt { display: flex; align-items: center; gap: var(--space-4); padding: var(--space-3) 0; border-bottom: var(--border-width-sm) solid var(--color-border); }
+  .wt:last-child { border-bottom: 0; }
+  .wt .play { width: 40px; height: 40px; border-radius: var(--radius-sm); background: var(--color-primary-container); color: var(--color-on-primary-container); display: grid; place-items: center; flex: none; }
+  .section-title { display: flex; align-items: center; justify-content: space-between; margin-bottom: var(--space-4); }
+  .cols { display: grid; grid-template-columns: 1.6fr 1fr; gap: var(--space-6); align-items: start; }
+
+  @media (max-width: 768px) {
+    .app { grid-template-columns: 1fr; }
+    .side { position: static; height: auto; border-right: 0; border-bottom: var(--border-width-sm) solid var(--color-border); }
+    .cols { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="app">
+
+  <aside class="side">
+    <a class="brand" href="index.html">
+      <span class="mark"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2c1 3 2.5 3.5 3.5 4.5A5 5 0 0 1 17 10a5 5 0 1 1-10 0c0-.3 0-.6.1-.9a2 2 0 1 0 3.3-2C8 4.5 11 2 12 2Z"/><path d="m5 22 14-4"/><path d="m5 18 14 4"/></svg></span>
+      <span class="name">Ideacamp</span>
+    </a>
+    <div class="proj">
+      <div class="text-label text-muted">Project</div>
+      <div class="text-body-sm" style="font-weight:500; margin-top:2px">Northwind · Foundation Sprint</div>
+    </div>
+    <nav aria-label="Project sections">
+      <ul class="navlist">
+        <li><a href="#" aria-current="page">Overview</a></li>
+        <li><a href="#">Deliverables</a></li>
+        <li><a href="#">Walkthroughs</a></li>
+        <li><a href="#">Working files</a></li>
+        <li><a href="#">Revisions</a></li>
+      </ul>
+    </nav>
+  </aside>
+
+  <main class="main">
+    <div class="topbar">
+      <div>
+        <div class="text-label text-muted">Design System Foundation Sprint</div>
+        <h1 class="text-heading-lg" style="margin-top:2px">Overview</h1>
+      </div>
+      <div style="display:flex; gap:var(--space-3); align-items:center">
+        <span class="badge badge-mint">On track</span>
+        <a class="btn btn-outline btn-sm" href="#">Working files</a>
+      </div>
+    </div>
+
+    <div class="stat-grid">
+      <div class="card stat"><div class="text-label text-muted">Phase</div><div class="k" style="margin-top:var(--space-2)">2 / 4</div><div class="text-caption text-muted" style="margin-top:var(--space-1)">Color &amp; type scales</div></div>
+      <div class="card stat"><div class="text-label text-muted">Timeline</div><div class="k" style="margin-top:var(--space-2)">Wk 2</div><div class="text-caption text-muted" style="margin-top:var(--space-1)">of 3–4 weeks</div></div>
+      <div class="card stat"><div class="text-label text-muted">Next check-in</div><div class="k" style="margin-top:var(--space-2)">Fri</div><div class="text-caption text-muted" style="margin-top:var(--space-1)">30 min, optional</div></div>
+      <div class="card stat"><div class="text-label text-muted">Revisions left</div><div class="k" style="margin-top:var(--space-2)">1</div><div class="text-caption text-muted" style="margin-top:var(--space-1)">structured round</div></div>
+    </div>
+
+    <div class="alert alert-info" role="status" style="margin-bottom:var(--space-8)">
+      <svg class="alert-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg>
+      <div>New: the accessible color scale walkthrough is ready. No action needed unless you want changes before Friday.</div>
+    </div>
+
+    <div class="cols">
+      <section class="card" style="padding:var(--space-6)">
+        <div class="section-title"><h2 class="text-heading-sm">Deliverables</h2><span class="text-caption text-muted">6 items</span></div>
+        <table class="data">
+          <thead><tr><th>Item</th><th>Type</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td class="name">Token architecture (DTCG)</td><td class="text-muted">Source</td><td><span class="badge badge-success">Delivered</span></td></tr>
+            <tr><td class="name">Style Dictionary pipeline</td><td class="text-muted">Build</td><td><span class="badge badge-success">Delivered</span></td></tr>
+            <tr><td class="name">Accessible color scale</td><td class="text-muted">Tokens</td><td><span class="badge badge-blue">In review</span></td></tr>
+            <tr><td class="name">Type &amp; spacing scales</td><td class="text-muted">Tokens</td><td><span class="badge badge-warning">In progress</span></td></tr>
+            <tr><td class="name">Core component scaffold</td><td class="text-muted">Code</td><td><span class="badge badge-neutral">Queued</span></td></tr>
+            <tr><td class="name">Maintenance docs</td><td class="text-muted">Docs</td><td><span class="badge badge-neutral">Queued</span></td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <aside style="display:grid; gap:var(--space-6)">
+        <section class="card" style="padding:var(--space-6)">
+          <div class="section-title"><h2 class="text-heading-sm">Recorded walkthroughs</h2></div>
+          <div class="wt"><span class="play"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span><div><div class="text-body-sm" style="font-weight:500">Color scale rationale</div><div class="text-caption text-muted">8:24 · 2 days ago</div></div></div>
+          <div class="wt"><span class="play"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span><div><div class="text-body-sm" style="font-weight:500">Token pipeline setup</div><div class="text-caption text-muted">11:02 · 5 days ago</div></div></div>
+        </section>
+
+        <section class="card" style="padding:var(--space-6)">
+          <div class="section-title"><h2 class="text-heading-sm">Request a change</h2></div>
+          <form class="form-group" onsubmit="event.preventDefault(); this.reset(); this.nextElementSibling.hidden=false;">
+            <div class="field-group">
+              <label class="field-label" for="rev">What should change?</label>
+              <textarea class="field" id="rev" rows="3" placeholder="e.g. warm the neutral ramp a touch" required></textarea>
+            </div>
+            <button class="btn btn-primary" type="submit">Submit for this round</button>
+          </form>
+          <div class="alert alert-success" role="status" hidden style="margin-top:var(--space-4)">Change noted. I'll fold it into the current round and reply by Friday.</div>
+        </section>
+      </aside>
+    </div>
+  </main>
+</div>
+</body>
+</html>

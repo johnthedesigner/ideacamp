@@ -1,0 +1,65 @@
+/* base.css — reset, root element defaults, accessibility floor, type utilities.
+   Consumes compiled tokens (styles/tokens/tokens.css). No hardcoded colors. */
+
+*, *::before, *::after { box-sizing: border-box; }
+* { margin: 0; }
+
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+
+body {
+  background: var(--color-surface);
+  color: var(--color-on-surface);
+  font-family: var(--type-body-md-family);
+  font-size: var(--type-body-md-size);
+  font-weight: var(--type-body-md-weight);
+  line-height: var(--type-body-md-line-height);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+a { color: var(--color-primary); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+a:hover { color: color-mix(in oklab, var(--color-primary) 82%, var(--color-on-surface)); }
+
+::selection { background: var(--color-accent-yellow); color: var(--color-on-surface); }
+
+img, svg, video { max-width: 100%; height: auto; display: block; }
+input, textarea, select, button { font: inherit; color: inherit; }
+
+/* The hidden attribute must win over component display rules (e.g. .alert{display:flex}). */
+[hidden] { display: none !important; }
+
+/* Accessibility floor: a single, consistent, ≥3:1 focus ring (verified 6.87:1). */
+:where(a, button, input, select, textarea, [tabindex], [popovertarget]):focus-visible {
+  outline: var(--border-width-focus) solid var(--color-border-focus);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+/* Prevent sticky headers from hiding focused anchors (WCAG 2.4.11). */
+:target { scroll-margin-top: 84px; }
+
+/* Motion (WCAG 2.3.3) */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ---- Layout helper ---- */
+.container { max-width: 1200px; margin-inline: auto; padding-inline: var(--layout-page-gutter); }
+
+/* ---- Type utilities — one class per role ---- */
+.text-display   { font: var(--type-display-weight) var(--type-display-size)/var(--type-display-line-height) var(--type-display-family); letter-spacing: var(--type-display-letter-spacing); }
+.text-heading-lg{ font: var(--type-heading-lg-weight) var(--type-heading-lg-size)/var(--type-heading-lg-line-height) var(--type-heading-lg-family); letter-spacing: var(--type-heading-lg-letter-spacing); }
+.text-heading-md{ font: var(--type-heading-md-weight) var(--type-heading-md-size)/var(--type-heading-md-line-height) var(--type-heading-md-family); letter-spacing: var(--type-heading-md-letter-spacing); }
+.text-heading-sm{ font: var(--type-heading-sm-weight) var(--type-heading-sm-size)/var(--type-heading-sm-line-height) var(--type-heading-sm-family); letter-spacing: var(--type-heading-sm-letter-spacing); }
+.text-body-lg   { font: var(--type-body-lg-weight) var(--type-body-lg-size)/var(--type-body-lg-line-height) var(--type-body-lg-family); }
+.text-body-md   { font: var(--type-body-md-weight) var(--type-body-md-size)/var(--type-body-md-line-height) var(--type-body-md-family); }
+.text-body-sm   { font: var(--type-body-sm-weight) var(--type-body-sm-size)/var(--type-body-sm-line-height) var(--type-body-sm-family); }
+.text-label     { font: var(--type-label-weight) var(--type-label-size)/var(--type-label-line-height) var(--type-label-family); letter-spacing: var(--type-label-letter-spacing); text-transform: uppercase; }
+.text-caption   { font: var(--type-caption-weight) var(--type-caption-size)/var(--type-caption-line-height) var(--type-caption-family); letter-spacing: var(--type-caption-letter-spacing); }
+.text-code      { font: var(--type-code-weight) var(--type-code-size)/var(--type-code-line-height) var(--type-code-family); }
+
+.text-muted { color: var(--color-on-surface-muted); }

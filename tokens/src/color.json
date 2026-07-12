@@ -1,0 +1,136 @@
+{
+  "color": {
+    "primary": {
+      "$type": "color",
+      "$value": "{color.blue.650}",
+      "$description": "Primary action / brand. blue-650 #243EE8 (OKLCH H267°, electric violet-blue). on-primary 7.07:1 AA."
+    },
+    "on-primary": {
+      "$type": "color",
+      "$value": "{color.neutral.paper}",
+      "$description": "Text/icons on primary. paper #FEFDFF on primary → 7.07:1 · AA text ✓ (Sistema contrast API)."
+    },
+    "primary-container": {
+      "$type": "color",
+      "$value": "{color.blue.100}",
+      "$description": "Tonal primary surface (info cards, subtle emphasis). blue-100 #E7EBF6."
+    },
+    "on-primary-container": {
+      "$type": "color",
+      "$value": "{color.blue.900}",
+      "$description": "Text on primary-container. blue-900 #0A175F → 13.54:1 · AA text ✓."
+    },
+
+    "secondary": {
+      "$type": "color",
+      "$value": "{color.pink.400}",
+      "$description": "Secondary emphasis. pink-400 #FF4B8C. Distinct hue from primary; dark-ink on-text."
+    },
+    "on-secondary": {
+      "$type": "color",
+      "$value": "{color.neutral.900}",
+      "$description": "Text on secondary. ink neutral-900 #201D39 → 5.12:1 · AA text ✓ (white would fail; dark-on-bright signature)."
+    },
+    "secondary-container": {
+      "$type": "color",
+      "$value": "{color.pink.100}",
+      "$description": "Tonal secondary surface. pink-100 #F8E7EB."
+    },
+    "on-secondary-container": {
+      "$type": "color",
+      "$value": "{color.pink.900}",
+      "$description": "Text on secondary-container. pink-900 #46041F → 13.58:1 · AA text ✓."
+    },
+
+    "surface": {
+      "$type": "color",
+      "$value": "{color.neutral.50}",
+      "$description": "Page background. neutral-50 #FAFAFB (violet-tinted off-white; not pure white). on-surface 15.53:1."
+    },
+    "surface-raised": {
+      "$type": "color",
+      "$value": "{color.neutral.paper}",
+      "$description": "Raised surface: cards, sheets. paper #FEFDFF — brighter than page so cards lift. on-surface 15.98:1."
+    },
+    "surface-overlay": {
+      "$type": "color",
+      "$value": "{color.neutral.paper}",
+      "$description": "Modal/dialog surface. paper #FEFDFF; separated from page by shadow-lg rather than fill lightness."
+    },
+    "on-surface": {
+      "$type": "color",
+      "$value": "{color.neutral.900}",
+      "$description": "Primary text/icons on surfaces. ink neutral-900 #201D39 → 15.53:1 (surface) / 15.98:1 (raised) · AA text ✓."
+    },
+    "on-surface-muted": {
+      "$type": "color",
+      "$value": "{color.neutral.650}",
+      "$description": "Secondary/muted text. neutral-650 #56518C → 6.82:1 (surface) / 7.02:1 (raised) · AA text ✓."
+    },
+
+    "border": {
+      "$type": "color",
+      "$value": "{color.neutral.100}",
+      "$description": "Default border/divider. neutral-100 #EBEBF0."
+    },
+    "border-strong": {
+      "$type": "color",
+      "$value": "{color.neutral.200}",
+      "$description": "Stronger border for inputs and interactive edges. neutral-200 #C8C8DB."
+    },
+    "border-focus": {
+      "$type": "color",
+      "$value": "{color.blue.650}",
+      "$description": "Focus ring. blue-650 #243EE8 vs surface → 6.87:1 · AA UI (≥3:1) ✓."
+    },
+
+    "error": {
+      "$type": "color",
+      "$value": "{color.coral.400}",
+      "$description": "Error/danger. coral-400 #FF5638; dark-ink on-text."
+    },
+    "on-error": {
+      "$type": "color",
+      "$value": "{color.neutral.900}",
+      "$description": "Text on error. ink neutral-900 #201D39 → 5.12:1 · AA text ✓."
+    },
+    "success": {
+      "$type": "color",
+      "$value": "{color.mint.300}",
+      "$description": "Success/confirmation. mint-300 #16C296; dark-ink on-text."
+    },
+    "on-success": {
+      "$type": "color",
+      "$value": "{color.neutral.900}",
+      "$description": "Text on success. ink neutral-900 #201D39 → 7.09:1 · AA text ✓."
+    },
+    "warning": {
+      "$type": "color",
+      "$value": "{color.yellow.200}",
+      "$description": "Warning/caution. yellow-200 #FDC02A; dark-ink on-text."
+    },
+    "on-warning": {
+      "$type": "color",
+      "$value": "{color.neutral.900}",
+      "$description": "Text on warning. ink neutral-900 #201D39 → 9.84:1 · AA text ✓."
+    },
+
+    "night": {
+      "$type": "color",
+      "$value": "{color.neutral.900}",
+      "$description": "Dark inverted section/card background. neutral-900 #201D39."
+    },
+    "on-night": {
+      "$type": "color",
+      "$value": "{color.neutral.paper}",
+      "$description": "Text on night. paper #FEFDFF → 15.98:1 · AA text ✓."
+    },
+
+    "accent-blue":  { "$type": "color", "$value": "{color.blue.650}",  "$description": "Categorical accent (decorative/sectioning/data). NOT a semantic role." },
+    "accent-pink":  { "$type": "color", "$value": "{color.pink.400}",  "$description": "Categorical accent. NOT a semantic role." },
+    "accent-yellow":{ "$type": "color", "$value": "{color.yellow.200}","$description": "Categorical accent. NOT a semantic role." },
+    "accent-mint":  { "$type": "color", "$value": "{color.mint.300}",  "$description": "Categorical accent. NOT a semantic role." },
+    "accent-coral": { "$type": "color", "$value": "{color.coral.400}", "$description": "Categorical accent. NOT a semantic role." },
+    "accent-lilac": { "$type": "color", "$value": "{color.lilac.450}", "$description": "Categorical accent. NOT a semantic role." }
+  }
+}

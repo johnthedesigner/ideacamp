@@ -1,0 +1,25 @@
+/* surface.css — Card, Separator. Container tier: radius-lg (18px). */
+
+.card {
+  background: var(--color-surface-raised);
+  border: var(--border-width-sm) solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  box-shadow: var(--shadow-sm);
+}
+/* Interactive card (whole card is a link/button) */
+.card-interactive { transition: transform .2s ease, box-shadow .2s ease; cursor: pointer; }
+.card-interactive:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+.card-interactive:focus-visible { outline: var(--border-width-focus) solid var(--color-border-focus); outline-offset: 2px; }
+
+/* Inverted (night) card — the flagship / dark treatment */
+.card-night { background: var(--color-night); color: var(--color-on-night); border-color: transparent; }
+.card-night .text-muted { color: color-mix(in oklab, var(--color-on-night) 70%, var(--color-night)); }
+
+.card-header { margin-bottom: var(--space-3); }
+.card-body   { color: var(--color-on-surface-muted); }
+.card-footer { margin-top: var(--space-5); }
+
+/* Separator */
+.separator { border: 0; height: var(--border-width-sm); background: var(--color-border); margin-block: var(--space-6); }
+.separator-vertical { width: var(--border-width-sm); height: auto; align-self: stretch; margin-inline: var(--space-4); margin-block: 0; }

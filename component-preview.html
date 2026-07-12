@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ideacamp Components — Preview</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Geist:wght@400;500;600&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles/index.css">
+<style>
+  body { padding: 40px; }
+  .wrap { max-width: 980px; margin: 0 auto; }
+  h1 { margin-bottom: 4px; }
+  .lede { color: var(--color-on-surface-muted); margin-bottom: 40px; }
+  section { padding: 28px 0; border-top: var(--border-width-sm) solid var(--color-border); }
+  h2 { margin-bottom: 6px; }
+  .desc { color: var(--color-on-surface-muted); font-size: var(--type-body-sm-size); margin-bottom: 20px; max-width: 70ch; }
+  .row { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; margin-bottom: 14px; }
+  .grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px,1fr)); gap: 20px; }
+  .statelabel { font-family: var(--type-code-family); font-size: 11px; color: var(--color-on-surface-muted); width: 74px; }
+  /* preview-only: statically visualize hover/focus for the screenshot */
+  .demo-hover.btn-primary { background: color-mix(in oklab, var(--color-primary) 88%, var(--color-on-surface)); box-shadow: var(--shadow-md); }
+  .demo-hover.btn-secondary { background: color-mix(in oklab, var(--color-secondary) 88%, var(--color-on-surface)); }
+  .demo-hover.btn-outline { background: var(--color-on-surface); color: var(--color-on-primary); }
+  .demo-focus { outline: var(--border-width-focus) solid var(--color-border-focus); outline-offset: 2px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1 class="text-display" style="font-size:clamp(40px,6vw,64px)">Components</h1>
+  <p class="lede text-body-lg">Core set built on the compiled token system — vanilla HTML + CSS, no framework. Hover a control to see live states; the labeled rows below show default / hover / focus / disabled statically.</p>
+
+  <!-- BUTTON -->
+  <section>
+    <h2 class="text-heading-md">Button</h2>
+    <p class="desc">Interactive tier, radius-md (12px). Primary uses light text; secondary uses dark ink on bright (signature). 44px min touch target.</p>
+    <div class="row">
+      <button class="btn btn-primary">Start an intake</button>
+      <button class="btn btn-secondary">Secondary</button>
+      <button class="btn btn-outline">Outline</button>
+      <button class="btn btn-ghost">Ghost</button>
+    </div>
+    <div class="row"><span class="statelabel">default</span><button class="btn btn-primary">Primary</button></div>
+    <div class="row"><span class="statelabel">hover</span><button class="btn btn-primary demo-hover">Primary</button></div>
+    <div class="row"><span class="statelabel">focus</span><button class="btn btn-primary demo-focus">Primary</button></div>
+    <div class="row"><span class="statelabel">disabled</span><button class="btn btn-primary" disabled>Primary</button></div>
+    <div class="row">
+      <span class="statelabel">sizes</span>
+      <button class="btn btn-primary btn-sm">Small</button>
+      <button class="btn btn-primary">Medium</button>
+      <button class="btn btn-primary btn-lg">Large</button>
+      <button class="btn btn-outline btn-icon" aria-label="Add"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
+    </div>
+  </section>
+
+  <!-- BADGE -->
+  <section>
+    <h2 class="text-heading-md">Badge</h2>
+    <p class="desc">Small tags, radius-sm (8px), dark-on-bright fills. Semantic + categorical variants.</p>
+    <div class="row">
+      <span class="badge badge-neutral">Neutral</span>
+      <span class="badge badge-primary">Primary</span>
+      <span class="badge badge-outline">Outline</span>
+      <span class="badge badge-success">Success</span>
+      <span class="badge badge-warning">Warning</span>
+      <span class="badge badge-error">Error</span>
+    </div>
+    <div class="row">
+      <span class="badge badge-blue">Experience</span>
+      <span class="badge badge-pink">Track record</span>
+      <span class="badge badge-mint">Specialty</span>
+      <span class="badge badge-coral">Capacity</span>
+      <span class="badge badge-yellow">Add-on</span>
+      <span class="badge badge-lilac">Dataviz</span>
+    </div>
+  </section>
+
+  <!-- FORM -->
+  <section>
+    <h2 class="text-heading-md">Form controls</h2>
+    <p class="desc">Inputs share .field (radius-md). Native checkbox/radio (accent-color), custom switch. Error + focus states shown.</p>
+    <div class="grid2">
+      <div class="field-group">
+        <label class="field-label" for="d-name">Name</label>
+        <input class="field" id="d-name" type="text" placeholder="Jane Founder">
+      </div>
+      <div class="field-group">
+        <label class="field-label" for="d-email">Email</label>
+        <input class="field demo-focus" id="d-email" type="email" value="jane@example.com">
+        <span class="field-hint">Focused state</span>
+      </div>
+      <div class="field-group">
+        <label class="field-label" for="d-bad">Email</label>
+        <input class="field is-error" id="d-bad" type="email" value="not-an-email" aria-invalid="true">
+        <span class="field-error">Enter a valid email address.</span>
+      </div>
+      <div class="field-group">
+        <label class="field-label" for="d-offer">Which offer</label>
+        <select class="field" id="d-offer">
+          <option>A · Audit + Roadmap</option>
+          <option>B · Brand-to-Token Pipeline</option>
+          <option>D · 0→1 Product Foundation</option>
+        </select>
+      </div>
+    </div>
+    <div class="field-group" style="margin-top:20px">
+      <label class="field-label" for="d-msg">What are you building?</label>
+      <textarea class="field" id="d-msg" rows="3" placeholder="A fintech dashboard that needs a token system…"></textarea>
+    </div>
+    <div class="row" style="margin-top:18px">
+      <label class="choice"><input type="checkbox" checked> Send me the scope by email</label>
+      <label class="choice"><input type="radio" name="r" checked> Async only</label>
+      <label class="choice"><input type="radio" name="r"> Include a call</label>
+      <label class="switch"><input type="checkbox" checked><span class="track"></span> White-label</label>
+    </div>
+  </section>
+
+  <!-- CARD -->
+  <section>
+    <h2 class="text-heading-md">Card</h2>
+    <p class="desc">Container tier, radius-lg (18px), shadow-sm. Interactive lift + inverted night variant.</p>
+    <div class="grid2">
+      <div class="card">
+        <span class="badge badge-coral">A · Best first step</span>
+        <h3 class="text-heading-sm" style="margin:14px 0 8px">Design System Audit</h3>
+        <p class="card-body text-body-sm">See exactly what's holding your design system back, and the order to fix it in.</p>
+        <div class="card-footer"><button class="btn btn-outline" style="width:100%">Start an intake</button></div>
+      </div>
+      <a href="#" class="card card-interactive" style="text-decoration:none;color:inherit;display:block">
+        <span class="text-label text-muted">Case study · 0→1</span>
+        <h3 class="text-heading-sm" style="margin:10px 0 8px">A predictive analytics tool</h3>
+        <p class="card-body text-body-sm">Led the 0→1 design at Tableau, first concept to shipped.</p>
+      </a>
+      <div class="card card-night">
+        <span class="text-label" style="color:var(--color-accent-yellow)">Flagship</span>
+        <h3 class="text-heading-sm" style="margin:10px 0 8px">0→1 Product Foundation</h3>
+        <p class="text-body-sm text-muted">Founding-designer judgment for your first product.</p>
+        <div class="card-footer"><button class="btn btn-secondary" style="width:100%">Start an intake</button></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ALERT -->
+  <section>
+    <h2 class="text-heading-md">Alert</h2>
+    <p class="desc">Full border + tinted surface (no side-stripe). Dark ink for readability.</p>
+    <div style="display:grid;gap:12px;max-width:560px">
+      <div class="alert alert-success" role="status">Intake received. Scope and price within 2 business days.</div>
+      <div class="alert alert-warning" role="status">This offer needs a decision-maker who responds within a day.</div>
+      <div class="alert alert-error" role="alert">Something went wrong sending your intake. Please email hello@ideacamp.co.</div>
+      <div class="alert alert-info" role="status">Scoping is free — including an honest "this isn't a fit."</div>
+    </div>
+  </section>
+
+  <!-- OVERLAY -->
+  <section>
+    <h2 class="text-heading-md">Overlay — Dialog, Popover, Tooltip</h2>
+    <p class="desc">Native &lt;dialog&gt; (focus trap, Esc), native [popover] (light-dismiss), CSS tooltip on hover/focus.</p>
+    <div class="row">
+      <button class="btn btn-primary" onclick="document.getElementById('d1').showModal()">Open dialog</button>
+      <button class="btn btn-outline" popovertarget="pop1">Toggle popover</button>
+      <span class="tooltip-wrap">
+        <button class="btn btn-ghost" aria-describedby="tt1">Hover for tooltip</button>
+        <span class="tooltip" role="tooltip" id="tt1">Wednesdays &amp; Fridays only</span>
+      </span>
+    </div>
+    <div id="pop1" popover class="popover">
+      <p class="text-body-sm" style="margin-bottom:6px"><strong>White-label &amp; overflow</strong></p>
+      <p class="text-body-sm text-muted" style="margin:0">Same engagements, delivered under your name.</p>
+    </div>
+    <!-- open inline copy so the dialog styling is visible in a static screenshot -->
+    <div style="margin-top:20px">
+      <p class="text-label text-muted" style="margin-bottom:10px">Dialog (shown open for preview)</p>
+      <dialog class="dialog" open style="position:static">
+        <h3 class="text-heading-sm dialog-title">Start an intake</h3>
+        <p class="dialog-body text-body-sm">Ten minutes, no meeting. You'll have a written scope, a fixed price, and a start date within 2 business days.</p>
+        <div class="dialog-actions">
+          <button class="btn btn-ghost">Cancel</button>
+          <button class="btn btn-primary">Continue</button>
+        </div>
+      </dialog>
+    </div>
+  </section>
+
+  <!-- SEPARATOR -->
+  <section>
+    <h2 class="text-heading-md">Separator</h2>
+    <hr class="separator">
+    <div class="row" style="height:40px">
+      <span class="text-body-sm">Async</span>
+      <span class="separator-vertical" role="separator"></span>
+      <span class="text-body-sm">Fixed price</span>
+      <span class="separator-vertical" role="separator"></span>
+      <span class="text-body-sm">2-week scope</span>
+    </div>
+  </section>
+</div>
+
+<dialog id="d1" class="dialog">
+  <h3 class="text-heading-sm dialog-title">Start an intake</h3>
+  <p class="dialog-body text-body-sm">Ten minutes, no meeting. Scope + price within 2 business days.</p>
+  <div class="dialog-actions">
+    <button class="btn btn-ghost" onclick="document.getElementById('d1').close()">Cancel</button>
+    <button class="btn btn-primary" onclick="document.getElementById('d1').close()">Continue</button>
+  </div>
+</dialog>
+</body>
+</html>

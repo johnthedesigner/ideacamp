@@ -1,0 +1,69 @@
+/* form.css — Input, Textarea, Select, Checkbox, Radio, Switch, FormField. */
+
+.form-group { display: grid; gap: var(--space-4); }
+.field-group { display: grid; gap: var(--space-2); }
+
+.field-label {
+  font-family: var(--type-label-family);
+  font-size: var(--type-label-size);
+  font-weight: var(--type-label-weight);
+  line-height: var(--type-label-line-height);
+  letter-spacing: var(--type-label-letter-spacing);
+  text-transform: uppercase;
+  color: var(--color-on-surface-muted);
+}
+
+/* Text inputs, textarea, select share .field */
+.field {
+  display: block;
+  width: 100%;
+  min-height: 44px;
+  padding: var(--space-3) var(--space-4);
+  font-family: var(--type-body-md-family);
+  font-size: var(--type-body-md-size);
+  color: var(--color-on-surface);
+  background: var(--color-surface-raised);
+  border: var(--border-width-sm) solid var(--color-border-strong);
+  border-radius: var(--radius-md);
+  transition: border-color .15s ease, box-shadow .15s ease;
+}
+.field::placeholder { color: var(--color-on-surface-muted); }
+.field:hover:not(:disabled) { border-color: color-mix(in oklab, var(--color-border-strong) 60%, var(--color-on-surface)); }
+.field:focus-visible { outline: var(--border-width-focus) solid var(--color-border-focus); outline-offset: 1px; border-color: transparent; }
+.field:disabled { opacity: .5; cursor: not-allowed; }
+.field[aria-invalid="true"], .field.is-error { border-color: var(--color-error); }
+
+textarea.field { min-height: 96px; resize: vertical; line-height: var(--type-body-md-line-height); }
+
+select.field { appearance: none; padding-right: var(--space-8);
+  background-image: linear-gradient(45deg, transparent 50%, currentColor 50%), linear-gradient(135deg, currentColor 50%, transparent 50%);
+  background-position: right var(--space-4) center, right calc(var(--space-4) - 5px) center;
+  background-size: 5px 5px, 5px 5px; background-repeat: no-repeat; }
+
+.field-hint  { font-family: var(--type-caption-family); font-size: var(--type-caption-size); color: var(--color-on-surface-muted); }
+.field-error { font-family: var(--type-caption-family); font-size: var(--type-caption-size); color: var(--color-error); }
+
+/* Checkbox & Radio — native, accent-colored, 44px touch row */
+.choice { display: inline-flex; align-items: center; gap: var(--space-3); min-height: 44px; cursor: pointer; }
+.choice input[type="checkbox"], .choice input[type="radio"] {
+  width: 20px; height: 20px; flex: none; accent-color: var(--color-primary); cursor: pointer;
+}
+.choice input:focus-visible { outline: var(--border-width-focus) solid var(--color-border-focus); outline-offset: 2px; }
+.choice:has(input:disabled) { opacity: .5; cursor: not-allowed; }
+
+/* Switch — styled toggle over a native checkbox */
+.switch { display: inline-flex; align-items: center; gap: var(--space-3); min-height: 44px; cursor: pointer; }
+.switch input { position: absolute; opacity: 0; width: 0; height: 0; }
+.switch .track {
+  width: 44px; height: 26px; border-radius: var(--radius-full);
+  background: var(--color-border-strong); transition: background .15s ease; position: relative; flex: none;
+}
+.switch .track::after {
+  content: ""; position: absolute; top: 3px; left: 3px; width: 20px; height: 20px;
+  border-radius: var(--radius-full); background: var(--color-surface-overlay); box-shadow: var(--shadow-sm);
+  transition: transform .15s ease;
+}
+.switch input:checked + .track { background: var(--color-primary); }
+.switch input:checked + .track::after { transform: translateX(18px); }
+.switch input:focus-visible + .track { outline: var(--border-width-focus) solid var(--color-border-focus); outline-offset: 2px; }
+.switch:has(input:disabled) { opacity: .5; cursor: not-allowed; }

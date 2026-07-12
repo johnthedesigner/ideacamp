@@ -1,0 +1,16 @@
+{
+  "name": "ideacamp-site",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Marketing site for Ideacamp (ideacamp.co) — static page + serverless intake endpoint.",
+  "type": "module",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "tokens": "node style-dictionary.config.mjs"
+  },
+  "devDependencies": {
+    "style-dictionary": "^5.0.0"
+  }
+}

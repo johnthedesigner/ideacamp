@@ -1,0 +1,247 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+
+:root {
+  --color-blue-50: #f8fafc;
+  --color-blue-100: #e7ebf6;
+  --color-blue-150: #d1daf0;
+  --color-blue-200: #bbcaec;
+  --color-blue-250: #a6baeb;
+  --color-blue-300: #91abea;
+  --color-blue-350: #7d9cea;
+  --color-blue-400: #6b8dea;
+  --color-blue-450: #5a7feb;
+  --color-blue-500: #4970eb;
+  --color-blue-550: #3b61ea;
+  --color-blue-600: #2f51e9;
+  --color-blue-650: #243ee8;
+  --color-blue-700: #1e2ede;
+  --color-blue-750: #1929c0;
+  --color-blue-800: #1424a2;
+  --color-blue-850: #0f1e83;
+  --color-blue-900: #0a175f;
+  --color-blue-950: #040c34;
+  --color-pink-50: #fdf8f9;
+  --color-pink-100: #f8e7eb;
+  --color-pink-150: #f5d1d9;
+  --color-pink-200: #f5bac8;
+  --color-pink-250: #f6a3b8;
+  --color-pink-300: #f989a8;
+  --color-pink-350: #fc6e9a;
+  --color-pink-400: #ff4b8c;
+  --color-pink-450: #ff1380;
+  --color-pink-500: #ea0774;
+  --color-pink-550: #d60569;
+  --color-pink-600: #c2045e;
+  --color-pink-650: #ae0354;
+  --color-pink-700: #9b024a;
+  --color-pink-750: #880140;
+  --color-pink-800: #740136;
+  --color-pink-850: #60002b;
+  --color-pink-900: #46041f;
+  --color-pink-950: #26040f;
+  --color-yellow-50: #fef9f1;
+  --color-yellow-100: #faeaca;
+  --color-yellow-150: #fbd58b;
+  --color-yellow-200: #fdc02a;
+  --color-yellow-250: #eab124;
+  --color-yellow-300: #d8a320;
+  --color-yellow-350: #c7961d;
+  --color-yellow-400: #b78a1a;
+  --color-yellow-450: #a77e16;
+  --color-yellow-500: #997313;
+  --color-yellow-550: #8b6810;
+  --color-yellow-600: #7e5d0d;
+  --color-yellow-650: #70530b;
+  --color-yellow-700: #644908;
+  --color-yellow-750: #573f06;
+  --color-yellow-800: #4a3504;
+  --color-yellow-850: #3c2b03;
+  --color-yellow-900: #2c1f01;
+  --color-yellow-950: #170f00;
+  --color-mint-50: #f2fdf8;
+  --color-mint-100: #bff7e1;
+  --color-mint-150: #6ff1c5;
+  --color-mint-200: #4fe1b3;
+  --color-mint-250: #30d2a3;
+  --color-mint-300: #16c296;
+  --color-mint-350: #13b389;
+  --color-mint-400: #10a47e;
+  --color-mint-450: #0d9673;
+  --color-mint-500: #0b8968;
+  --color-mint-550: #087c5f;
+  --color-mint-600: #067055;
+  --color-mint-650: #05644c;
+  --color-mint-700: #035943;
+  --color-mint-750: #024d39;
+  --color-mint-800: #014130;
+  --color-mint-850: #013526;
+  --color-mint-900: #01271b;
+  --color-mint-950: #02140d;
+  --color-coral-50: #fdf9f8;
+  --color-coral-100: #f8e8e5;
+  --color-coral-150: #f5d2cb;
+  --color-coral-200: #f5bdb1;
+  --color-coral-250: #f6a695;
+  --color-coral-300: #f98f79;
+  --color-coral-350: #fc755b;
+  --color-coral-400: #ff5638;
+  --color-coral-450: #fe3000;
+  --color-coral-500: #ea2700;
+  --color-coral-550: #d62200;
+  --color-coral-600: #c21d00;
+  --color-coral-650: #ae1800;
+  --color-coral-700: #9c1300;
+  --color-coral-750: #890f00;
+  --color-coral-800: #750900;
+  --color-coral-850: #610500;
+  --color-coral-900: #480600;
+  --color-coral-950: #270401;
+  --color-lilac-50: #faf9fd;
+  --color-lilac-100: #eceaf8;
+  --color-lilac-150: #dcd6f4;
+  --color-lilac-200: #cdc3f4;
+  --color-lilac-250: #c0b1f5;
+  --color-lilac-300: #b49ef7;
+  --color-lilac-350: #a98cfa;
+  --color-lilac-400: #a079fd;
+  --color-lilac-450: #9765ff;
+  --color-lilac-500: #9051ff;
+  --color-lilac-550: #8838ff;
+  --color-lilac-600: #8210ff;
+  --color-lilac-650: #7601e9;
+  --color-lilac-700: #6800d0;
+  --color-lilac-750: #5b00b6;
+  --color-lilac-800: #4d009d;
+  --color-lilac-850: #3e0480;
+  --color-lilac-900: #2d075d;
+  --color-lilac-950: #160632;
+  --color-neutral-50: #fafafb;
+  --color-neutral-100: #ebebf0;
+  --color-neutral-150: #d9d9e5;
+  --color-neutral-200: #c8c8db;
+  --color-neutral-250: #b8b8d3;
+  --color-neutral-300: #a9a9ca;
+  --color-neutral-350: #9b9ac2;
+  --color-neutral-400: #8e8dba;
+  --color-neutral-450: #827fb2;
+  --color-neutral-500: #7673aa;
+  --color-neutral-550: #6b67a3;
+  --color-neutral-600: #605b9c;
+  --color-neutral-650: #56518c;
+  --color-neutral-700: #4c477c;
+  --color-neutral-750: #413e6d;
+  --color-neutral-800: #37335d;
+  --color-neutral-850: #2c294c;
+  --color-neutral-900: #201d39;
+  --color-neutral-950: #100e1e;
+  --color-neutral-paper: #fefdff; /** Brightest near-white surface anchor. Sits above ramp stop 50; carries the violet temperature; intentionally not pure #FFFFFF (banned). */
+  --radius-none: 0px; /** Squared. Data tables, code blocks, image containers, dense form grids — never rounded regardless of system personality. */
+  --radius-sm: 8px; /** Chips / badges, tooltips, small inline controls. */
+  --radius-md: 12px; /** Interactive tier: buttons (all variants share this tier), inputs, selects, textareas. The signature rounded-rectangle (deliberately not full-pill). */
+  --radius-lg: 18px; /** Container tier: cards, panels, sheets. */
+  --radius-xl: 22px; /** Prominent containers: modals / dialogs, large feature cards, the intake form panel. */
+  --radius-full: 9999px; /** Genuinely circular/pill elements only: avatars, decorative dots, the marquee band. NOT default buttons or CTAs. */
+  --border-width-sm: 1px; /** Default borders and dividers (cards, inputs at rest). */
+  --border-width-md: 2px; /** Emphasis / selected state borders. */
+  --border-width-focus: 3px; /** Focus ring width (rendered as outline, offset 2px, color = border-focus). */
+  --shadow-sm: 0px 1px 2px 0px rgba(26,24,48,0.06), 0px 1px 3px 0px rgba(26,24,48,0.05); /** Cards at rest. Two-layer, violet-tinted ink (from #1A1830) — never pure black. */
+  --shadow-md: 0px 6px 16px 0px rgba(26,24,48,0.08), 0px 2px 4px 0px rgba(26,24,48,0.05); /** Raised / hover state (lifted cards, primary buttons). Two-layer violet-tinted ink. */
+  --shadow-lg: 0px 16px 40px 0px rgba(26,24,48,0.12), 0px 4px 10px 0px rgba(26,24,48,0.06); /** Overlays / dialogs. Two-layer violet-tinted ink; separates surface-overlay from the page. */
+  --space-1: 4px; /** Hairline gaps; icon-to-label. */
+  --space-2: 8px; /** Tight internal spacing; chip padding. */
+  --space-3: 12px; /** Component-internal (mixed-density add): list-item gaps, button padding-y. */
+  --space-4: 16px; /** Default small gap; stacked form fields. */
+  --space-5: 20px; /** Component-internal (mixed-density add): button padding-x, input padding. */
+  --space-6: 24px; /** Gap between components in a grid/row; card-grid gap. */
+  --space-8: 32px; /** Card interior padding; page gutter. */
+  --space-12: 48px; /** Small section rhythm; large intra-block spacing. */
+  --space-16: 64px; /** Sparse layout gap. */
+  --space-20: 80px; /** Major vertical section rhythm (content-sparse marketing cadence). */
+  --space-24: 96px; /** Generous section separation. */
+  --space-32: 128px; /** Hero / maximum layout gap. */
+  --type-display-family: 'Bricolage Grotesque', system-ui, sans-serif;
+  --type-display-size: clamp(44px, 7vw, 100px);
+  --type-display-weight: 800;
+  --type-display-line-height: 1;
+  --type-display-letter-spacing: -0.035em;
+  --type-heading-lg-family: 'Bricolage Grotesque', system-ui, sans-serif;
+  --type-heading-lg-size: clamp(31px, 3.6vw, 49px);
+  --type-heading-lg-weight: 700;
+  --type-heading-lg-line-height: 1.1;
+  --type-heading-lg-letter-spacing: -0.025em;
+  --type-heading-md-family: 'Bricolage Grotesque', system-ui, sans-serif;
+  --type-heading-md-size: 31px;
+  --type-heading-md-weight: 700;
+  --type-heading-md-line-height: 1.15;
+  --type-heading-md-letter-spacing: -0.02em;
+  --type-heading-sm-family: 'Bricolage Grotesque', system-ui, sans-serif;
+  --type-heading-sm-size: 20px;
+  --type-heading-sm-weight: 700;
+  --type-heading-sm-line-height: 1.3;
+  --type-heading-sm-letter-spacing: -0.01em;
+  --type-body-lg-family: Geist, system-ui, sans-serif;
+  --type-body-lg-size: 18px;
+  --type-body-lg-weight: 400;
+  --type-body-lg-line-height: 1.6;
+  --type-body-lg-letter-spacing: 0em;
+  --type-body-md-family: Geist, system-ui, sans-serif;
+  --type-body-md-size: 16px;
+  --type-body-md-weight: 400;
+  --type-body-md-line-height: 1.6;
+  --type-body-md-letter-spacing: 0em;
+  --type-body-sm-family: Geist, system-ui, sans-serif;
+  --type-body-sm-size: 15px;
+  --type-body-sm-weight: 400;
+  --type-body-sm-line-height: 1.6;
+  --type-body-sm-letter-spacing: 0em;
+  --type-label-family: Nunito, system-ui, sans-serif;
+  --type-label-size: 12.5px;
+  --type-label-weight: 600;
+  --type-label-line-height: 1.4;
+  --type-label-letter-spacing: 0.12em;
+  --type-caption-family: Nunito, system-ui, sans-serif;
+  --type-caption-size: 12px;
+  --type-caption-weight: 400;
+  --type-caption-line-height: 1.5;
+  --type-caption-letter-spacing: 0.02em;
+  --type-code-family: ui-monospace, 'Geist Mono', monospace;
+  --type-code-size: 14px;
+  --type-code-weight: 400;
+  --type-code-line-height: 1.5;
+  --type-code-letter-spacing: 0em;
+  --color-primary: var(--color-blue-650); /** Primary action / brand. blue-650 #243EE8 (OKLCH H267°, electric violet-blue). on-primary 7.07:1 AA. */
+  --color-on-primary: var(--color-neutral-paper); /** Text/icons on primary. paper #FEFDFF on primary → 7.07:1 · AA text ✓ (Sistema contrast API). */
+  --color-primary-container: var(--color-blue-100); /** Tonal primary surface (info cards, subtle emphasis). blue-100 #E7EBF6. */
+  --color-on-primary-container: var(--color-blue-900); /** Text on primary-container. blue-900 #0A175F → 13.54:1 · AA text ✓. */
+  --color-secondary: var(--color-pink-400); /** Secondary emphasis. pink-400 #FF4B8C. Distinct hue from primary; dark-ink on-text. */
+  --color-on-secondary: var(--color-neutral-900); /** Text on secondary. ink neutral-900 #201D39 → 5.12:1 · AA text ✓ (white would fail; dark-on-bright signature). */
+  --color-secondary-container: var(--color-pink-100); /** Tonal secondary surface. pink-100 #F8E7EB. */
+  --color-on-secondary-container: var(--color-pink-900); /** Text on secondary-container. pink-900 #46041F → 13.58:1 · AA text ✓. */
+  --color-surface: var(--color-neutral-50); /** Page background. neutral-50 #FAFAFB (violet-tinted off-white; not pure white). on-surface 15.53:1. */
+  --color-surface-raised: var(--color-neutral-paper); /** Raised surface: cards, sheets. paper #FEFDFF — brighter than page so cards lift. on-surface 15.98:1. */
+  --color-surface-overlay: var(--color-neutral-paper); /** Modal/dialog surface. paper #FEFDFF; separated from page by shadow-lg rather than fill lightness. */
+  --color-on-surface: var(--color-neutral-900); /** Primary text/icons on surfaces. ink neutral-900 #201D39 → 15.53:1 (surface) / 15.98:1 (raised) · AA text ✓. */
+  --color-on-surface-muted: var(--color-neutral-650); /** Secondary/muted text. neutral-650 #56518C → 6.82:1 (surface) / 7.02:1 (raised) · AA text ✓. */
+  --color-border: var(--color-neutral-100); /** Default border/divider. neutral-100 #EBEBF0. */
+  --color-border-strong: var(--color-neutral-200); /** Stronger border for inputs and interactive edges. neutral-200 #C8C8DB. */
+  --color-border-focus: var(--color-blue-650); /** Focus ring. blue-650 #243EE8 vs surface → 6.87:1 · AA UI (≥3:1) ✓. */
+  --color-error: var(--color-coral-400); /** Error/danger. coral-400 #FF5638; dark-ink on-text. */
+  --color-on-error: var(--color-neutral-900); /** Text on error. ink neutral-900 #201D39 → 5.12:1 · AA text ✓. */
+  --color-success: var(--color-mint-300); /** Success/confirmation. mint-300 #16C296; dark-ink on-text. */
+  --color-on-success: var(--color-neutral-900); /** Text on success. ink neutral-900 #201D39 → 7.09:1 · AA text ✓. */
+  --color-warning: var(--color-yellow-200); /** Warning/caution. yellow-200 #FDC02A; dark-ink on-text. */
+  --color-on-warning: var(--color-neutral-900); /** Text on warning. ink neutral-900 #201D39 → 9.84:1 · AA text ✓. */
+  --color-night: var(--color-neutral-900); /** Dark inverted section/card background. neutral-900 #201D39. */
+  --color-on-night: var(--color-neutral-paper); /** Text on night. paper #FEFDFF → 15.98:1 · AA text ✓. */
+  --color-accent-blue: var(--color-blue-650); /** Categorical accent (decorative/sectioning/data). NOT a semantic role. */
+  --color-accent-pink: var(--color-pink-400); /** Categorical accent. NOT a semantic role. */
+  --color-accent-yellow: var(--color-yellow-200); /** Categorical accent. NOT a semantic role. */
+  --color-accent-mint: var(--color-mint-300); /** Categorical accent. NOT a semantic role. */
+  --color-accent-coral: var(--color-coral-400); /** Categorical accent. NOT a semantic role. */
+  --color-accent-lilac: var(--color-lilac-450); /** Categorical accent. NOT a semantic role. */
+  --layout-page-gutter: var(--space-8); /** Horizontal padding on page-level containers → 32px (space-8). Snaps the site's ~30px gutter to the scale. */
+  --layout-section-gap: var(--space-20); /** Vertical gap between major page sections → 80px (space-20). Reflects the content-sparse marketing rhythm (site uses ~84px). */
+  --layout-component-gap: var(--space-6); /** Gap between adjacent components in a list/row → 24px (space-6). The standard card-grid gap. */
+}

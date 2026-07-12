@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ideacamp Design System — Documentation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Geist:wght@400;500;600&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet">
+<!-- the live design system (same tokens + components the product uses) -->
+<link rel="stylesheet" href="../styles/index.css">
+<style>
+  .layout { display: grid; grid-template-columns: 220px 1fr; min-height: 100vh; }
+  .toc { position: sticky; top: 0; height: 100vh; overflow: auto; padding: var(--space-6); border-right: var(--border-width-sm) solid var(--color-border); background: var(--color-surface-raised); }
+  .toc .name { font-family: var(--type-heading-md-family); font-weight: 800; font-size: 17px; letter-spacing: -0.02em; margin-bottom: var(--space-5); display: block; color: var(--color-on-surface); text-decoration: none; }
+  .toc a { display: block; padding: var(--space-2) var(--space-3); border-radius: var(--radius-sm); color: var(--color-on-surface-muted); text-decoration: none; font-size: var(--type-body-sm-size); }
+  .toc a:hover { background: color-mix(in oklab, var(--color-on-surface) 6%, var(--color-surface-raised)); color: var(--color-on-surface); }
+  main { padding: var(--space-12) var(--space-10); max-width: 1000px; }
+  section { padding-block: var(--space-12); border-top: var(--border-width-sm) solid var(--color-border); }
+  section:first-of-type { border-top: 0; padding-top: 0; }
+  h2.sec { margin-bottom: var(--space-2); scroll-margin-top: var(--space-6); }
+  .sec-desc { color: var(--color-on-surface-muted); max-width: 68ch; margin-bottom: var(--space-6); }
+  h3.sub { margin: var(--space-8) 0 var(--space-4); }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px,1fr)); gap: var(--space-3); }
+  .sw { border: var(--border-width-sm) solid var(--color-border); border-radius: var(--radius-md); overflow: hidden; background: var(--color-surface-raised); }
+  .sw .c { height: 52px; } .sw .m { padding: 7px 9px; }
+  .sw .n { font-family: var(--type-code-family); font-size: 11px; } .sw .h { font-family: var(--type-code-family); font-size: 10px; color: var(--color-on-surface-muted); }
+  .ramp { display: grid; grid-template-columns: repeat(19,1fr); border-radius: var(--radius-sm); overflow: hidden; border: var(--border-width-sm) solid var(--color-border); margin-bottom: 4px; }
+  .ramp .c { height: 32px; } .ramplbl { font-family: var(--type-code-family); font-size: 11px; color: var(--color-on-surface-muted); margin-bottom: 12px; }
+  .row { display: flex; flex-wrap: wrap; gap: var(--space-3); align-items: center; }
+  .typerow { border-top: 1px dashed var(--color-border); padding: var(--space-3) 0; }
+  .typerow .anno { font-family: var(--type-code-family); font-size: 11px; color: var(--color-on-surface-muted); margin-top: 4px; }
+  .rbox .b { width: 84px; height: 56px; background: var(--color-primary-container); border: 2px solid var(--color-primary); } .rbox .l { font-family: var(--type-code-family); font-size: 11px; margin-top: 6px; }
+  .shb .b { width: 110px; height: 60px; border-radius: var(--radius-lg); background: var(--color-surface-raised); } .shb .l { font-family: var(--type-code-family); font-size: 11px; margin-top: 10px; }
+  .sbar { display: flex; align-items: center; gap: 10px; margin: 4px 0; } .sbar .b { height: 12px; background: var(--color-primary); border-radius: 2px; } .sbar .l { font-family: var(--type-code-family); font-size: 11px; color: var(--color-on-surface-muted); }
+  .use { display: grid; grid-template-columns: 1fr; gap: var(--space-4); margin-top: var(--space-5); }
+  .use .card { padding: var(--space-4) var(--space-5); }
+  .use b { font-family: var(--type-body-md-family); }
+  .brief .card { padding: var(--space-4) var(--space-5); margin-bottom: var(--space-3); }
+  .brief .k { color: var(--color-primary); }
+  @media (max-width: 768px) { .layout { grid-template-columns: 1fr; } .toc { position: static; height: auto; border-right: 0; border-bottom: var(--border-width-sm) solid var(--color-border); } main { padding: var(--space-8) var(--space-6); } }
+</style>
+</head>
+<body>
+<div class="layout">
+  <nav class="toc" aria-label="Contents">
+    <a class="name" href="#top">Ideacamp DS</a>
+    <a href="#direction">Visual direction</a>
+    <a href="#colors">Color tokens</a>
+    <a href="#type">Type</a>
+    <a href="#shape">Radius &amp; elevation</a>
+    <a href="#spacing">Spacing</a>
+    <a href="#buttons">Buttons</a>
+    <a href="#badges">Badges</a>
+    <a href="#forms">Forms</a>
+    <a href="#surfaces">Cards &amp; overlays</a>
+    <a href="#pages">Page examples</a>
+  </nav>
+
+  <main id="top">
+    <header style="margin-bottom:var(--space-8)">
+      <span class="text-label text-muted">Design System · v1 · light theme · WCAG 2.2 AA</span>
+      <h1 class="text-display" style="font-size:clamp(40px,6vw,64px); margin-top:var(--space-2)">Ideacamp</h1>
+      <p class="text-body-lg text-muted" style="max-width:60ch; margin-top:var(--space-3)">A browsable reference for the tokens and components. Everything on this page reads from the same compiled token values the product uses — <code class="text-code">styles/index.css</code>.</p>
+    </header>
+
+    <!-- VISUAL DIRECTION -->
+    <section id="direction">
+      <h2 class="sec text-heading-lg">Visual direction</h2>
+      <p class="sec-desc">A Swiss/editorial structural backbone carrying a Neo-Memphis expressive palette — precise where it counts, playful on purpose.</p>
+      <div class="brief">
+        <div class="card"><div class="text-label k">Aesthetic</div><p class="text-body-sm" style="margin-top:6px">Swiss structure (grid, numbered sections, typographic hierarchy) + Neo-Memphis expression (categorical palette as meaning, shape accents) + Editorial voice (oversized display, 400↔800 weight).</p></div>
+        <div class="card"><div class="text-label k">Color — Level 3, Full Palette</div><p class="text-body-sm" style="margin-top:6px">Primary an electric violet-blue (H267°), not a generic SaaS blue. Neutrals share one violet temperature; bright fills carry dark ink text (signature).</p></div>
+        <div class="card"><div class="text-label k">Type</div><p class="text-body-sm" style="margin-top:6px">Bricolage Grotesque (display/headings), Geist (body), Nunito (micro-labels). Weight 400→800, 11.5px→100px.</p></div>
+        <div class="card"><div class="text-label k">Shape</div><p class="text-body-sm" style="margin-top:6px">Friendly-to-rounded, tiered: chips 8 · buttons/inputs 12 · cards 18 · modals 22 · pills full. Never uniform.</p></div>
+        <div class="card"><div class="text-label k">Not</div><p class="text-body-sm" style="margin-top:6px">Not generic SaaS (no #FAFAFA grays, no 220–240° blue, no uniform radius, no pure-black shadow). Not bubbly-pill or soft-UI.</p></div>
+      </div>
+    </section>
+
+    <!-- COLOR TOKENS -->
+    <section id="colors">
+      <h2 class="sec text-heading-lg">Color tokens</h2>
+      <p class="sec-desc">Two tiers: semantic roles (the API components consume) alias primitive ramp stops. Swatches below show the live computed hex.</p>
+      <h3 class="sub text-heading-sm">Semantic roles</h3>
+      <div class="grid" id="sem"></div>
+      <h3 class="sub text-heading-sm">Primitive ramps</h3>
+      <div id="ramps"></div>
+    </section>
+
+    <!-- TYPE -->
+    <section id="type">
+      <h2 class="sec text-heading-lg">Type</h2>
+      <p class="sec-desc">Ten roles on a Major-Third (1.25) base-16 scale. Each differentiated by family, weight, line-height, and tracking — not size alone.</p>
+      <div id="typespec"></div>
+    </section>
+
+    <!-- SHAPE -->
+    <section id="shape">
+      <h2 class="sec text-heading-lg">Radius &amp; elevation</h2>
+      <p class="sec-desc">Radius is tiered by component weight. Shadows are two-layer, violet-tinted ink — never pure black.</p>
+      <div class="row" id="radius" style="align-items:flex-end; margin-bottom:var(--space-8)"></div>
+      <div class="row" id="shadow" style="align-items:flex-end"></div>
+    </section>
+
+    <!-- SPACING -->
+    <section id="spacing">
+      <h2 class="sec text-heading-lg">Spacing</h2>
+      <p class="sec-desc">4px base, mixed-density scale: fine stops for component internals, generous stops for layout. Three semantic aliases.</p>
+      <div id="space"></div>
+    </section>
+
+    <!-- BUTTONS -->
+    <section id="buttons">
+      <h2 class="sec text-heading-lg">Buttons</h2>
+      <p class="sec-desc">Interactive tier (radius 12px), 44px min target, consistent focus ring.</p>
+      <div class="row"><button class="btn btn-primary">Primary</button><button class="btn btn-secondary">Secondary</button><button class="btn btn-outline">Outline</button><button class="btn btn-ghost">Ghost</button><button class="btn btn-primary" disabled>Disabled</button></div>
+      <div class="row" style="margin-top:var(--space-3)"><button class="btn btn-primary btn-sm">Small</button><button class="btn btn-primary">Medium</button><button class="btn btn-primary btn-lg">Large</button></div>
+      <div class="use">
+        <div class="card"><b>Primary</b> — the single most important action on a view (Start an intake). One per section.</div>
+        <div class="card"><b>Secondary</b> — a strong alternate action; dark ink on the pink fill.</div>
+        <div class="card"><b>Outline / Ghost</b> — lower-emphasis actions (Cancel, tertiary links) that shouldn't compete with primary.</div>
+      </div>
+    </section>
+
+    <!-- BADGES -->
+    <section id="badges">
+      <h2 class="sec text-heading-lg">Badges</h2>
+      <p class="sec-desc">Small status/label tags (radius 8px), dark-on-bright.</p>
+      <div class="row"><span class="badge badge-neutral">Neutral</span><span class="badge badge-success">Delivered</span><span class="badge badge-warning">In progress</span><span class="badge badge-error">Blocked</span><span class="badge badge-blue">In review</span></div>
+      <div class="use">
+        <div class="card"><b>Semantic (success/warning/error)</b> — object status only. Don't use a categorical accent to imply status.</div>
+        <div class="card"><b>Categorical (blue/pink/mint/…)</b> — sectioning, taxonomy, and data series where the hue carries meaning, not status.</div>
+      </div>
+    </section>
+
+    <!-- FORMS -->
+    <section id="forms">
+      <h2 class="sec text-heading-lg">Forms</h2>
+      <p class="sec-desc">Inputs share <code class="text-code">.field</code>. Labels use the uppercase label role. Errors set <code class="text-code">aria-invalid</code>.</p>
+      <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:var(--space-4); max-width:640px">
+        <div class="field-group"><label class="field-label" for="x1">Email</label><input class="field" id="x1" type="email" placeholder="you@company.com"></div>
+        <div class="field-group"><label class="field-label" for="x2">Which offer</label><select class="field" id="x2"><option>Audit + Roadmap</option><option>Foundation Sprint</option></select></div>
+      </div>
+      <div class="row" style="margin-top:var(--space-4)"><label class="choice"><input type="checkbox" checked> Async only</label><label class="switch"><input type="checkbox" checked><span class="track"></span> White-label</label></div>
+      <div class="use">
+        <div class="card"><b>Labels, not placeholders</b> — every field has a visible <code class="text-code">&lt;label&gt;</code>; placeholders show format only.</div>
+        <div class="card"><b>Errors</b> — set the field to <code class="text-code">.is-error</code> + <code class="text-code">aria-invalid="true"</code> and pair with a <code class="text-code">.field-error</code> message.</div>
+      </div>
+    </section>
+
+    <!-- SURFACES -->
+    <section id="surfaces">
+      <h2 class="sec text-heading-lg">Cards &amp; overlays</h2>
+      <p class="sec-desc">Container tier (radius 18px). Interactive cards lift on hover; the night card is the inverted/flagship treatment. Overlays use native <code class="text-code">&lt;dialog&gt;</code> / <code class="text-code">[popover]</code>.</p>
+      <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:var(--space-4)">
+        <div class="card"><span class="badge badge-coral">A · Best first step</span><h3 class="text-heading-sm" style="margin:12px 0 6px">Design System Audit</h3><p class="text-body-sm text-muted">See exactly what's holding your system back.</p></div>
+        <div class="card card-night"><span class="text-label" style="color:var(--color-accent-yellow)">Flagship</span><h3 class="text-heading-sm" style="margin:10px 0 6px">0→1 Product Foundation</h3><p class="text-body-sm text-muted">Founding-designer judgment for your first product.</p></div>
+      </div>
+      <div class="row" style="margin-top:var(--space-4)"><button class="btn btn-outline" onclick="document.getElementById('dd').showModal()">Open dialog</button></div>
+      <div class="use">
+        <div class="card"><b>Card</b> — group related content. Use <code class="text-code">.card-interactive</code> only when the whole card is a single link/button.</div>
+        <div class="card"><b>Dialog</b> — blocking decisions. Native <code class="text-code">&lt;dialog&gt;</code> gives focus-trap, Esc, and inert background for free.</div>
+      </div>
+    </section>
+
+    <!-- PAGE EXAMPLES -->
+    <section id="pages">
+      <h2 class="sec text-heading-lg">Page examples</h2>
+      <p class="sec-desc">Full compositions demonstrating the system at page scale.</p>
+      <div class="row">
+        <a class="btn btn-primary" href="../page-example-1.html">Case-study detail →</a>
+        <a class="btn btn-outline" href="../page-example-2.html">Client workspace →</a>
+        <a class="btn btn-ghost" href="../style-preview.html">Style tile →</a>
+        <a class="btn btn-ghost" href="../token-check.html">Token check →</a>
+      </div>
+    </section>
+  </main>
+</div>
+
+<dialog id="dd" class="dialog">
+  <h3 class="text-heading-sm dialog-title">Start an intake</h3>
+  <p class="dialog-body text-body-sm">Ten minutes, no meeting. Scope + price within 2 business days.</p>
+  <div class="dialog-actions"><button class="btn btn-ghost" onclick="dd.close()">Cancel</button><button class="btn btn-primary" onclick="dd.close()">Continue</button></div>
+</dialog>
+
+<script>
+  const SEM = ["primary","on-primary","primary-container","on-primary-container","secondary","on-secondary","secondary-container","on-secondary-container","surface","surface-raised","surface-overlay","on-surface","on-surface-muted","border","border-strong","border-focus","error","on-error","success","on-success","warning","on-warning","night","on-night","accent-blue","accent-pink","accent-yellow","accent-mint","accent-coral","accent-lilac"];
+  const HUES = ["blue","pink","yellow","mint","coral","lilac","neutral"];
+  const STOPS = Array.from({length:19},(_,i)=>String(50+i*50));
+  const TYPE = ["display","heading-lg","heading-md","heading-sm","body-lg","body-md","body-sm","label","caption","code"];
+  const RADII = ["none","sm","md","lg","xl","full"];
+  const SPACE = ["1","2","3","4","5","6","8","12","16","20","24","32"];
+  const SHADOW = ["sm","md","lg"];
+  const LAYOUT = ["page-gutter","section-gap","component-gap"];
+
+  const raw = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+  function resolveColor(varName){ const p=document.createElement('span'); p.style.color='var('+varName+')'; document.body.appendChild(p); const v=getComputedStyle(p).color; p.remove(); const m=v.match(/\d+/g); return m?'#'+m.slice(0,3).map(x=>(+x).toString(16).padStart(2,'0')).join('').toUpperCase():v; }
+
+  // semantic swatches
+  document.getElementById('sem').innerHTML = SEM.map(n=>`<div class="sw"><div class="c" style="background:var(--color-${n})"></div><div class="m"><div class="n">${n}</div><div class="h">${resolveColor('--color-'+n)}</div></div></div>`).join('');
+  // ramps
+  document.getElementById('ramps').innerHTML = HUES.map(h=>{
+    const stops = h==='neutral'?[...STOPS,'paper']:STOPS;
+    return `<p class="ramplbl">color-${h}</p><div class="ramp">`+stops.map(s=>`<div class="c" title="--color-${h}-${s}" style="background:var(--color-${h}-${s})"></div>`).join('')+`</div>`;
+  }).join('');
+  // type
+  document.getElementById('typespec').innerHTML = TYPE.map(r=>{
+    const specimen = (r.startsWith('body')||r==='caption')?'Senior design systems and 0→1 product work.':(r==='label'?'Best first step':(r==='code'?'--color-primary: #243EE8;':'Fixed scope. Fixed price.'));
+    const st = `font:var(--type-${r}-weight) var(--type-${r}-size)/var(--type-${r}-line-height) var(--type-${r}-family);letter-spacing:var(--type-${r}-letter-spacing);`+(r==='label'?'text-transform:uppercase;':'');
+    return `<div class="typerow"><div style="${st}">${specimen}</div><div class="anno">${r} · ${raw('--type-'+r+'-size')} · w${raw('--type-'+r+'-weight')} · lh${raw('--type-'+r+'-line-height')} · ls${raw('--type-'+r+'-letter-spacing')}</div></div>`;
+  }).join('');
+  // radius
+  document.getElementById('radius').innerHTML = RADII.map(n=>`<div class="rbox"><div class="b" style="border-radius:var(--radius-${n})"></div><div class="l">${n} · ${raw('--radius-'+n)}</div></div>`).join('');
+  // shadow
+  document.getElementById('shadow').innerHTML = SHADOW.map(n=>`<div class="shb"><div class="b" style="box-shadow:var(--shadow-${n})"></div><div class="l">shadow-${n}</div></div>`).join('');
+  // spacing + layout
+  document.getElementById('space').innerHTML = SPACE.map(n=>`<div class="sbar"><div class="b" style="width:var(--space-${n})"></div><div class="l">space-${n} = ${raw('--space-'+n)}</div></div>`).join('')
+    + LAYOUT.map(n=>`<div class="sbar"><div class="b" style="width:var(--layout-${n})"></div><div class="l">layout-${n} = ${raw('--layout-'+n)}</div></div>`).join('');
+</script>
+</body>
+</html>

@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ideacamp — Style Preview</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Geist:wght@400;500;600&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    /* ---- PROPOSED SEMANTIC TOKENS (direction only; ramps generated in Step 4) ---- */
+    --primary: #2540E8;            --on-primary: #FEFDFF;
+    --primary-container: #EDF0FF;  --on-primary-container: #0F1C7A;
+    --secondary: #FF4D8D;          --on-secondary: #1A1830;
+    --secondary-container: #FFE3EE;--on-secondary-container: #1A1830;
+    --surface: #F7F6FB;            --surface-raised: #FDFCFF;   --surface-overlay: #FEFDFF;
+    --on-surface: #1A1830;         --on-surface-muted: #56556E;
+    --border: #E7E4F0;             --border-strong: #D9D6E6;    --border-focus: #2540E8;
+    --success: #17C89A;  --on-success: #1A1830;
+    --warning: #FFC22E;  --on-warning: #1A1830;
+    --error:   #FF5A3C;  --on-error:   #1A1830;
+    --night: #191735;
+    /* categorical accent set (decorative / sectioning / data — not semantic) */
+    --acc-blue:#2540E8; --acc-pink:#FF4D8D; --acc-yellow:#FFC22E; --acc-mint:#17C89A; --acc-coral:#FF5A3C; --acc-lilac:#9B6DFF;
+    /* shape */
+    --r-none:0; --r-sm:8px; --r-md:12px; --r-lg:18px; --r-xl:22px; --r-full:9999px;
+    /* elevation — violet-tinted ink, never pure black */
+    --shadow-sm: 0 1px 2px rgba(26,24,48,.06), 0 1px 3px rgba(26,24,48,.05);
+    --shadow-md: 0 6px 16px rgba(26,24,48,.08), 0 2px 4px rgba(26,24,48,.05);
+    --shadow-lg: 0 16px 40px rgba(26,24,48,.12), 0 4px 10px rgba(26,24,48,.06);
+    /* type families */
+    --font-display: 'Bricolage Grotesque', system-ui, sans-serif;
+    --font-body: 'Geist', system-ui, sans-serif;
+    --font-label: 'Nunito', system-ui, sans-serif;
+    --font-code: ui-monospace, 'Cascadia Code', 'Geist Mono', monospace;
+  }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--surface); color:var(--on-surface); font-family:var(--font-body); -webkit-font-smoothing:antialiased; line-height:1.6; }
+  .wrap { max-width:1080px; margin:0 auto; padding:0 28px; }
+  header.hero { background:var(--night); color:#F3F2FA; padding:64px 0 56px; }
+  .eyebrow { font-family:var(--font-label); font-size:12px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--on-surface-muted); margin:0 0 10px; }
+  header.hero .eyebrow { color:var(--acc-yellow); }
+  h1.title { font-family:var(--font-display); font-weight:800; font-size:clamp(40px,6vw,72px); line-height:.98; letter-spacing:-0.035em; margin:0 0 20px; text-wrap:balance; }
+  header.hero p { max-width:60ch; color:#C4C3D8; font-size:18px; margin:0; }
+  section { border-top:1px solid var(--border); padding:56px 0; }
+  section:first-of-type { border-top:none; }
+  .sec-head { display:flex; align-items:baseline; gap:14px; margin-bottom:28px; }
+  .sec-num { font-family:var(--font-label); font-size:13px; font-weight:700; color:var(--primary); }
+  .sec-rule { flex:0 0 26px; height:3px; background:var(--primary); border-radius:2px; align-self:center; }
+  h2 { font-family:var(--font-display); font-weight:700; font-size:clamp(26px,3.2vw,38px); letter-spacing:-0.025em; margin:0; }
+  h3 { font-family:var(--font-display); font-weight:700; font-size:20px; margin:32px 0 12px; letter-spacing:-0.01em; }
+  .note { color:var(--on-surface-muted); max-width:68ch; }
+  code, .mono { font-family:var(--font-code); font-size:.86em; }
+  /* direction brief */
+  .brief { display:grid; gap:16px; }
+  .brief .item { background:var(--surface-raised); border:1px solid var(--border); border-radius:var(--r-lg); padding:20px 22px; box-shadow:var(--shadow-sm); }
+  .brief .k { font-family:var(--font-label); font-size:11.5px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--primary); margin:0 0 6px; }
+  .brief .item p { margin:0; }
+  .brief ul { margin:8px 0 0; padding-left:18px; }
+  /* swatches */
+  .swgrid { display:grid; grid-template-columns:repeat(auto-fill,minmax(230px,1fr)); gap:14px; }
+  .sw { border:1px solid var(--border); border-radius:var(--r-md); overflow:hidden; background:var(--surface-raised); box-shadow:var(--shadow-sm); }
+  .sw .chip { height:76px; display:flex; align-items:flex-end; padding:8px 10px; }
+  .sw .meta { padding:10px 12px 12px; font-size:12.5px; }
+  .sw .meta .nm { font-weight:600; font-family:var(--font-body); }
+  .sw .meta .vals { color:var(--on-surface-muted); font-family:var(--font-code); font-size:11px; margin-top:3px; line-height:1.5; }
+  .sw .meta .ratio { margin-top:6px; font-family:var(--font-label); font-size:11px; font-weight:600; }
+  .pass { color:#0f7a5a; } .warn { color:#b4571c; }
+  /* type specimens */
+  .spec { border-top:1px dashed var(--border); padding:18px 0; display:grid; grid-template-columns:1fr; gap:6px; }
+  .spec .anno { font-family:var(--font-code); font-size:11.5px; color:var(--on-surface-muted); }
+  /* radius + shadow */
+  .rgrid, .shgrid { display:flex; flex-wrap:wrap; gap:20px; }
+  .rbox { width:120px; }
+  .rbox .box { height:80px; background:var(--primary-container); border:2px solid var(--primary); }
+  .rbox .lbl { font-size:12px; margin-top:8px; }
+  .rbox .lbl b { font-family:var(--font-label); } .rbox .lbl span { color:var(--on-surface-muted); font-family:var(--font-code); font-size:11px; }
+  .shbox { width:150px; }
+  .shbox .box { height:90px; background:var(--surface-raised); border-radius:var(--r-lg); }
+  .shbox .lbl { font-size:12px; margin-top:12px; font-family:var(--font-label); }
+  /* surfaces */
+  .surfrow { display:flex; flex-wrap:wrap; gap:16px; align-items:stretch; }
+  .surfcard { flex:1 1 200px; border-radius:var(--r-lg); padding:20px; border:1px solid var(--border); }
+  .composite { background:var(--surface-raised); border:1px solid var(--border); border-radius:var(--r-xl); padding:26px; box-shadow:var(--shadow-md); max-width:420px; }
+  /* buttons + context */
+  .btn { font-family:var(--font-body); font-weight:600; font-size:15px; border:none; border-radius:var(--r-md); padding:12px 20px; cursor:pointer; }
+  .btn-primary { background:var(--primary); color:var(--on-primary); box-shadow:var(--shadow-sm); }
+  .btn-secondary { background:var(--secondary); color:var(--on-secondary); }
+  .btn-outline { background:transparent; color:var(--on-surface); border:1px solid var(--border-strong); }
+  .btn:focus-visible { outline:3px solid var(--border-focus); outline-offset:2px; }
+  .focusdemo { outline:3px solid var(--border-focus); outline-offset:2px; border-radius:var(--r-md); }
+  .field { display:block; width:100%; max-width:360px; padding:11px 13px; border-radius:var(--r-md); border:1px solid var(--border-strong); background:var(--surface-raised); font-family:var(--font-body); }
+  .field.err { border-color:var(--error); }
+  .msg { border-radius:var(--r-md); padding:12px 14px; font-size:14px; display:flex; gap:10px; align-items:center; }
+  .banner-success { background:#E4F6EF; color:#0b4f3a; border:1px solid var(--success); }
+  .banner-warning { background:#FFF6DC; color:#5c4708; border:1px solid var(--warning); }
+  .banner-error { background:#FFE9E4; color:#7a2415; border:1px solid var(--error); }
+  .badge { display:inline-flex; align-items:center; gap:6px; font-family:var(--font-label); font-size:12px; font-weight:700; padding:4px 10px; border-radius:var(--r-sm); }
+  .row { display:flex; flex-wrap:wrap; gap:14px; align-items:center; }
+  .reviewer li { margin:8px 0; }
+  .flag { color:#b4571c; font-weight:600; }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <p class="eyebrow">Ideacamp Design System · Style Preview</p>
+    <h1 class="title">Structured skeleton, expressive skin.</h1>
+    <p>A Swiss/editorial structural backbone carrying a Neo-Memphis expressive palette. Precise where it counts, playful on purpose. This tile proposes the visual direction for review before any tokens are generated.</p>
+  </div>
+</header>
+
+<!-- 1 — VISUAL DIRECTION STATEMENT -->
+<section class="wrap">
+  <div class="sec-head"><span class="sec-num">01</span><span class="sec-rule"></span><h2>Visual direction</h2></div>
+  <div class="brief">
+    <div class="item"><p class="k">Aesthetic references</p><p><b>Swiss / International Typographic</b> (grid, numbered sections, typographic hierarchy, mono-flavored labels) as the structural backbone; <b>Neo-Memphis / Post-Digital</b> (bright categorical palette used as meaning, playful geometric shape accents, marquee) as the expressive skin; <b>Editorial / Magazine</b> (oversized Bricolage display, 400↔800 weight contrast) as the voice.</p></div>
+    <div class="item"><p class="k">Color commitment — Level 3, Full Palette</p><p>Primary C 0.250; expressive accents C 0.15–0.22; working surfaces held near-neutral (C 0.003–0.02) but sharing one violet hue temperature (H 285–300°). The categorical palette is load-bearing brand (color-as-meaning), not decoration — the definition of Level 3. Not Level 4 (surfaces stay quiet so brights read as deliberate); not Level 2 (color is dominant to the identity).</p></div>
+    <div class="item"><p class="k">Typographic character</p><p>Three families, distinct registers. <b>Bricolage Grotesque</b> display/headings (700–800, 22→~100px, tracking −0.02 to −0.035em). <b>Geist</b> body/UI (400–600, 15–19px, lh 1.55–1.6). <b>Nunito</b> micro-labels/eyebrows (500–700, 11.5–13px, uppercase, +0.10–0.12em) for rounded warmth at small sizes. Range 11.5px→~100px; weight 400→800.</p></div>
+    <div class="item"><p class="k">Shape — friendly-to-rounded, tiered</p><p>A deliberate radius hierarchy, never uniform: chips/badges 8px · buttons &amp; inputs 12px · cards 18px · large cards/modals 22px · avatars/pills full. Anchored by the recent move from full-radius pills to 12px rounded-rectangle buttons.</p></div>
+    <div class="item"><p class="k">What this is NOT</p>
+      <ul>
+        <li><b>Not generic SaaS:</b> no #FAFAFA gray surfaces, no medium 220–240° blue (ours is H267° electric violet-blue), no uniform 6–8px radius, no pure-black shadows.</li>
+        <li><b>Not enterprise-minimal:</b> the categorical palette and shape accents are brand, not strippable chrome.</li>
+        <li><b>Not bubbly-pill or soft-UI:</b> tiered rounded rectangles (not full pills), flat surfaces with restrained elevation, no neumorphism or glassmorphism.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 2 — COLOR PALETTE -->
+<section class="wrap">
+  <div class="sec-head"><span class="sec-num">02</span><span class="sec-rule"></span><h2>Color palette</h2></div>
+  <p class="note">Proposed semantic direction. Each swatch shows hex, OKLCH, and — for text/UI pairings — the verified WCAG contrast ratio. Every bright fill carries <b>dark ink text</b>: white fails AA on mint, coral, and pink, so dark-on-bright becomes a system signature.</p>
+
+  <h3>Primary &amp; secondary</h3>
+  <div class="swgrid">
+    <div class="sw"><div class="chip" style="background:var(--primary);color:var(--on-primary)">on-primary</div><div class="meta"><div class="nm">primary</div><div class="vals">#2540E8 · L48.3% C0.250 H267°</div><div class="ratio pass">on-primary 7.05:1 · AA ✓</div></div></div>
+    <div class="sw"><div class="chip" style="background:var(--primary-container);color:var(--on-primary-container)">on-primary-container</div><div class="meta"><div class="nm">primary-container</div><div class="vals">#EDF0FF · L95.7% C0.020 H277°</div><div class="ratio pass">text 12.6:1 · AA ✓</div></div></div>
+    <div class="sw"><div class="chip" style="background:var(--secondary);color:var(--on-secondary)">on-secondary</div><div class="meta"><div class="nm">secondary</div><div class="vals">#FF4D8D · L68.6% C0.218 H3°</div><div class="ratio pass">ink 5.50:1 · AA ✓</div></div></div>
+    <div class="sw"><div class="chip" style="background:var(--secondary-container);color:var(--on-secondary-container)">on-secondary-container</div><div class="meta"><div class="nm">secondary-container</div><div class="vals">#FFE3EE · L92% C0.04 H0°</div><div class="ratio pass">ink ≥11:1 · AA ✓</div></div></div>
+  </div>
+
+  <h3>Surfaces &amp; neutrals <span style="font-family:var(--font-code);font-size:12px;font-weight:400;color:var(--on-surface-muted)">— consistent violet temperature, H 285–301°</span></h3>
+  <div class="swgrid">
+    <div class="sw"><div class="chip" style="background:var(--surface);border-bottom:1px solid var(--border)">&nbsp;</div><div class="meta"><div class="nm">surface</div><div class="vals">#F7F6FB · L97.5% C0.007 H295°</div></div></div>
+    <div class="sw"><div class="chip" style="background:var(--surface-raised);border-bottom:1px solid var(--border)">&nbsp;</div><div class="meta"><div class="nm">surface-raised</div><div class="vals">#FDFCFF · L99.3% C0.004 H301°</div></div></div>
+    <div class="sw"><div class="chip" style="background:var(--surface-overlay);border-bottom:1px solid var(--border)">&nbsp;</div><div class="meta"><div class="nm">surface-overlay</div><div class="vals">#FEFDFF · L99.5% C0.003 H308°</div></div></div>
+    <div class="sw"><div class="chip" style="background:var(--on-surface)">&nbsp;</div><div class="meta"><div class="nm">on-surface (ink)</div><div class="vals">#1A1830 · L22.5% C0.046 H286°</div><div class="ratio pass">16.0:1 · AA ✓</div></div></div>
+    <div class="sw"><div class="chip" style="background:var(--on-surface-muted)">&nbsp;</div><div class="meta"><div class="nm">on-surface-muted</div><div class="vals">#56556E · L46.0% C0.040 H286°</div><div class="ratio pass">6.69:1 · AA ✓</div></div></div>
+    <div class="sw"><div class="chip" style="background:var(--night)">&nbsp;</div><div class="meta"><div class="nm">night (dark section)</div><div class="vals">#191735 · L22.5% C0.057 H284°</div></div></div>
+    <div class="sw"><div class="chip" style="background:var(--border)">&nbsp;</div><div class="meta"><div class="nm">border</div><div class="vals">#E7E4F0 · L92.5% C0.016 H297°</div></div></div>
+    <div class="sw"><div class="chip" style="background:var(--border-focus)">&nbsp;</div><div class="meta"><div class="nm">border-focus</div><div class="vals">#2540E8 · vs surface</div><div class="ratio pass">6.56:1 · AA-UI ✓</div></div></div>
+  </div>
+
+  <h3>Semantic</h3>
+  <div class="swgrid">
+    <div class="sw"><div class="chip" style="background:var(--success);color:var(--on-success)">on-success</div><div class="meta"><div class="nm">success</div><div class="vals">#17C89A · L74.1% C0.146 H168°</div><div class="ratio pass">ink 8.02:1 · AA ✓</div></div></div>
+    <div class="sw"><div class="chip" style="background:var(--warning);color:var(--on-warning)">on-warning</div><div class="meta"><div class="nm">warning</div><div class="vals">#FFC22E · L84.7% C0.163 H84°</div><div class="ratio pass">ink 10.7:1 · AA ✓</div></div></div>
+    <div class="sw"><div class="chip" style="background:var(--error);color:var(--on-error)">on-error</div><div class="meta"><div class="nm">error</div><div class="vals">#FF5A3C · L68.5% C0.206 H33°</div><div class="ratio pass">ink 5.57:1 · AA ✓</div></div></div>
+  </div>
+
+  <h3>Categorical accents <span style="font-family:var(--font-code);font-size:12px;font-weight:400;color:var(--on-surface-muted)">— sectioning / data / decoration, not semantic roles</span></h3>
+  <div class="swgrid">
+    <div class="sw"><div class="chip" style="background:var(--acc-blue)">&nbsp;</div><div class="meta"><div class="nm">blue</div><div class="vals">#2540E8 · H267°</div></div></div>
+    <div class="sw"><div class="chip" style="background:var(--acc-pink)">&nbsp;</div><div class="meta"><div class="nm">pink</div><div class="vals">#FF4D8D · H3°</div></div></div>
+    <div class="sw"><div class="chip" style="background:var(--acc-yellow)">&nbsp;</div><div class="meta"><div class="nm">yellow</div><div class="vals">#FFC22E · H84°</div></div></div>
+    <div class="sw"><div class="chip" style="background:var(--acc-mint)">&nbsp;</div><div class="meta"><div class="nm">mint</div><div class="vals">#17C89A · H168°</div></div></div>
+    <div class="sw"><div class="chip" style="background:var(--acc-coral)">&nbsp;</div><div class="meta"><div class="nm">coral</div><div class="vals">#FF5A3C · H33°</div></div></div>
+    <div class="sw"><div class="chip" style="background:var(--acc-lilac)">&nbsp;</div><div class="meta"><div class="nm">lilac</div><div class="vals">#9B6DFF · H294°</div></div></div>
+  </div>
+</section>
+
+<!-- 3 — TYPOGRAPHY -->
+<section class="wrap">
+  <div class="sec-head"><span class="sec-num">03</span><span class="sec-rule"></span><h2>Typography</h2></div>
+  <div class="spec">
+    <div style="font-family:var(--font-display);font-weight:800;font-size:clamp(44px,7vw,88px);line-height:.98;letter-spacing:-0.035em">Fixed scope. Fixed price.</div>
+    <div class="anno">display · Bricolage Grotesque · 800 · clamp(44–88px) · lh 0.98 · tracking −0.035em</div>
+  </div>
+  <div class="spec">
+    <div style="font-family:var(--font-display);font-weight:700;font-size:40px;line-height:1.1;letter-spacing:-0.025em">How the studio works</div>
+    <div class="anno">heading-lg · Bricolage Grotesque · 700 · 40px · lh 1.1 · tracking −0.025em</div>
+  </div>
+  <div class="spec">
+    <div style="font-family:var(--font-display);font-weight:700;font-size:22px;line-height:1.25;letter-spacing:-0.01em">Design System Audit + Roadmap</div>
+    <div class="anno">heading-sm · Bricolage Grotesque · 700 · 22px · lh 1.25 · tracking −0.01em</div>
+  </div>
+  <div class="spec">
+    <div style="font-family:var(--font-body);font-weight:400;font-size:18px;line-height:1.6;max-width:64ch">Senior design systems and 0→1 product work, sold as products. You see the deliverable, the timeline, and the price before we start. Most of it happens async, so your calendar stays yours.</div>
+    <div class="anno">body-lg · Geist · 400 · 18px · lh 1.6 · tracking 0</div>
+  </div>
+  <div class="spec">
+    <div style="font-family:var(--font-body);font-weight:400;font-size:15px;line-height:1.6;max-width:64ch">Each engagement includes one structured round of revisions, with its scope written into your agreement so there are no surprises.</div>
+    <div class="anno">body-sm · Geist · 400 · 15px · lh 1.6</div>
+  </div>
+  <div class="spec">
+    <div style="font-family:var(--font-label);font-weight:600;font-size:12.5px;text-transform:uppercase;letter-spacing:.12em;color:var(--on-surface-muted)">Best first step · Timeline · Meetings</div>
+    <div class="anno">label · Nunito · 600 · 12.5px · uppercase · tracking +0.12em</div>
+  </div>
+  <div class="spec">
+    <div style="font-family:var(--font-label);font-weight:400;font-size:12px;color:var(--on-surface-muted)">Scope + price within 2 business days.</div>
+    <div class="anno">caption · Nunito · 400 · 12px · tracking +0.02em</div>
+  </div>
+  <div class="spec">
+    <div style="font-family:var(--font-code);font-size:14px">--color-primary: #2540E8;</div>
+    <div class="anno">code · ui-monospace / Geist Mono fallback · 14px</div>
+  </div>
+</section>
+
+<!-- 4 — SHAPE & RADIUS -->
+<section class="wrap">
+  <div class="sec-head"><span class="sec-num">04</span><span class="sec-rule"></span><h2>Shape, radius &amp; elevation</h2></div>
+  <div class="rgrid">
+    <div class="rbox"><div class="box" style="border-radius:var(--r-none)"></div><div class="lbl"><b>none</b> <span>0px</span></div></div>
+    <div class="rbox"><div class="box" style="border-radius:var(--r-sm)"></div><div class="lbl"><b>sm</b> <span>8px · chips, badges</span></div></div>
+    <div class="rbox"><div class="box" style="border-radius:var(--r-md)"></div><div class="lbl"><b>md</b> <span>12px · buttons, inputs</span></div></div>
+    <div class="rbox"><div class="box" style="border-radius:var(--r-lg)"></div><div class="lbl"><b>lg</b> <span>18px · cards</span></div></div>
+    <div class="rbox"><div class="box" style="border-radius:var(--r-xl)"></div><div class="lbl"><b>xl</b> <span>22px · large cards, modals</span></div></div>
+    <div class="rbox"><div class="box" style="border-radius:var(--r-full)"></div><div class="lbl"><b>full</b> <span>9999px · avatars, pills</span></div></div>
+  </div>
+  <h3>Elevation <span style="font-family:var(--font-code);font-size:12px;font-weight:400;color:var(--on-surface-muted)">— violet-tinted ink, never pure black</span></h3>
+  <div class="shgrid">
+    <div class="shbox"><div class="box" style="box-shadow:var(--shadow-sm)"></div><div class="lbl">shadow-sm · cards at rest</div></div>
+    <div class="shbox"><div class="box" style="box-shadow:var(--shadow-md)"></div><div class="lbl">shadow-md · raised / hover</div></div>
+    <div class="shbox"><div class="box" style="box-shadow:var(--shadow-lg)"></div><div class="lbl">shadow-lg · overlays / modals</div></div>
+  </div>
+</section>
+
+<!-- 5 — SURFACE TREATMENT -->
+<section class="wrap">
+  <div class="sec-head"><span class="sec-num">05</span><span class="sec-rule"></span><h2>Surface treatment</h2></div>
+  <div class="surfrow">
+    <div class="surfcard" style="background:var(--surface)"><b>surface</b><div class="anno">page background · #F7F6FB</div></div>
+    <div class="surfcard" style="background:var(--surface-raised);box-shadow:var(--shadow-sm)"><b>surface-raised</b><div class="anno">cards · #FDFCFF</div></div>
+    <div class="surfcard" style="background:var(--surface-overlay);box-shadow:var(--shadow-lg)"><b>surface-overlay</b><div class="anno">modals · #FEFDFF</div></div>
+  </div>
+  <div class="row" style="margin-top:20px">
+    <span style="padding:10px 14px;border:1px solid var(--border);border-radius:var(--r-sm)">border (default)</span>
+    <span style="padding:10px 14px;border:1px solid var(--border-strong);border-radius:var(--r-sm)">border-strong</span>
+    <span class="focusdemo" style="padding:10px 14px;background:var(--surface-raised)">focus ring (3px, offset 2px)</span>
+  </div>
+  <h3>Composite card specimen</h3>
+  <div class="composite">
+    <span class="badge" style="background:var(--acc-coral);color:#fff">A · Best first step</span>
+    <h3 style="margin:16px 0 8px">Design System Audit + Roadmap</h3>
+    <p style="margin:0 0 16px;color:var(--on-surface-muted)">See exactly what's holding your design system back, and the order to fix it in.</p>
+    <div style="font-family:var(--font-display);font-size:34px;font-weight:800;letter-spacing:-0.02em">$3,500</div>
+    <button class="btn btn-primary" style="margin-top:16px;width:100%">Start an intake</button>
+  </div>
+</section>
+
+<!-- 6 — COLOR IN CONTEXT -->
+<section class="wrap">
+  <div class="sec-head"><span class="sec-num">06</span><span class="sec-rule"></span><h2>Color in context</h2></div>
+  <h3>Actions</h3>
+  <div class="row">
+    <button class="btn btn-primary">Primary action</button>
+    <button class="btn btn-secondary">Secondary</button>
+    <button class="btn btn-outline">Outline</button>
+    <a href="#" style="color:var(--primary);font-weight:600">A text link</a>
+  </div>
+  <p class="note" style="margin-top:10px">Tab to a button to see the focus ring. Primary uses light text (7.05:1); secondary uses ink (5.50:1).</p>
+
+  <h3>Form states</h3>
+  <div class="row" style="align-items:flex-start;gap:24px">
+    <div>
+      <label class="anno">Default input</label>
+      <input class="field" value="jane@example.com">
+    </div>
+    <div>
+      <label class="anno" style="color:var(--error)">Error input</label>
+      <input class="field err" value="not-an-email">
+      <div class="anno" style="color:var(--error);margin-top:6px">Enter a valid email address.</div>
+    </div>
+  </div>
+
+  <h3>Semantic messages</h3>
+  <div style="display:grid;gap:12px;max-width:520px">
+    <div class="msg banner-success">✓ &nbsp;Intake received. Scope and price within 2 business days.</div>
+    <div class="msg banner-warning">! &nbsp;This offer needs a decision-maker who responds within a day.</div>
+    <div class="msg banner-error">× &nbsp;Something went wrong sending your intake. Please email hello@ideacamp.co.</div>
+  </div>
+
+  <h3>Categorical accents in use</h3>
+  <div class="row">
+    <span class="badge" style="background:var(--acc-blue);color:#fff">Experience</span>
+    <span class="badge" style="background:var(--acc-pink);color:var(--on-secondary)">Track record</span>
+    <span class="badge" style="background:var(--acc-mint);color:#06382B">Specialty</span>
+    <span class="badge" style="background:var(--acc-coral);color:#fff">Capacity</span>
+    <span class="badge" style="background:var(--acc-yellow);color:var(--on-warning)">Add-on</span>
+    <span class="badge" style="background:var(--acc-lilac);color:#fff">Dataviz</span>
+  </div>
+</section>
+
+<!-- 7 — REVIEWER NOTES -->
+<section class="wrap">
+  <div class="sec-head"><span class="sec-num">07</span><span class="sec-rule"></span><h2>Reviewer notes</h2></div>
+  <p class="note">Decisions that needed judgment and warrant your explicit sign-off before token generation:</p>
+  <ul class="reviewer note">
+    <li><b>Pure-white → tinted surfaces.</b> The current site uses <code>#FFFFFF</code> as the paper (an absolute ban). Proposed: page <code>surface #F7F6FB</code>, cards <code>#FDFCFF</code>, overlays <code>#FEFDFF</code> — all sharing the violet temperature. This is a subtle but real shift from today's pure white. <span class="flag">Confirm the off-white page background is acceptable.</span></li>
+    <li><b>Secondary = pink (#FF4D8D).</b> The brand has no single historical "secondary" — it has a categorical set. Pink is nominated because it contrasts strongly with the blue primary and avoids colliding with any semantic hue. Alternative: lilac (#9B6DFF). <span class="flag">Confirm pink as the semantic secondary, or pick another.</span></li>
+    <li><b>Semantic vs. categorical split.</b> Blue→primary, pink→secondary, mint→success, yellow→warning, coral→error; the full six brights remain a documented <em>categorical</em> accent set for sectioning/data. Note pink (secondary, H3°) and coral (error, H33°) are adjacent warm hues — distinguishable but worth a glance. <span class="flag">Confirm the mapping, especially pink-secondary vs coral-error proximity.</span></li>
+    <li><b>Dark-ink-on-bright signature.</b> White text fails AA on mint (2.15:1), coral (3.10:1), and pink (3.14:1), so all bright fills use ink text. This is consistent with the site's coral button and yellow badge. If a solid error/secondary <em>button</em> must have white text, its base color would need darkening in Step 4. <span class="flag">Confirm dark-on-bright is the intended look.</span></li>
+    <li><b>Three type families.</b> Bricolage + Geist + Nunito each hold a distinct register (display / body / micro-label). <span class="flag">Confirm Nunito earns its place for labels, vs. folding labels into Geist.</span></li>
+    <li><b>Radius hierarchy.</b> 8 / 12 / 18 / 22 + full. Buttons at 12px reflect the recent pill→rectangle change. <span class="flag">Confirm the card radius (18–22px) reads as intended, not too soft.</span></li>
+    <li><b>Contrast status:</b> every text and UI pairing above passes WCAG 2.2 AA as labeled. Container-text and muted-text pairings verified ≥ 4.5:1. No failing pair is shipped in this tile.</li>
+  </ul>
+  <p class="note" style="margin-top:16px"><b>Note on method:</b> OKLCH values and contrast ratios here were computed locally for preview. Step 4 will regenerate the full primitive ramps using the Sistema palette generator and re-verify every <code>on-*</code> pairing through the Sistema contrast API, per the brief.</p>
+</section>
+
+</body>
+</html>

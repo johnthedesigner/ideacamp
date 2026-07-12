@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ideacamp Tokens — Compilation Check</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Geist:wght@400;500;600&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet">
+<!-- the compiled token artifact under test -->
+<link rel="stylesheet" href="styles/tokens/tokens.css">
+<style>
+  body { margin:0; background:var(--color-surface); color:var(--color-on-surface); font-family:var(--type-body-md-family); padding:40px; }
+  h1 { font-family:var(--type-display-family); font-size:40px; letter-spacing:-0.03em; margin:0 0 4px; }
+  .sub { color:var(--color-on-surface-muted); font-family:var(--type-label-family); text-transform:uppercase; letter-spacing:.12em; font-size:12px; margin:0 0 32px; }
+  h2 { font-family:var(--type-heading-md-family); font-size:24px; margin:40px 0 14px; letter-spacing:-0.02em; }
+  .grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:12px; }
+  .sw { border:1px solid var(--color-border); border-radius:var(--radius-md); overflow:hidden; background:var(--color-surface-raised); }
+  .sw .c { height:56px; }
+  .sw .m { padding:7px 9px; }
+  .sw .n { font-family:var(--type-code-family); font-size:11px; }
+  .sw .h { font-family:var(--type-code-family); font-size:10.5px; color:var(--color-on-surface-muted); }
+  .rampgrid { display:grid; grid-template-columns:repeat(19,1fr); gap:0; border-radius:var(--radius-sm); overflow:hidden; border:1px solid var(--color-border); margin-bottom:6px; }
+  .rampgrid .c { height:40px; }
+  .ramplabel { font-family:var(--type-code-family); font-size:11px; color:var(--color-on-surface-muted); margin:0 0 14px; }
+  .typerow { border-top:1px dashed var(--color-border); padding:14px 0; }
+  .typerow .anno { font-family:var(--type-code-family); font-size:11px; color:var(--color-on-surface-muted); margin-top:4px; }
+  .rrow, .srow { display:flex; flex-wrap:wrap; gap:20px; align-items:flex-end; }
+  .rbox .b { width:96px; height:64px; background:var(--color-primary-container); border:2px solid var(--color-primary); }
+  .rbox .l, .shb .l { font-family:var(--type-code-family); font-size:11px; margin-top:6px; }
+  .shb .b { width:120px; height:70px; border-radius:var(--radius-lg); background:var(--color-surface-raised); }
+  .sbar { display:flex; align-items:center; gap:10px; margin:5px 0; }
+  .sbar .b { height:14px; background:var(--color-primary); border-radius:2px; }
+  .sbar .l { font-family:var(--type-code-family); font-size:11px; color:var(--color-on-surface-muted); }
+  .ok { color:var(--color-success); font-weight:700; }
+</style>
+</head>
+<body>
+<h1>Token compilation check</h1>
+<p class="sub">Values below are read live from the compiled styles/tokens/tokens.css via getComputedStyle</p>
+<div id="root"></div>
+
+<script>
+const DATA = {"colorPrim":["--color-blue-50","--color-blue-100","--color-blue-150","--color-blue-200","--color-blue-250","--color-blue-300","--color-blue-350","--color-blue-400","--color-blue-450","--color-blue-500","--color-blue-550","--color-blue-600","--color-blue-650","--color-blue-700","--color-blue-750","--color-blue-800","--color-blue-850","--color-blue-900","--color-blue-950","--color-pink-50","--color-pink-100","--color-pink-150","--color-pink-200","--color-pink-250","--color-pink-300","--color-pink-350","--color-pink-400","--color-pink-450","--color-pink-500","--color-pink-550","--color-pink-600","--color-pink-650","--color-pink-700","--color-pink-750","--color-pink-800","--color-pink-850","--color-pink-900","--color-pink-950","--color-yellow-50","--color-yellow-100","--color-yellow-150","--color-yellow-200","--color-yellow-250","--color-yellow-300","--color-yellow-350","--color-yellow-400","--color-yellow-450","--color-yellow-500","--color-yellow-550","--color-yellow-600","--color-yellow-650","--color-yellow-700","--color-yellow-750","--color-yellow-800","--color-yellow-850","--color-yellow-900","--color-yellow-950","--color-mint-50","--color-mint-100","--color-mint-150","--color-mint-200","--color-mint-250","--color-mint-300","--color-mint-350","--color-mint-400","--color-mint-450","--color-mint-500","--color-mint-550","--color-mint-600","--color-mint-650","--color-mint-700","--color-mint-750","--color-mint-800","--color-mint-850","--color-mint-900","--color-mint-950","--color-coral-50","--color-coral-100","--color-coral-150","--color-coral-200","--color-coral-250","--color-coral-300","--color-coral-350","--color-coral-400","--color-coral-450","--color-coral-500","--color-coral-550","--color-coral-600","--color-coral-650","--color-coral-700","--color-coral-750","--color-coral-800","--color-coral-850","--color-coral-900","--color-coral-950","--color-lilac-50","--color-lilac-100","--color-lilac-150","--color-lilac-200","--color-lilac-250","--color-lilac-300","--color-lilac-350","--color-lilac-400","--color-lilac-450","--color-lilac-500","--color-lilac-550","--color-lilac-600","--color-lilac-650","--color-lilac-700","--color-lilac-750","--color-lilac-800","--color-lilac-850","--color-lilac-900","--color-lilac-950","--color-neutral-50","--color-neutral-100","--color-neutral-150","--color-neutral-200","--color-neutral-250","--color-neutral-300","--color-neutral-350","--color-neutral-400","--color-neutral-450","--color-neutral-500","--color-neutral-550","--color-neutral-600","--color-neutral-650","--color-neutral-700","--color-neutral-750","--color-neutral-800","--color-neutral-850","--color-neutral-900","--color-neutral-950","--color-neutral-paper"],"colorSem":["--color-primary","--color-on-primary","--color-primary-container","--color-on-primary-container","--color-secondary","--color-on-secondary","--color-secondary-container","--color-on-secondary-container","--color-surface","--color-surface-raised","--color-surface-overlay","--color-on-surface","--color-on-surface-muted","--color-border","--color-border-strong","--color-border-focus","--color-error","--color-on-error","--color-success","--color-on-success","--color-warning","--color-on-warning","--color-night","--color-on-night","--color-accent-blue","--color-accent-pink","--color-accent-yellow","--color-accent-mint","--color-accent-coral","--color-accent-lilac"],"radius":["--radius-none","--radius-sm","--radius-md","--radius-lg","--radius-xl","--radius-full"],"space":["--space-1","--space-2","--space-3","--space-4","--space-5","--space-6","--space-8","--space-12","--space-16","--space-20","--space-24","--space-32"],"shadow":["--shadow-sm","--shadow-md","--shadow-lg"],"borderW":["--border-width-sm","--border-width-md","--border-width-focus"],"layout":["--layout-page-gutter","--layout-section-gap","--layout-component-gap"],"typeRoles":["display","heading-lg","heading-md","heading-sm","body-lg","body-md","body-sm","label","caption","code"]};
+const root = document.getElementById('root');
+const cs = () => getComputedStyle(document.documentElement);
+
+function resolve(varName){
+  // resolve full var() chain by applying to a probe element
+  const p = document.createElement('span');
+  p.style.color = 'var(' + varName + ')';
+  document.body.appendChild(p);
+  const v = getComputedStyle(p).color;
+  p.remove();
+  return v; // rgb(...) for colors
+}
+function rgbToHex(rgb){
+  const m = rgb.match(/\d+/g); if(!m) return rgb;
+  return '#' + m.slice(0,3).map(x=>(+x).toString(16).padStart(2,'0')).join('').toUpperCase();
+}
+function raw(varName){ return cs().getPropertyValue(varName).trim(); }
+
+function section(title){ const h=document.createElement('h2'); h.textContent=title; root.appendChild(h); return h; }
+function swatchGrid(list){
+  const g=document.createElement('div'); g.className='grid';
+  for(const n of list){
+    const hex = rgbToHex(resolve(n));
+    const el=document.createElement('div'); el.className='sw';
+    el.innerHTML='<div class="c" style="background:var('+n+')"></div><div class="m"><div class="n">'+n.replace('--color-','')+'</div><div class="h">'+hex+'</div></div>';
+    g.appendChild(el);
+  }
+  root.appendChild(g);
+}
+
+// ---- Semantic colors ----
+section('Semantic colors ('+DATA.colorSem.length+')');
+swatchGrid(DATA.colorSem);
+
+// ---- Primitive ramps ----
+section('Primitive ramps');
+const byHue={};
+for(const n of DATA.colorPrim){ const hue=n.split('-')[2]; (byHue[hue]=byHue[hue]||[]).push(n); }
+for(const [hue,list] of Object.entries(byHue)){
+  const lab=document.createElement('p'); lab.className='ramplabel'; lab.textContent='color-'+hue;
+  const g=document.createElement('div'); g.className='rampgrid';
+  for(const n of list){ const c=document.createElement('div'); c.className='c'; c.style.background='var('+n+')'; c.title=n; g.appendChild(c); }
+  root.appendChild(lab); root.appendChild(g);
+}
+
+// ---- Typography ----
+section('Type roles ('+DATA.typeRoles.length+')');
+for(const r of DATA.typeRoles){
+  const row=document.createElement('div'); row.className='typerow';
+  const specimen=document.createElement('div');
+  const fam='var(--type-'+r+'-family)', sz='var(--type-'+r+'-size)', w='var(--type-'+r+'-weight)', lh='var(--type-'+r+'-line-height)', ls='var(--type-'+r+'-letter-spacing)';
+  specimen.style.cssText='font-family:'+fam+';font-size:'+sz+';font-weight:'+w+';line-height:'+lh+';letter-spacing:'+ls+(r==='label'?';text-transform:uppercase':'');
+  specimen.textContent = r.startsWith('body')||r==='caption' ? 'Senior design systems and 0\u21921 product work, sold as products.' : (r==='label'?'Best first step':(r==='code'?'--color-primary: #243EE8;':'Fixed scope. Fixed price.'));
+  const anno=document.createElement('div'); anno.className='anno';
+  anno.textContent = r+'  ·  '+raw('--type-'+r+'-size')+'  ·  w'+raw('--type-'+r+'-weight')+'  ·  lh'+raw('--type-'+r+'-line-height')+'  ·  ls'+raw('--type-'+r+'-letter-spacing');
+  row.appendChild(specimen); row.appendChild(anno); root.appendChild(row);
+}
+
+// ---- Radius ----
+section('Radius');
+const rr=document.createElement('div'); rr.className='rrow';
+for(const n of DATA.radius){ const el=document.createElement('div'); el.className='rbox'; el.innerHTML='<div class="b" style="border-radius:var('+n+')"></div><div class="l">'+n.replace('--radius-','')+' · '+raw(n)+'</div>'; rr.appendChild(el); }
+root.appendChild(rr);
+
+// ---- Elevation ----
+section('Elevation');
+const sr=document.createElement('div'); sr.className='srow';
+for(const n of DATA.shadow){ const el=document.createElement('div'); el.className='shb'; el.innerHTML='<div class="b" style="box-shadow:var('+n+')"></div><div class="l">'+n.replace('--','')+'</div>'; sr.appendChild(el); }
+root.appendChild(sr);
+
+// ---- Spacing ----
+section('Spacing scale + layout aliases');
+for(const n of [...DATA.space, ...DATA.layout]){
+  const el=document.createElement('div'); el.className='sbar';
+  el.innerHTML='<div class="b" style="width:var('+n+')"></div><div class="l">'+n.replace('--','')+' = '+raw(n)+'</div>';
+  root.appendChild(el);
+}
+// border widths
+section('Border widths');
+for(const n of DATA.borderW){
+  const el=document.createElement('div'); el.className='sbar';
+  el.innerHTML='<div style="width:120px;height:0;border-top:var('+n+') solid var(--color-on-surface)"></div><div class="l">'+n.replace('--','')+' = '+raw(n)+'</div>';
+  root.appendChild(el);
+}
+
+document.title = 'Tokens OK · '+DATA.colorSem.length+' semantic + '+DATA.colorPrim.length+' primitive colors';
+</script>
+</body>
+</html>
