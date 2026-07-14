@@ -1,8 +1,19 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">
-  <rect width="64" height="64" rx="18" fill="#2540E8"/>
-  <g transform="translate(14 14)" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M12 2c1 3 2.5 3.5 3.5 4.5A5 5 0 0 1 17 10a5 5 0 1 1-10 0c0-.3 0-.6.1-.9a2 2 0 1 0 3.3-2C8 4.5 11 2 12 2Z"/>
-    <path d="m5 22 14-4"/>
-    <path d="m5 18 14 4"/>
+  <defs>
+    <linearGradient id="flame" x1="3" y1="2" x2="20" y2="22" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#243EE8"/>
+      <stop offset="0.28" stop-color="#9765FF"/>
+      <stop offset="0.52" stop-color="#FF4B8C"/>
+      <stop offset="0.74" stop-color="#FF5638"/>
+      <stop offset="1" stop-color="#16C296"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="16" fill="#201D39"/>
+  <g transform="translate(13 11) scale(1.58)">
+    <path d="M12 2c1 3 2.5 3.5 3.5 4.5A5 5 0 0 1 17 10a5 5 0 1 1-10 0c0-.3 0-.6.1-.9a2 2 0 1 0 3.3-2C8 4.5 11 2 12 2Z" fill="url(#flame)"/>
+    <g fill="none" stroke="url(#flame)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+      <path d="m5 22 14-4"/>
+      <path d="m5 18 14 4"/>
+    </g>
   </g>
 </svg>
