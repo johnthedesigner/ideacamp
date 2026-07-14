@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    --paper: #FFFFFF;
+    --wash: #F5F6FB;
+    --ink: #1A1830;
+    --ink2: #57566F;
+    --line: #E7E6F1;
+    --field: #D9D7E6;
+    --night: #191735;
+    --night-ink: #EDECF6;
+    --night-ink2: #A6A4C4;
+    --accent: #2540E8;
+    --green: #0E9E73;
+    --yellow: #F5B301;
+    --coral: #F0502E;
+    --accent-ink: #FFFFFF;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "Geist", "Helvetica Neue", sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  * { box-sizing: border-box; }
+  a { color: var(--accent); text-underline-offset: 3px; }
+  a:hover { color: var(--ink); }
+  ::selection { background: var(--yellow); color: var(--ink); }
+  :focus-visible { outline: 2.5px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { transition: none !important; animation: none !important; } }
+</style>
+</helmet>
+
+<div style="min-width: 320px">
+
+  <!-- NAV -->
+  <header style="position: sticky; top: 0; z-index: 60; background: color-mix(in srgb, var(--paper) 90%, transparent); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line)">
+    <nav aria-label="Primary" style="max-width: 860px; margin: 0 auto; padding: 0 30px; height: 68px; display: flex; align-items: center; justify-content: space-between; gap: 24px">
+      <a href="Ideacamp%20v4.dc.html" style="display: flex; align-items: center; gap: 11px; text-decoration: none; color: var(--ink)">
+        <span aria-hidden="true" style="display: inline-flex; align-items: center; justify-content: center; width: 34px; height: 34px; border-radius: 11px; background: var(--accent)"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2c1 3 2.5 3.5 3.5 4.5A5 5 0 0 1 17 10a5 5 0 1 1-10 0c0-.3 0-.6.1-.9a2 2 0 1 0 3.3-2C8 4.5 11 2 12 2Z"></path><path d="m5 22 14-4"></path><path d="m5 18 14 4"></path></svg></span>
+        <span style="font-family: 'Bricolage Grotesque', sans-serif; font-size: 22px; font-weight: 800; letter-spacing: -0.02em">Ideacamp</span>
+      </a>
+      <a href="Ideacamp%20v4.dc.html#intake" style="text-decoration: none; font-family: 'Geist', sans-serif; font-size: 14px; font-weight: 600; background: var(--accent); color: var(--accent-ink); padding: 10px 18px; border-radius: 999px" style-hover="filter: brightness(1.08)">Start an intake</a>
+    </nav>
+  </header>
+
+  <main style="max-width: 860px; margin: 0 auto; padding: 72px 30px 96px 30px">
+    <a href="Ideacamp%20v4.dc.html" style="font-family: 'Geist Mono', monospace; font-size: 13px; text-decoration: none">← Back to Ideacamp</a>
+    <h1 style="margin: 22px 0 16px 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(38px, 5vw, 60px); line-height: 1.02; letter-spacing: -0.03em">Engagement details</h1>
+    <p style="margin: 0 0 40px 0; font-size: 18px; line-height: 1.6; color: var(--ink2); max-width: 60ch; text-wrap: pretty">The terms behind every engagement, in plain language. The signed services agreement is the binding document. This page explains what it says.</p>
+
+    <!-- quick nav -->
+    <nav aria-label="On this page" style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 48px; padding-bottom: 40px; border-bottom: 1px solid var(--line)">
+      <a href="#credit" style="font-family: 'Geist Mono', monospace; font-size: 12.5px; text-decoration: none; color: var(--ink2); background: var(--wash); border: 1px solid var(--line); padding: 7px 13px; border-radius: 999px" style-hover="color: var(--ink)">Audit credit</a>
+      <a href="#revisions" style="font-family: 'Geist Mono', monospace; font-size: 12.5px; text-decoration: none; color: var(--ink2); background: var(--wash); border: 1px solid var(--line); padding: 7px 13px; border-radius: 999px" style-hover="color: var(--ink)">Revisions</a>
+      <a href="#payment" style="font-family: 'Geist Mono', monospace; font-size: 12.5px; text-decoration: none; color: var(--ink2); background: var(--wash); border: 1px solid var(--line); padding: 7px 13px; border-radius: 999px" style-hover="color: var(--ink)">Payment</a>
+      <a href="#scope" style="font-family: 'Geist Mono', monospace; font-size: 12.5px; text-decoration: none; color: var(--ink2); background: var(--wash); border: 1px solid var(--line); padding: 7px 13px; border-radius: 999px" style-hover="color: var(--ink)">Scope changes</a>
+      <a href="#ownership" style="font-family: 'Geist Mono', monospace; font-size: 12.5px; text-decoration: none; color: var(--ink2); background: var(--wash); border: 1px solid var(--line); padding: 7px 13px; border-radius: 999px" style-hover="color: var(--ink)">Ownership</a>
+      <a href="#confidentiality" style="font-family: 'Geist Mono', monospace; font-size: 12.5px; text-decoration: none; color: var(--ink2); background: var(--wash); border: 1px solid var(--line); padding: 7px 13px; border-radius: 999px" style-hover="color: var(--ink)">Confidentiality</a>
+      <a href="#privacy" style="font-family: 'Geist Mono', monospace; font-size: 12.5px; text-decoration: none; color: var(--ink2); background: var(--wash); border: 1px solid var(--line); padding: 7px 13px; border-radius: 999px" style-hover="color: var(--ink)">Privacy</a>
+    </nav>
+
+    <section id="credit" style="margin-bottom: 44px; scroll-margin-top: 90px">
+      <h2 style="margin: 0 0 14px 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 28px; letter-spacing: -0.02em; display: flex; align-items: center; gap: 12px"><span aria-hidden="true" style="width: 12px; height: 12px; border-radius: 999px; background: var(--accent)"></span>The audit credit</h2>
+      <p style="margin: 0 0 14px 0; font-size: 17px; line-height: 1.65; color: var(--ink2); text-wrap: pretty">If you book a Diagnose and then a larger engagement, the audit pays for itself. The Diagnose fee credits in full toward either Build the Foundation or Design the Product, as long as that engagement is booked within 60 days of your audit being delivered.</p>
+      <ul style="margin: 0; padding: 0; list-style: none; display: grid; gap: 12px">
+        <li style="display: flex; gap: 12px; font-size: 16px; line-height: 1.55"><span aria-hidden="true" style="width: 7px; height: 7px; border-radius: 999px; background: var(--accent); margin-top: 8px; flex-shrink: 0"></span>The credit applies to Diagnose only, and covers the full Diagnose fee.</li>
+        <li style="display: flex; gap: 12px; font-size: 16px; line-height: 1.55"><span aria-hidden="true" style="width: 7px; height: 7px; border-radius: 999px; background: var(--accent); margin-top: 8px; flex-shrink: 0"></span>One credit per engagement. It reduces the price of the engagement you book next.</li>
+        <li style="display: flex; gap: 12px; font-size: 16px; line-height: 1.55"><span aria-hidden="true" style="width: 7px; height: 7px; border-radius: 999px; background: var(--accent); margin-top: 8px; flex-shrink: 0"></span>It has no cash value and isn't refundable on its own.</li>
+      </ul>
+    </section>
+
+    <section id="revisions" style="margin-bottom: 44px; scroll-margin-top: 90px">
+      <h2 style="margin: 0 0 14px 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 28px; letter-spacing: -0.02em; display: flex; align-items: center; gap: 12px"><span aria-hidden="true" style="width: 12px; height: 12px; border-radius: 999px; background: var(--green)"></span>What a revision round includes</h2>
+      <p style="margin: 0 0 14px 0; font-size: 17px; line-height: 1.65; color: var(--ink2); text-wrap: pretty">Every engagement includes one structured revision round. You review the delivered work and send one consolidated set of changes. I work through them together, in one pass, against the scope we agreed.</p>
+      <p style="margin: 0; font-size: 17px; line-height: 1.65; color: var(--ink2); text-wrap: pretty">A revision refines what was scoped. New goals, new screens, or a change of direction are new work, handled as a scope change below. The exact boundaries of the round are written into your scope doc so both of us know what it covers before we start.</p>
+    </section>
+
+    <section id="payment" style="margin-bottom: 44px; scroll-margin-top: 90px">
+      <h2 style="margin: 0 0 14px 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 28px; letter-spacing: -0.02em; display: flex; align-items: center; gap: 12px"><span aria-hidden="true" style="width: 12px; height: 12px; border-radius: 999px; background: var(--yellow)"></span>Payment terms</h2>
+      <p style="margin: 0; font-size: 17px; line-height: 1.65; color: var(--ink2); text-wrap: pretty">A 50% deposit reserves your start date. The remaining balance is due at handoff. Prices are fixed in the written scope, so the total does not move unless the scope itself changes by agreement.</p>
+    </section>
+
+    <section id="scope" style="margin-bottom: 44px; scroll-margin-top: 90px">
+      <h2 style="margin: 0 0 14px 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 28px; letter-spacing: -0.02em; display: flex; align-items: center; gap: 12px"><span aria-hidden="true" style="width: 12px; height: 12px; border-radius: 999px; background: var(--coral)"></span>How scope changes are handled</h2>
+      <p style="margin: 0; font-size: 17px; line-height: 1.65; color: var(--ink2); text-wrap: pretty">If the work needs to change, we write it down. A scope change is a written update to the scope doc, with any effect on price and timeline stated plainly, agreed before work continues. Nothing changes silently, and you're never billed for work you didn't approve.</p>
+    </section>
+
+    <section id="ownership" style="margin-bottom: 44px; scroll-margin-top: 90px">
+      <h2 style="margin: 0 0 14px 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 28px; letter-spacing: -0.02em; display: flex; align-items: center; gap: 12px"><span aria-hidden="true" style="width: 12px; height: 12px; border-radius: 999px; background: var(--accent)"></span>Who owns the deliverables</h2>
+      <p style="margin: 0; font-size: 17px; line-height: 1.65; color: var(--ink2); text-wrap: pretty">Ownership of the deliverables transfers to you on final payment. The pre-existing tools, methods, and internal starter systems I bring to the work stay mine, so I can keep using them across engagements. Your product, your brand, and everything designed for you are yours.</p>
+    </section>
+
+    <section id="confidentiality" style="margin-bottom: 44px; scroll-margin-top: 90px">
+      <h2 style="margin: 0 0 14px 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 28px; letter-spacing: -0.02em; display: flex; align-items: center; gap: 12px"><span aria-hidden="true" style="width: 12px; height: 12px; border-radius: 999px; background: var(--green)"></span>Confidentiality</h2>
+      <p style="margin: 0; font-size: 17px; line-height: 1.65; color: var(--ink2); text-wrap: pretty">Your work stays private. I won't show it in a portfolio, a case study, or anywhere else without your permission. If you're happy to be referenced later, that's a separate yes I'll ask for, never an assumption.</p>
+    </section>
+
+    <section id="privacy" style="margin-bottom: 8px; scroll-margin-top: 90px">
+      <h2 style="margin: 0 0 14px 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 28px; letter-spacing: -0.02em; display: flex; align-items: center; gap: 12px"><span aria-hidden="true" style="width: 12px; height: 12px; border-radius: 999px; background: var(--yellow)"></span>What happens to intake data</h2>
+      <p style="margin: 0; font-size: 17px; line-height: 1.65; color: var(--ink2); text-wrap: pretty">The intake form collects your name, email, an optional company or product link, and what you tell me about your project. I use it only to respond to you and scope the work. It is never sold or shared, and if we don't work together you can ask me to delete it.</p>
+    </section>
+
+    <div style="margin-top: 56px; padding: 28px 30px; border-radius: 18px; background: var(--wash); border: 1px solid var(--line); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 18px">
+      <p style="margin: 0; font-size: 16px; line-height: 1.5; color: var(--ink2); max-width: 44ch">Have a question these don't answer? Ask it in the intake, or email me.</p>
+      <a href="Ideacamp%20v4.dc.html#intake" style="text-decoration: none; font-family: 'Geist', sans-serif; font-size: 15px; font-weight: 600; background: var(--accent); color: var(--accent-ink); padding: 13px 24px; border-radius: 999px; white-space: nowrap" style-hover="filter: brightness(1.08)">Start an intake</a>
+    </div>
+  </main>
+
+  <footer style="border-top: 1px solid var(--line); background: var(--night); color: var(--night-ink)">
+    <div style="max-width: 860px; margin: 0 auto; padding: 40px 30px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 18px; font-family: 'Geist Mono', monospace; font-size: 12.5px">
+      <a href="Ideacamp%20v4.dc.html" style="color: var(--night-ink); text-decoration: none; font-family: 'Bricolage Grotesque', sans-serif; font-size: 18px; font-weight: 800; letter-spacing: -0.02em">Ideacamp</a>
+      <div style="display: flex; flex-wrap: wrap; gap: 22px">
+        <a href="Ideacamp%20v4.dc.html#intake" style="color: var(--night-ink2); text-decoration: none" style-hover="color: var(--night-ink)">Start an intake</a>
+        <a href="mailto:hello@ideacamp.co" style="color: var(--night-ink2); text-decoration: none" style-hover="color: var(--night-ink)">hello@ideacamp.co</a>
+        <span style="color: var(--night-ink2)">© 2026 Ideacamp</span>
+      </div>
+    </div>
+  </footer>
+
+</div>
+</x-dc>
+</body>
+</html>

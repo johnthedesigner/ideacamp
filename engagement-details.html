@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Engagement details · Ideacamp</title>
+<meta name="description" content="The terms behind every Ideacamp engagement, in plain language: the audit credit, revisions, payment, scope changes, ownership, confidentiality, and privacy.">
+<link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Geist:wght@400;500;600&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles/index.css">
+<style>
+  body { --on-night-muted: color-mix(in oklab, var(--color-on-night) 60%, var(--color-night)); }
+  a { color: var(--color-primary); text-underline-offset: 3px; }
+  a:not(.btn):hover { color: color-mix(in oklab, var(--color-primary) 78%, var(--color-on-surface)); }
+  ::selection { background: var(--color-accent-yellow); color: var(--color-on-surface); }
+
+  .wrap { max-width: 860px; margin-inline: auto; padding-inline: var(--layout-page-gutter); }
+  .nav { position: sticky; top: 0; z-index: 60; background: color-mix(in srgb, var(--color-surface) 90%, transparent); backdrop-filter: blur(10px); border-bottom: var(--border-width-sm) solid var(--color-border); }
+  .nav-inner { display: flex; align-items: center; justify-content: space-between; gap: 24px; height: 68px; }
+  .brand { display: inline-flex; align-items: center; gap: 11px; text-decoration: none; color: var(--color-on-surface); }
+  .brand .mark { display: inline-flex; align-items: center; justify-content: center; width: 34px; height: 34px; border-radius: var(--radius-sm); background: var(--color-primary); }
+  .brand .name { font-family: var(--type-heading-md-family); font-size: 22px; font-weight: 800; letter-spacing: -0.02em; }
+
+  main { padding-block: 72px 96px; }
+  .back { font-family: var(--type-label-family); text-transform: none; letter-spacing: 0; font-size: 13px; text-decoration: none; }
+  .quicknav { display: flex; flex-wrap: wrap; gap: 8px; margin: 48px 0; padding-bottom: 40px; border-bottom: var(--border-width-sm) solid var(--color-border); }
+  .quicknav a { font-family: var(--type-label-family); text-transform: none; letter-spacing: 0; font-size: 12.5px; text-decoration: none; color: var(--color-on-surface-muted); background: color-mix(in oklab, var(--color-primary-container) 55%, var(--color-surface)); border: var(--border-width-sm) solid var(--color-border); padding: 7px 13px; border-radius: var(--radius-full); }
+  .quicknav a:hover { color: var(--color-on-surface); }
+  .det { margin-bottom: 44px; scroll-margin-top: 90px; }
+  .det h2 { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+  .det .bead { width: 12px; height: 12px; border-radius: var(--radius-full); flex-shrink: 0; }
+  .det p { color: var(--color-on-surface-muted); font-size: 17px; line-height: 1.65; text-wrap: pretty; margin-bottom: 14px; }
+  .det ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 12px; }
+  .det li { display: flex; gap: 12px; font-size: 16px; line-height: 1.55; }
+  .det li .dot { width: 7px; height: 7px; border-radius: var(--radius-full); background: var(--color-primary); margin-top: 8px; flex-shrink: 0; }
+  .cta-band { margin-top: 56px; padding: 28px 30px; border-radius: var(--radius-lg); background: color-mix(in oklab, var(--color-primary-container) 55%, var(--color-surface)); border: var(--border-width-sm) solid var(--color-border); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 18px; }
+  .footer { border-top: var(--border-width-sm) solid var(--color-border); background: var(--color-night); color: var(--color-on-night); }
+  .footer-inner { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 18px; padding-block: 40px; font-family: var(--type-label-family); text-transform: none; letter-spacing: 0; font-size: 12.5px; }
+  .footer-inner a { color: var(--on-night-muted); text-decoration: none; } .footer-inner a:hover { color: var(--color-on-night); }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <nav class="nav-inner wrap" aria-label="Primary">
+    <a href="index.html" class="brand">
+      <span class="mark" aria-hidden="true"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2c1 3 2.5 3.5 3.5 4.5A5 5 0 0 1 17 10a5 5 0 1 1-10 0c0-.3 0-.6.1-.9a2 2 0 1 0 3.3-2C8 4.5 11 2 12 2Z"></path><path d="m5 22 14-4"></path><path d="m5 18 14 4"></path></svg></span>
+      <span class="name">Ideacamp</span>
+    </a>
+    <a href="index.html#intake" class="btn btn-primary btn-sm">Start a project</a>
+  </nav>
+</header>
+
+<main class="wrap">
+  <a href="index.html" class="back">← Back to Ideacamp</a>
+  <h1 class="text-display" style="font-size: clamp(38px, 5vw, 60px); margin: 22px 0 16px">Engagement details</h1>
+  <p class="text-body-lg" style="color: var(--color-on-surface-muted); max-width: 60ch">The terms behind every engagement, in plain language. The signed services agreement is the binding document. This page explains what it says.</p>
+
+  <nav class="quicknav" aria-label="On this page">
+    <a href="#credit">Audit credit</a>
+    <a href="#revisions">Revisions</a>
+    <a href="#payment">Payment</a>
+    <a href="#scope">Scope changes</a>
+    <a href="#ownership">Ownership</a>
+    <a href="#confidentiality">Confidentiality</a>
+    <a href="#privacy">Privacy</a>
+  </nav>
+
+  <section id="credit" class="det">
+    <h2 class="text-heading-md" style="font-size: 28px"><span class="bead" style="background: var(--color-accent-blue)"></span>The audit credit</h2>
+    <p>If you book a Diagnose and then a larger engagement, the audit pays for itself. The Diagnose fee credits in full toward either Build the Foundation or Design the Product, as long as that engagement is booked within 60 days of your audit being delivered.</p>
+    <ul>
+      <li><span class="dot"></span>The credit applies to Diagnose only, and covers the full Diagnose fee.</li>
+      <li><span class="dot"></span>One credit per engagement. It reduces the price of the engagement you book next.</li>
+      <li><span class="dot"></span>It has no cash value and isn't refundable on its own.</li>
+    </ul>
+  </section>
+
+  <section id="revisions" class="det">
+    <h2 class="text-heading-md" style="font-size: 28px"><span class="bead" style="background: var(--color-accent-mint)"></span>What a revision round includes</h2>
+    <p>Every engagement includes one structured revision round. You review the delivered work and send one consolidated set of changes. I work through them together, in one pass, against the scope we agreed.</p>
+    <p style="margin-bottom: 0">A revision refines what was scoped. New goals, new screens, or a change of direction are new work, handled as a scope change below. The exact boundaries of the round are written into your scope doc so both of us know what it covers before we start.</p>
+  </section>
+
+  <section id="payment" class="det">
+    <h2 class="text-heading-md" style="font-size: 28px"><span class="bead" style="background: var(--color-accent-yellow)"></span>Payment terms</h2>
+    <p style="margin-bottom: 0">A 50% deposit reserves your start date. The remaining balance is due at handoff. Prices are fixed in the written scope, so the total does not move unless the scope itself changes by agreement.</p>
+  </section>
+
+  <section id="scope" class="det">
+    <h2 class="text-heading-md" style="font-size: 28px"><span class="bead" style="background: var(--color-accent-coral)"></span>How scope changes are handled</h2>
+    <p style="margin-bottom: 0">If the work needs to change, we write it down. A scope change is a written update to the scope doc, with any effect on price and timeline stated plainly, agreed before work continues. Nothing changes silently, and you're never billed for work you didn't approve.</p>
+  </section>
+
+  <section id="ownership" class="det">
+    <h2 class="text-heading-md" style="font-size: 28px"><span class="bead" style="background: var(--color-accent-blue)"></span>Who owns the deliverables</h2>
+    <p style="margin-bottom: 0">Ownership of the deliverables transfers to you on final payment. The pre-existing tools, methods, and internal starter systems I bring to the work stay mine, so I can keep using them across engagements. Your product, your brand, and everything designed for you are yours.</p>
+  </section>
+
+  <section id="confidentiality" class="det">
+    <h2 class="text-heading-md" style="font-size: 28px"><span class="bead" style="background: var(--color-accent-mint)"></span>Confidentiality</h2>
+    <p style="margin-bottom: 0">Your work stays private. I won't show it in a portfolio, a case study, or anywhere else without your permission. If you're happy to be referenced later, that's a separate yes I'll ask for, never an assumption.</p>
+  </section>
+
+  <section id="privacy" class="det" style="margin-bottom: 8px">
+    <h2 class="text-heading-md" style="font-size: 28px"><span class="bead" style="background: var(--color-accent-yellow)"></span>What happens to intake data</h2>
+    <p style="margin-bottom: 0">The intake form collects your name, email, an optional company or product link, and what you tell me about your project. I use it only to respond to you and scope the work. It is never sold or shared, and if we don't work together you can ask me to delete it.</p>
+  </section>
+
+  <div class="cta-band">
+    <p class="text-body-md" style="color: var(--color-on-surface-muted); max-width: 44ch; margin: 0">Have a question these don't answer? Ask it in the intake, or email me.</p>
+    <a href="index.html#intake" class="btn btn-primary" style="white-space: nowrap">Start a project</a>
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="wrap footer-inner">
+    <a href="index.html" style="font-family: var(--type-heading-md-family); font-size: 18px; font-weight: 800; letter-spacing: -0.02em; color: var(--color-on-night)">ideacamp</a>
+    <div style="display: flex; flex-wrap: wrap; gap: 22px">
+      <a href="index.html#intake">Start a project</a>
+      <a href="mailto:hello@ideacamp.co">hello@ideacamp.co</a>
+      <span style="color: var(--on-night-muted)">© 2026 Ideacamp</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

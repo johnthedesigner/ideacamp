@@ -36,8 +36,10 @@ export default async function handler(req, res) {
   const email = (body.email || '').trim();
   const details = (body.details || '').trim();
   const company = (body.company || '').trim();
-  const offer = (body.offer || '').trim();
-  const timing = (body.timing || '').trim();
+  const problem = (body.problem || body.offer || '').trim();
+  const timeline = (body.timeline || body.timing || '').trim();
+  const source = (body.source || '').trim();
+  const agency = body.agency ? 'Yes' : '';
 
   if (!name || !email || !details) {
     return res.status(400).json({ error: 'Name, email, and project details are required.' });
@@ -55,9 +57,11 @@ export default async function handler(req, res) {
   const rows = [
     ['Name', name],
     ['Email', email],
-    ['Company', company || '—'],
-    ['Offer', offer || '—'],
-    ['Timing', timing || '—'],
+    ['Company / link', company || '—'],
+    ['Situation', problem || '—'],
+    ['Timeline', timeline || '—'],
+    ['Found via', source || '—'],
+    ['Agency / white-label', agency || 'No'],
   ];
   const html = `
     <h2 style="font-family:sans-serif">New Ideacamp intake</h2>
@@ -80,7 +84,7 @@ export default async function handler(req, res) {
         from: FROM,
         to: [TO],
         reply_to: email,
-        subject: `Intake: ${name}${offer ? ' — ' + offer : ''}`,
+        subject: `Intake: ${name}${problem ? ' — ' + problem : ''}`,
         html,
         text,
       }),

@@ -4,12 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Ideacamp — Fixed scope. Fixed price. Design that ships.</title>
-<meta name="description" content="Ideacamp is a digital design studio. Senior design systems and 0→1 product work, sold as fixed-scope, fixed-price engagements. See the deliverable, timeline, and price before we start.">
+<meta name="description" content="Ideacamp is one senior designer. Design systems and 0 to 1 product design, sold as fixed-scope, fixed-price projects. You see the deliverable, the timeline, and the price before we start.">
 <link rel="canonical" href="https://ideacamp.co/">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://ideacamp.co/">
 <meta property="og:title" content="Ideacamp — Fixed scope. Fixed price. Design that ships.">
-<meta property="og:description" content="Senior design systems and 0→1 product work, sold as fixed-scope, fixed-price engagements.">
+<meta property="og:description" content="Design systems and 0 to 1 product design, sold as fixed-scope, fixed-price projects.">
 <meta property="og:site_name" content="Ideacamp">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
@@ -19,593 +19,763 @@
 <!-- Design system: compiled tokens + base + components (single barrel entry). -->
 <link rel="stylesheet" href="styles/index.css">
 <style>
-  html { scroll-behavior: smooth; }
-  body {
-    margin: 0;
-    overflow-x: hidden;
-    /* Legacy names aliased onto semantic tokens — the site is now driven by
-       the compiled design-system tokens (styles/tokens/tokens.css). */
-    --paper: var(--color-surface-raised);
-    --ink: var(--color-on-surface);
-    --ink2: var(--color-on-surface-muted);
-    --line: var(--color-border);
-    --night: var(--color-night);
-    --accent: var(--color-primary);
-    --accent-ink: var(--color-on-primary);
-    --accent-on-night: var(--color-blue-300);
-    /* categorical accents */
-    --blue: var(--color-accent-blue);
-    --pink: var(--color-accent-pink);
-    --yellow: var(--color-accent-yellow);
-    --mint: var(--color-accent-mint);
-    --coral: var(--color-accent-coral);
-    --lilac: var(--color-accent-lilac);
-    --confetti: block;
-    background: var(--color-surface);
-    color: var(--ink);
-    font-family: var(--type-body-md-family);
-    -webkit-font-smoothing: antialiased;
-  }
-  * { box-sizing: border-box; }
-  input, textarea, select, button { font: inherit; color: inherit; }
-  a { color: var(--accent); }
-  a:hover { color: var(--ink); }
-  ::selection { background: var(--yellow); color: var(--ink); }
-  @keyframes rise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
-  @keyframes marquee { to { transform: translateX(-50%); } }
-  @keyframes drift { 0%,100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-9px) rotate(6deg); } }
-  @keyframes twinkle { 0%,100% { opacity: 0.85; transform: scale(1); } 50% { opacity: 0.4; transform: scale(0.82); } }
+  /* ---- page composition — tokens only ---- */
+  body { overflow-x: hidden;
+         --wash: color-mix(in oklab, var(--color-primary-container) 55%, var(--color-surface));
+         --on-night-muted: color-mix(in oklab, var(--color-on-night) 60%, var(--color-night)); }
+  .wrap { max-width: 1180px; margin-inline: auto; padding-inline: var(--layout-page-gutter); }
+  .wrap-narrow { max-width: 860px; margin-inline: auto; padding-inline: var(--layout-page-gutter); }
 
-  /* interactive states (override inline base styles) */
-  .hv-ink { transition: color .15s ease; }
-  .hv-ink:hover { color: var(--ink) !important; }
-  .hv-card, .hv-card-dark, .hv-lift, .hv-lift-sm, .hv-cta, .hv-bright, .hv-invert { transition: transform .2s ease, box-shadow .2s ease, background .15s ease, color .15s ease, filter .15s ease; }
-  .hv-card:hover { box-shadow: var(--shadow-md) !important; transform: translateY(-3px) !important; }
-  .hv-card-dark:hover { box-shadow: var(--shadow-lg) !important; transform: translateY(-3px) !important; }
-  .hv-lift:hover { transform: translateY(-3px) !important; }
-  .hv-lift-sm:hover { transform: translateY(-2px) !important; }
-  .hv-cta:hover { transform: translateY(-2px) !important; box-shadow: 0 12px 26px color-mix(in srgb, var(--accent) 40%, transparent) !important; }
-  .hv-bright:hover { filter: brightness(1.07) !important; }
-  .hv-invert:hover { background: var(--ink) !important; color: #fff !important; }
-  /* .field styling + focus now come from the component layer (styles/components/form.css) */
-  /* accessibility: honor reduced-motion */
-  @media (prefers-reduced-motion: reduce) {
-    html { scroll-behavior: auto; }
-    *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
+  a { color: var(--color-primary); text-underline-offset: 3px; }
+  a:not(.btn):hover { color: color-mix(in oklab, var(--color-primary) 78%, var(--color-on-surface)); }
+  ::selection { background: var(--color-accent-yellow); color: var(--color-on-surface); }
+
+  @keyframes rise { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+  @keyframes marquee { to { transform: translateX(-50%); } }
+  @keyframes logoSlide { from { background-position: 0 0; } to { background-position: -72px 0; } }
+  .rise { animation: rise .6s ease both; } .rise-2 { animation: rise .6s .08s ease both; } .rise-3 { animation: rise .6s .16s ease both; }
+
+  /* skip link */
+  .skip { position: absolute; left: -9999px; top: 0; background: var(--color-on-surface); color: var(--color-surface); padding: 12px 18px; border-radius: 0 0 10px 0; z-index: 200; text-decoration: none; }
+  .skip:focus { left: 0; }
+
+  /* nav */
+  .nav { position: sticky; top: 0; z-index: 60; background: color-mix(in srgb, var(--color-surface) 90%, transparent); backdrop-filter: blur(10px); border-bottom: var(--border-width-sm) solid var(--color-border); }
+  .nav-inner { display: flex; align-items: center; justify-content: space-between; gap: 24px; height: 68px; }
+  .brand { display: inline-flex; align-items: center; text-decoration: none; color: var(--color-on-surface); }
+  .brand svg { transform: rotate(-5deg); margin-right: -7px; position: relative; z-index: 1; }
+  /* Flame flush-filled with a short repeating hue gradient (masked to the icon), scrolled over 20s.
+     72px tile → about two hues visible across the ~40px icon at any instant. */
+  .logo-mark {
+    display: inline-block; width: 40px; height: 40px; vertical-align: middle;
+    transform: rotate(-5deg); margin-right: -7px; position: relative; z-index: 1;
+    background-image: linear-gradient(90deg, var(--color-accent-blue), var(--color-accent-lilac), var(--color-accent-pink), var(--color-accent-coral), var(--color-accent-mint), var(--color-accent-blue));
+    background-size: 72px 100%; background-repeat: repeat-x; background-position: 0 0;
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 2c1 3 2.5 3.5 3.5 4.5A5 5 0 0 1 17 10a5 5 0 1 1-10 0c0-.3 0-.6.1-.9a2 2 0 1 0 3.3-2C8 4.5 11 2 12 2Z'/%3E%3Cpath d='m5 22 14-4'/%3E%3Cpath d='m5 18 14 4'/%3E%3C/svg%3E") center / contain no-repeat;
+            mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 2c1 3 2.5 3.5 3.5 4.5A5 5 0 0 1 17 10a5 5 0 1 1-10 0c0-.3 0-.6.1-.9a2 2 0 1 0 3.3-2C8 4.5 11 2 12 2Z'/%3E%3Cpath d='m5 22 14-4'/%3E%3Cpath d='m5 18 14 4'/%3E%3C/svg%3E") center / contain no-repeat;
+    animation: logoSlide 20s linear infinite;
   }
+  .brand .name { font-family: var(--type-heading-md-family); font-size: 22px; font-weight: 800; letter-spacing: -0.02em; }
+  .navlinks { display: flex; align-items: center; gap: 26px; }
+  .navlinks .text-label { text-transform: none; letter-spacing: 0.03em; }
+  .navlinks a:not(.btn) { text-decoration: none; color: var(--color-on-surface-muted); }
+  .navlinks a:not(.btn):hover { color: var(--color-on-surface); }
+  /* mobile nav */
+  .nav-toggle { display: none; width: 44px; height: 44px; align-items: center; justify-content: center; background: transparent; border: var(--border-width-md) solid var(--color-border-strong); border-radius: var(--radius-md); color: var(--color-on-surface); cursor: pointer; }
+  .mobile-menu { display: none; }
+  .mobile-menu { padding: 8px var(--layout-page-gutter) 20px; background: var(--color-surface); border-bottom: var(--border-width-sm) solid var(--color-border); gap: 2px; }
+  .mobile-menu a:not(.btn) { text-decoration: none; color: var(--color-on-surface); font-family: var(--type-body-md-family); font-weight: 500; font-size: 17px; padding: 13px 8px; border-radius: var(--radius-sm); }
+  .mobile-menu a:not(.btn):hover { background: color-mix(in oklab, var(--color-on-surface) 6%, var(--color-surface)); }
+  .mobile-menu .btn { margin-top: 12px; width: 100%; }
+  @media (max-width: 860px) {
+    .navlinks-desktop { display: none; }
+    .nav-toggle { display: inline-flex; }
+    .mobile-menu:not([hidden]) { display: grid; }
+  }
+
+  /* hero */
+  .hero { padding-block: 92px 52px; }
+  .hero .kicker { color: var(--color-on-surface-muted); }
+  .hero h1 { max-width: 16ch; text-wrap: balance; margin-top: 24px; }
+  .hero-row { display: flex; flex-wrap: wrap; gap: 44px; align-items: flex-end; justify-content: space-between; margin-top: 34px; }
+  .hero-row p { flex: 1 1 320px; min-width: 0; max-width: 52ch; text-wrap: pretty; }
+
+  /* marquee */
+  .marquee { background: var(--color-primary); overflow: hidden; }
+  .marquee-track { display: flex; width: max-content; animation: marquee 32s linear infinite; padding: 13px 0; color: var(--color-on-primary); white-space: nowrap; }
+  .marquee-track span { padding-right: 44px; font-family: var(--type-label-family); font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; }
+
+  /* credibility */
+  .cred { padding-block: 52px 78px; }
+  .cred-grid { display: grid; grid-template-columns: 1fr; gap: 32px 44px; }
+  @media (min-width: 560px) { .cred-grid { grid-template-columns: 1fr 1fr; } }
+  @media (min-width: 960px) { .cred-grid { grid-template-columns: repeat(4, 1fr); } }
+  .cred .eyebrow { display: flex; align-items: center; gap: 9px; color: var(--color-on-surface-muted); margin-bottom: 12px; }
+
+  /* section header */
+  section { border-top: var(--border-width-sm) solid var(--color-border); }
+  .sec-head { display: flex; align-items: center; gap: 16px; }
+  .sec-num { font-family: var(--type-label-family); font-size: 13px; color: var(--color-on-surface-muted); }
+  .sec-rule { width: 26px; height: 3px; border-radius: 2px; }
+
+  /* engagement cards */
+  /* 3 cards: go 1 → 3 to avoid an unbalanced 2 + 1 orphan row */
+  .eng-grid { display: grid; grid-template-columns: 1fr; gap: 24px; align-items: start; }
+  @media (min-width: 900px) { .eng-grid { grid-template-columns: repeat(3, 1fr); } }
+  .eng-card { position: relative; display: flex; flex-direction: column; height: 100%; background: var(--color-surface-raised); border: 1.5px solid var(--color-border); border-top: none; border-radius: 0 0 var(--radius-lg) var(--radius-lg); padding: 30px; transition: box-shadow .2s, transform .2s; }
+  .eng-card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+  .eng-edge { position: absolute; top: -1px; left: -1.5px; width: calc(100% + 3px); height: 11px; display: block; }
+  .eng-title { font-family: var(--type-display-family); font-weight: 700; font-size: 26px; letter-spacing: -0.02em; margin: 0 0 12px; }
+  .chip { display: inline-block; font-family: var(--type-label-family); font-size: 12px; letter-spacing: 0; text-transform: none; color: var(--color-on-surface-muted); border: var(--border-width-sm) solid var(--color-border); padding: 4px 10px; border-radius: var(--radius-sm); white-space: nowrap; }
+  .youget { display: grid; gap: 10px; list-style: none; margin: 0 0 22px; padding: 0; }
+  .youget li { display: flex; gap: 11px; font-size: 15px; line-height: 1.5; }
+  .dot { width: 7px; height: 7px; border-radius: var(--radius-full); margin-top: 6px; flex-shrink: 0; }
+  .price { font-family: var(--type-display-family); font-weight: 800; font-size: 38px; letter-spacing: -0.02em; margin: 0 0 6px; }
+  .yourtime { display: flex; justify-content: space-between; gap: 12px; font-family: var(--type-label-family); text-transform: none; letter-spacing: 0; font-size: 13px; padding: 12px 0; border-top: var(--border-width-sm) solid var(--color-border); border-bottom: var(--border-width-sm) solid var(--color-border); margin-bottom: 20px; }
+  .eng-flex-cta { margin-top: auto; }
+
+  .wash-card { margin-top: 24px; border: 1.5px solid var(--color-border); border-radius: var(--radius-lg); background: var(--wash); padding: 32px 34px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 24px; }
+
+  /* selector */
+  .sel { background: var(--wash); }
+  .progress { display: flex; align-items: center; gap: 6px; }
+  .progress .pd { width: 9px; height: 9px; border-radius: var(--radius-full); background: var(--color-border-strong); }
+  .progress .pd.on { background: var(--color-primary); }
+  .progress .pl { width: 14px; height: 2px; background: var(--color-border-strong); }
+  .sit-grid { display: grid; grid-template-columns: 1fr; gap: 12px; }
+  @media (min-width: 560px) { .sit-grid { grid-template-columns: 1fr 1fr; } }
+  .sit { display: flex; flex-direction: column; text-align: left; width: 100%; height: 100%; padding: 22px; border-radius: var(--radius-lg); border: 1.5px solid var(--color-border); background: var(--color-surface-raised); font-family: inherit; color: var(--color-on-surface); cursor: pointer; transition: border-color .15s, box-shadow .15s, transform .15s; }
+  .sit:hover, .sit:focus-visible { border-color: var(--color-primary); box-shadow: 0 10px 24px color-mix(in srgb, var(--color-primary) 14%, transparent); transform: translateY(-2px); }
+  .sit .ico { margin-bottom: 14px; display: inline-flex; }
+  .sit .t { font-family: var(--type-display-family); font-weight: 700; font-size: 18px; line-height: 1.2; letter-spacing: -0.01em; margin-bottom: 8px; }
+  .sit .d { font-size: 14.5px; line-height: 1.5; }
+  .sit[aria-pressed="true"] { border-color: var(--color-primary); background: var(--color-primary-container); }
+  .else-form { margin-top: 16px; display: flex; gap: 10px; align-items: center; background: var(--color-surface-raised); border: 1.5px solid var(--color-primary); border-radius: var(--radius-lg); padding: 8px 8px 8px 20px; box-shadow: 0 14px 38px color-mix(in srgb, var(--color-primary) 12%, transparent); }
+  .else-form input { flex: 1; min-width: 0; border: none; outline: none; background: transparent; font-size: 17px; color: var(--color-on-surface); padding: 12px 0; }
+  .else-form button { flex-shrink: 0; width: 48px; height: 48px; border: none; border-radius: var(--radius-md); background: var(--color-primary); color: var(--color-on-primary); font-size: 21px; line-height: 1; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; }
+  .result-card { border-radius: var(--radius-lg); border: 1.5px solid var(--color-border); background: var(--color-surface-raised); padding: 32px; }
+  .startover { display: inline-flex; align-items: center; gap: 8px; background: var(--color-surface-raised); border: 1.5px solid var(--color-border); border-radius: var(--radius-full); padding: 9px 16px; margin-bottom: 24px; font-family: var(--type-label-family); text-transform: none; letter-spacing: 0; font-size: 12.5px; color: var(--color-on-surface); cursor: pointer; }
+  .startover:hover { border-color: var(--color-primary); }
+
+  /* process */
+  .cols4 { display: grid; gap: 22px; grid-template-columns: 1fr; }
+  @media (min-width: 600px) { .cols4 { grid-template-columns: 1fr 1fr; } }
+  @media (min-width: 960px) { .cols4 { grid-template-columns: repeat(4, 1fr); } }
+  .proc-card { position: relative; overflow: hidden; background: var(--color-surface-raised); border: 1.5px solid var(--color-border); border-radius: var(--radius-lg); padding: 28px; }
+  .proc-num { position: absolute; top: -20px; right: 4px; font-family: var(--type-display-family); font-weight: 800; font-size: 100px; line-height: 1; }
+  .proc-card h3, .proc-card p, .proc-card .ico { position: relative; }
+
+  /* why (night) */
+  .night { background: var(--color-night); color: var(--color-on-night); }
+  .why-grid { display: grid; gap: 40px; }
+  @media (min-width: 600px) { .why-grid { grid-template-columns: 1fr 1fr; } }
+  @media (min-width: 960px) { .why-grid { grid-template-columns: repeat(4, 1fr); } }
+  .why-label { font-family: var(--type-label-family); font-size: 12.5px; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 14px; }
+  .why-stmt { font-family: var(--type-display-family); font-size: 23px; line-height: 1.35; font-weight: 500; text-wrap: pretty; margin: 0; }
+
+  /* about */
+  .about-grid { display: grid; grid-template-columns: minmax(300px, 1.15fr) minmax(280px, 1fr); gap: 56px; align-items: start; }
+  @media (max-width: 820px) { .about-grid { grid-template-columns: 1fr; gap: 40px; } }
+  .taglist { display: flex; flex-wrap: wrap; gap: 10px; list-style: none; margin: 0; padding: 0; }
+  .taglist li { font-family: var(--type-label-family); text-transform: none; letter-spacing: 0; font-size: 12.5px; color: var(--color-on-surface); background: var(--wash); border: var(--border-width-sm) solid var(--color-border); padding: 7px 13px; border-radius: var(--radius-full); }
+  .work-card { border: 1.5px solid var(--color-border); border-radius: var(--radius-lg); padding: 24px; background: var(--color-surface-raised); }
+  .tspace { margin-top: 44px; border-top: 1px dashed var(--color-border-strong); padding-top: 32px; }
+  .tgrid { display: grid; grid-template-columns: 1fr; gap: 18px; }
+  @media (min-width: 720px) { .tgrid { grid-template-columns: repeat(3, 1fr); } }
+  .tcard { border: 1px dashed var(--color-border-strong); border-radius: var(--radius-lg); padding: 26px; color: var(--color-on-surface-muted); }
+  .tcard .q { font-family: var(--type-display-family); font-size: 40px; line-height: 1; color: var(--color-border-strong); display: block; margin-bottom: 6px; }
+
+  /* faq */
+  .faqgrid { display: grid; gap: 44px; grid-template-columns: 1fr; align-items: start; }
+  @media (min-width: 860px) { .faqgrid { grid-template-columns: 320px minmax(0, 1fr); gap: 64px; } }
+  details.faq { border-bottom: var(--border-width-sm) solid var(--color-border); }
+  details.faq:first-of-type { border-top: var(--border-width-sm) solid var(--color-border); }
+  details.faq > summary { display: flex; align-items: center; gap: 15px; padding: 22px 4px; list-style: none; cursor: pointer; }
+  details.faq > summary::-webkit-details-marker { display: none; }
+  .faq-ico { display: inline-flex; width: 26px; justify-content: center; flex-shrink: 0; }
+  .faq-q { flex: 1; font-family: var(--type-display-family); font-weight: 700; font-size: 20px; letter-spacing: -0.01em; }
+  .faq .plus { flex-shrink: 0; font-family: var(--type-label-family); font-size: 24px; color: var(--color-on-surface-muted); line-height: 1; transition: transform .22s ease; }
+  details.faq[open] .plus { transform: rotate(45deg); }
+  details.faq[open] .faq-q { color: var(--color-primary); }
+  details.faq .faq-a { margin: 0 0 24px; padding-left: 41px; padding-right: 30px; font-size: 15.5px; line-height: 1.6; max-width: 72ch; text-wrap: pretty; }
+
+  /* intake */
+  .intake-grid { display: grid; grid-template-columns: minmax(280px, 1fr) minmax(320px, 1.25fr); gap: 60px; align-items: start; }
+  @media (max-width: 820px) { .intake-grid { grid-template-columns: 1fr; gap: 40px; } }
+  .intake-form { display: grid; gap: 20px; border-radius: var(--radius-lg); padding: 34px; background: var(--color-surface-raised); border: 1.5px solid var(--color-border); box-shadow: var(--shadow-sm); }
+  .field-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 20px; }
+  .success-card { border-radius: var(--radius-lg); padding: 44px 38px; background: var(--color-night); color: var(--color-on-night); box-shadow: var(--shadow-lg); }
+
+  /* footer */
+  .footer { border-top: var(--border-width-sm) solid var(--color-border); }
+  .footer-inner { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 20px; padding-block: 44px; }
+  .footer .links { display: flex; flex-wrap: wrap; align-items: center; gap: 24px; font-family: var(--type-label-family); text-transform: none; letter-spacing: 0; font-size: 12.5px; }
+  .footer .links a { color: var(--on-night-muted); text-decoration: none; }
+  .footer .links a:hover { color: var(--color-on-night); }
 </style>
 </head>
 <body>
-<div style="min-width: 320px">
 
-  <!-- ============ NAV ============ -->
-  <header style="position: sticky; top: 0; z-index: 60; background: color-mix(in srgb, var(--paper) 88%, transparent); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line)">
-    <div style="max-width: 1200px; margin: 0 auto; padding: 0 30px; height: 68px; display: flex; align-items: center; justify-content: space-between; gap: 24px">
-      <a href="#top" style="display: flex; align-items: center; gap: 11px; text-decoration: none; color: var(--ink)">
-        <span style="display: inline-flex; align-items: center; justify-content: center; width: 34px; height: 34px; border-radius: 11px; background: var(--accent)">
-          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2c1 3 2.5 3.5 3.5 4.5A5 5 0 0 1 17 10a5 5 0 1 1-10 0c0-.3 0-.6.1-.9a2 2 0 1 0 3.3-2C8 4.5 11 2 12 2Z"></path><path d="m5 22 14-4"></path><path d="m5 18 14 4"></path></svg>
-        </span>
-        <span style="font-family: 'Bricolage Grotesque', sans-serif; font-size: 22px; font-weight: 800; letter-spacing: -0.02em">Ideacamp</span>
-      </a>
-      <nav style="display: flex; align-items: center; gap: 28px; font-family: 'Nunito', sans-serif; font-size: 12.5px; letter-spacing: 0.03em">
-        <a href="#offers" style="text-decoration: none; color: var(--ink2)" class="hv-ink">Offers</a>
-        <a href="#process" style="text-decoration: none; color: var(--ink2)" class="hv-ink">Process</a>
-        <a href="#proof" style="text-decoration: none; color: var(--ink2)" class="hv-ink">Proof</a>
-        <a href="#faq" style="text-decoration: none; color: var(--ink2)" class="hv-ink">Questions</a>
-        <a href="#intake" style="text-decoration: none; font-family: 'Geist', sans-serif; font-size: 14px; font-weight: 600; background: var(--accent); color: var(--accent-ink); padding: 10px 18px; border-radius: 12px" class="hv-bright">Start an intake</a>
-      </nav>
+<a href="#engagements" class="skip">Skip to projects</a>
+
+<!-- ============ NAV ============ -->
+<header class="nav">
+  <nav class="nav-inner wrap" aria-label="Primary">
+    <a href="#top" class="brand">
+      <span class="logo-mark" aria-hidden="true"></span>
+      <span class="name">ideacamp</span>
+    </a>
+    <div class="navlinks navlinks-desktop">
+      <a href="#engagements" class="text-label">Projects</a>
+      <a href="#problems" class="text-label">Find your fit</a>
+      <a href="#process" class="text-label">Process</a>
+      <a href="#about" class="text-label">About</a>
+      <a href="#faq" class="text-label">Questions</a>
+      <a href="#intake" class="btn btn-primary btn-sm">Start a project</a>
     </div>
-  </header>
+    <button type="button" class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"></path></svg>
+    </button>
+  </nav>
+  <div class="mobile-menu" id="mobile-menu" hidden>
+    <a href="#engagements">Projects</a>
+    <a href="#problems">Find your fit</a>
+    <a href="#process">Process</a>
+    <a href="#about">About</a>
+    <a href="#faq">Questions</a>
+    <a href="#intake" class="btn btn-primary">Start a project</a>
+  </div>
+</header>
 
-  <!-- ============ HERO ============ -->
-  <section id="top" style="position: relative; overflow: hidden">
-    <!-- imperfect-edge filter -->
-    <svg aria-hidden="true" width="0" height="0" style="position:absolute"><defs><filter id="roughen" x="-20%" y="-20%" width="140%" height="140%"><feTurbulence type="fractalNoise" baseFrequency="0.014" numOctaves="2" seed="7" result="n"></feTurbulence><feDisplacementMap in="SourceGraphic" in2="n" scale="6" xChannelSelector="R" yChannelSelector="G"></feDisplacementMap></filter></defs></svg>
-
-    <!-- hero shape field (most layered behind content) -->
-    <div aria-hidden="true" style="position: absolute; inset: 0; z-index: 0; pointer-events: none; display: none">
-      <!-- left / headline zone: light hues to protect text contrast -->
-      <span style="position:absolute; top:64px; left:2%; width:150px; height:150px; background: var(--yellow); border-radius:46% 54% 43% 57% / 52% 44% 56% 48%; animation: drift 8s ease-in-out infinite"></span>
-      <svg style="position:absolute; top:126px; left:6%" width="150" height="58" viewBox="0 0 150 58" fill="none"><path d="M8 44 C 36 6, 114 6, 144 44" stroke="var(--yellow)" stroke-width="11" stroke-linecap="round"></path></svg>
-      <span style="position:absolute; top:150px; left:30%; width:92px; height:92px; border:10px solid #C9B6F5; border-radius:999px; box-sizing:border-box"></span>
-      <span style="position:absolute; top:300px; left:2%; width:132px; height:132px; background:#CDEEDA; border-radius:60% 40% 55% 45% / 45% 55% 42% 58%"></span>
-      <svg style="position:absolute; top:205px; left:13%" width="62" height="62" viewBox="0 0 62 62"><path d="M31 8 V54 M8 31 H54" stroke="#C3AEF0" stroke-width="12" stroke-linecap="round"></path></svg>
-      <span style="position:absolute; top:360px; left:41%; width:74px; height:74px; background:#FFCFE0; border-radius:48% 52% 40% 60% / 55% 45% 55% 45%; animation: drift 9s ease-in-out infinite .5s"></span>
-      <span style="position:absolute; bottom:210px; left:8%; width:100px; height:100px; background: var(--yellow); border-radius:100% 0 0 0"></span>
-      <svg style="position:absolute; bottom:172px; left:22%" width="160" height="60" viewBox="0 0 160 60" fill="none"><path d="M8 30 C 30 4, 52 4, 74 30 S 118 56, 152 30" stroke="#C9B6F5" stroke-width="11" stroke-linecap="round"></path></svg>
-      <span style="position:absolute; bottom:110px; left:16%; width:62px; height:62px; background:#CDEEDA; border-radius:26%; transform: rotate(8deg)"></span>
-      <span style="position:absolute; bottom:92px; left:40%; width:110px; height:110px; border:12px solid var(--yellow); border-radius:999px; box-sizing:border-box"></span>
-      <span style="position:absolute; top:110px; left:47%; width:96px; height:48px; background:#CDEEDA; border-radius:999px"></span>
-      <svg style="position:absolute; bottom:262px; left:34%" width="72" height="66" viewBox="0 0 72 66" fill="none"><path d="M36 6 L66 60 H6 Z" stroke="var(--blue)" stroke-width="8" stroke-linejoin="round"></path></svg>
-      <!-- right / edges: saturated -->
-      <span style="position:absolute; top:58px; right:9%; width:100px; height:100px; background: var(--blue); border-radius:26%; transform: rotate(12deg)"></span>
-      <svg style="position:absolute; top:150px; right:3%" width="190" height="52" viewBox="0 0 190 52" fill="none"><path d="M8 30 Q 30 6 52 30 T 96 30 T 140 30 T 184 30" stroke="var(--coral)" stroke-width="11" stroke-linecap="round"></path></svg>
-      <span style="position:absolute; top:96px; right:22%; width:130px; height:65px; background: var(--mint); border-radius:200px 200px 0 0"></span>
-      <span style="position:absolute; top:220px; right:15%; width:78px; height:78px; background: var(--pink); border-radius:52% 48% 57% 43% / 46% 56% 44% 54%; animation: drift 7.5s ease-in-out infinite .8s"></span>
-      <svg style="position:absolute; top:250px; right:7%" width="86" height="80" viewBox="0 0 86 80" fill="none"><path d="M43 8 L78 72 H8 Z" stroke="var(--lilac)" stroke-width="9" stroke-linejoin="round"></path></svg>
-      <svg style="position:absolute; top:315px; right:19%" width="160" height="64" viewBox="0 0 160 64" fill="none"><path d="M8 48 C 40 4, 120 4, 152 48" stroke="var(--blue)" stroke-width="11" stroke-linecap="round"></path></svg>
-      <span style="position:absolute; top:70px; right:36%; width:72px; height:72px; border:10px solid var(--yellow); border-radius:999px; box-sizing:border-box"></span>
-      <svg style="position:absolute; top:430px; right:33%" width="70" height="24" viewBox="0 0 70 24"><g fill="var(--coral)"><circle cx="10" cy="12" r="7"></circle><circle cx="35" cy="12" r="7"></circle><circle cx="60" cy="12" r="7"></circle></g></svg>
-      <span style="position:absolute; bottom:230px; right:6%; width:140px; height:48px; background: var(--mint); border-radius:999px"></span>
-      <span style="position:absolute; bottom:150px; right:12%; width:88px; height:88px; background: var(--coral); border-radius:28%; transform: rotate(-10deg)"></span>
-      <span style="position:absolute; bottom:120px; right:27%; width:104px; height:104px; background: var(--blue); border-radius:57% 43% 48% 52% / 52% 48% 56% 44%"></span>
-      <svg style="position:absolute; bottom:300px; right:36%" width="150" height="48" viewBox="0 0 150 48" fill="none"><path d="M8 28 Q 26 6 44 28 T 80 28 T 116 28 T 144 28" stroke="var(--pink)" stroke-width="10" stroke-linecap="round"></path></svg>
-    </div>
-
-    <div style="position: relative; z-index: 1; max-width: 1200px; margin: 0 auto; padding: 92px 30px 64px 30px">
-      <p style="margin: 0 0 24px 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 600; font-size: 17px; letter-spacing: -0.01em; color: var(--ink2); animation: rise 0.6s ease both"><strong style="font-weight: 700; color: var(--accent)">Ideacamp</strong> is a digital design studio</p>
-      <h1 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(48px, 7.2vw, 100px); line-height: 0.96; letter-spacing: -0.035em; max-width: 15ch; text-wrap: balance; position: relative; z-index: 1; animation: rise 0.6s 0.08s ease both"><span style="position:relative; display:inline-block">Fixed<span style="position:absolute; z-index:-1; top:-0.24em; left:-0.2em; width:0.54em; height:0.54em; border-radius:50%; background:var(--yellow); display:var(--confetti); filter:url(#roughen)"></span></span> <span style="position:relative; display:inline-block">scope.<span style="position:absolute; z-index:-1; top:-0.3em; right:-0.16em; width:0.66em; height:0.33em; border-radius:0.66em 0.66em 0 0; background:var(--mint); display:var(--confetti); filter:url(#roughen)"></span></span> <span style="position:relative; display:inline-block">Fixed<span style="position:absolute; z-index:-1; bottom:-0.16em; left:-0.24em; width:0.46em; height:0.46em; border-radius:0.12em; background:var(--blue); transform:rotate(12deg); display:var(--confetti); filter:url(#roughen)"></span></span> <span style="position:relative; display:inline-block">price.<svg style="position:absolute; z-index:1; left:-0.02em; bottom:0.08em; width:100%; height:0.16em; display:var(--confetti); filter:url(#roughen)" viewBox="0 0 120 16" preserveAspectRatio="none" fill="none"><path d="M2 8 Q 14 1 26 8 T 50 8 T 74 8 T 98 8 T 118 8" stroke="var(--coral)" stroke-width="4" stroke-linecap="round"></path></svg></span> <span style="position:relative; display:inline-block">Design<svg style="position:absolute; z-index:-1; top:-0.28em; left:-0.16em; width:0.48em; height:0.44em; display:var(--confetti); filter:url(#roughen)" viewBox="0 0 48 44" fill="none"><path d="M24 4 L44 40 H4 Z" fill="var(--lilac)" stroke="var(--lilac)" stroke-width="6" stroke-linejoin="round"></path></svg></span> that <span style="position:relative; display:inline-block">ships.<svg style="position:absolute; z-index:1; top:-0.08em; right:-0.06em; width:0.52em; height:0.14em; display:var(--confetti); filter:url(#roughen)" viewBox="0 0 52 14"><g fill="var(--pink)"><circle cx="7" cy="7" r="6"></circle><circle cx="25" cy="7" r="6"></circle><circle cx="43" cy="7" r="6"></circle></g></svg></span></h1>
-      <div style="display: flex; flex-wrap: wrap; gap: 48px; align-items: flex-end; justify-content: space-between; margin-top: 40px; animation: rise 0.6s 0.16s ease both">
-        <p style="margin: 0; font-size: 19px; line-height: 1.55; color: var(--ink2); max-width: 50ch; text-wrap: pretty">Senior design systems and 0→1 product work, sold as products. You see the deliverable, the timeline, and the price before we start. Most of it happens async, so your calendar stays yours.</p>
-        <div style="display: flex; align-items: center; gap: 18px; flex-wrap: wrap">
-          <a href="#intake" style="text-decoration: none; background: var(--accent); color: var(--accent-ink); padding: 17px 30px; font-weight: 600; font-size: 17px; border-radius: 12px; box-shadow: 0 8px 22px color-mix(in srgb, var(--accent) 34%, transparent); display: inline-flex; align-items: center; gap: 10px" class="hv-cta">
-            Start an intake
-            <span style="font-size: 18px; line-height: 1">→</span>
-          </a>
-          <span style="font-family: 'Nunito', sans-serif; font-size: 12.5px; color: var(--ink2)">10 minutes. No meeting.</span>
-        </div>
-        <!-- shapes layered on top of the headline (thin / hollow so text stays legible) -->
-        <div aria-hidden="true" style="position:absolute; inset:0; z-index:2; pointer-events:none; display: none">
-          <span style="position:absolute; top:180px; left:8%; width:70px; height:70px; border:9px solid var(--coral); border-radius:999px; box-sizing:border-box"></span>
-          <svg style="position:absolute; top:250px; left:2%" width="150" height="56" viewBox="0 0 150 56" fill="none"><path d="M8 42 C 38 6, 112 6, 142 42" stroke="var(--blue)" stroke-width="10" stroke-linecap="round"></path></svg>
-          <span style="position:absolute; top:150px; left:52%; width:60px; height:60px; border:8px solid var(--yellow); border-radius:999px; box-sizing:border-box"></span>
-        </div>
+<!-- ============ HERO ============ -->
+<section id="top" style="border-top: none">
+  <div class="wrap hero">
+    <p class="kicker text-label rise" style="text-transform: none; letter-spacing: 0.06em"><span style="color: var(--color-primary)">Ideacamp</span> · Design systems and 0 to 1 product design</p>
+    <h1 class="text-display rise-2">Fixed scope. Fixed price. Design that ships.</h1>
+    <div class="hero-row rise-3">
+      <p class="text-body-lg">Work with an experienced designer in fixed-scope projects, with a price and a finish line you see before we get started.</p>
+      <div style="display: flex; align-items: center; gap: 18px; flex-wrap: wrap">
+        <a href="#intake" class="btn btn-primary btn-lg" style="box-shadow: var(--shadow-md)">Start a project</a>
+        <span class="text-caption">10 minutes. No meeting.</span>
       </div>
     </div>
+  </div>
 
-    <!-- Marquee: primary color band -->
-    <div style="position: relative">
-      <div style="background: var(--accent); overflow: hidden">
-      <div style="display: flex; width: max-content; animation: marquee 30s linear infinite; padding: 13px 0; font-family: 'Nunito', sans-serif; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent-ink); white-space: nowrap">
-        <span style="padding-right: 44px">Fixed scope · Fixed price · Some offers need zero meetings · Written scope in 2 business days · One or two projects at a time · 14 years of product design ·&nbsp;</span>
-        <span style="padding-right: 44px">Fixed scope · Fixed price · Some offers need zero meetings · Written scope in 2 business days · One or two projects at a time · 14 years of product design ·&nbsp;</span>
-      </div>
-      </div>
-      <div aria-hidden="true" style="position:absolute; inset:0; z-index:2; pointer-events:none; display: none">
-        <span style="position:absolute; top:-22px; left:10%; width:72px; height:72px; background: var(--mint); border-radius:48% 52% 44% 56% / 55% 46% 54% 45%"></span>
-        <span style="position:absolute; top:-16px; right:26%; width:60px; height:60px; border:9px solid var(--pink); border-radius:999px; box-sizing:border-box"></span>
-        <span style="position:absolute; top:-14px; left:58%; width:54px; height:54px; background: var(--yellow); border-radius:26%; transform: rotate(12deg)"></span>
-      </div>
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+      <span>Fixed scope · Fixed price · Some projects need zero meetings · Written scope in 2 business days · One or two projects at a time · 14 years of product design ·&nbsp;</span>
+      <span>Fixed scope · Fixed price · Some projects need zero meetings · Written scope in 2 business days · One or two projects at a time · 14 years of product design ·&nbsp;</span>
     </div>
+  </div>
 
-    <!-- Credibility strip -->
-    <div style="max-width: 1200px; margin: 0 auto; padding: 60px 30px 76px 30px">
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 34px 44px">
-        <div>
-          <p style="margin: 0; font-family: 'Nunito', sans-serif; font-size: 11.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink2)"><span style="color: var(--blue)">◆</span>&nbsp; Experience</p>
-          <p style="margin: 9px 0 0 0; font-size: 16px; line-height: 1.45; font-weight: 500">14 years designing products and the systems under them</p>
-        </div>
-        <div>
-          <p style="margin: 0; font-family: 'Nunito', sans-serif; font-size: 11.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink2)"><span style="color: var(--pink)">●</span>&nbsp; Track record</p>
-          <p style="margin: 9px 0 0 0; font-size: 16px; line-height: 1.45; font-weight: 500">Founding designer in AI. Led 0→1 design at Tableau</p>
-        </div>
-        <div>
-          <p style="margin: 0; font-family: 'Nunito', sans-serif; font-size: 11.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink2)"><span style="color: var(--mint)">▲</span>&nbsp; Specialty</p>
-          <p style="margin: 9px 0 0 0; font-size: 16px; line-height: 1.45; font-weight: 500">Design systems, tokens, and accessible color</p>
-        </div>
-        <div>
-          <p style="margin: 0; font-family: 'Nunito', sans-serif; font-size: 11.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink2)"><span style="color: var(--coral)">■</span>&nbsp; Capacity</p>
-          <p style="margin: 9px 0 0 0; font-size: 16px; line-height: 1.45; font-weight: 500">One or two projects at a time, always</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ 01 THE MODEL ============ -->
-  <section style="border-top: 1px solid var(--line)">
-    <div style="max-width: 1200px; margin: 0 auto; padding: 84px 30px">
-      <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 48px">
-        <span style="font-family: 'Nunito', sans-serif; font-size: 13px; color: var(--ink2)">01</span>
-        <span style="width: 26px; height: 3px; background: var(--accent); border-radius: 2px"></span>
-        <h2 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: clamp(32px, 3.6vw, 48px); letter-spacing: -0.025em">How the studio works</h2>
-      </div>
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px">
-        <div style="border-radius: 20px; padding: 30px; background: #EDF0FF">
-          <span style="display: inline-flex; width: 44px; height: 44px; border-radius: 13px; background: var(--blue); align-items: center; justify-content: center; margin-bottom: 20px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><path d="M14 2v6h6"></path><path d="M9 15l2 2 4-4"></path></svg></span>
-          <h3 style="margin: 0 0 10px 0; font-family: 'Bricolage Grotesque', sans-serif; font-size: 22px; font-weight: 700">Async-first</h3>
-          <p style="margin: 0; font-size: 16px; line-height: 1.6; color: var(--ink2); text-wrap: pretty">Work reaches you as written docs, recorded walkthroughs, and working files you can open anytime. You review when it suits you, and the project keeps moving between check-ins.</p>
-        </div>
-        <div style="border-radius: 20px; padding: 30px; background: #FFF2CF">
-          <span style="display: inline-flex; width: 44px; height: 44px; border-radius: 13px; background: var(--yellow); align-items: center; justify-content: center; margin-bottom: 20px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--ink)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"></rect><path d="M16 2v4M8 2v4M3 10h18"></path></svg></span>
-          <h3 style="margin: 0 0 10px 0; font-family: 'Bricolage Grotesque', sans-serif; font-size: 22px; font-weight: 700">Calls when they help</h3>
-          <p style="margin: 0; font-size: 16px; line-height: 1.6; color: var(--ink2); text-wrap: pretty">Live calls run in set windows on Wednesdays and Fridays, and several offers need none at all. The rest of the time goes to focused design instead of status meetings.</p>
-        </div>
-        <div style="border-radius: 20px; padding: 30px; background: #FFE7EF">
-          <span style="display: inline-flex; width: 44px; height: 44px; border-radius: 13px; background: var(--pink); align-items: center; justify-content: center; margin-bottom: 20px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path></svg></span>
-          <h3 style="margin: 0 0 10px 0; font-family: 'Bricolage Grotesque', sans-serif; font-size: 22px; font-weight: 700">Your project, my full attention</h3>
-          <p style="margin: 0; font-size: 16px; line-height: 1.6; color: var(--ink2); text-wrap: pretty">I take on one or two projects at a time. You work directly with a senior designer from first sketch to final handoff, never a queue or a junior standing in.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ 02 PROCESS ============ -->
-  <section id="process" style="position: relative; overflow: hidden; background: #E4F6EF; border-top: 1px solid var(--line)">
-    
-    <div style="position: relative; z-index: 1; max-width: 1200px; margin: 0 auto; padding: 84px 30px">
-      <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 48px">
-        <span style="font-family: 'Nunito', sans-serif; font-size: 13px; color: var(--ink2)">02</span>
-        <span style="width: 26px; height: 3px; background: var(--mint); border-radius: 2px"></span>
-        <h2 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: clamp(32px, 3.6vw, 48px); letter-spacing: -0.025em">From first message to handoff</h2>
-      </div>
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(232px, 1fr)); gap: 26px">
-        <div style="background: var(--paper); border-radius: 18px; padding: 28px">
-          <span style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 999px; background: var(--mint); color: #06382B; font-family: 'Bricolage Grotesque', sans-serif; font-size: 18px; font-weight: 800; margin-bottom: 16px">1</span>
-          <h3 style="margin: 0 0 8px 0; font-family: 'Bricolage Grotesque', sans-serif; font-size: 23px; font-weight: 700">Tell me what you need</h3>
-          <p style="margin: 0; font-size: 15px; line-height: 1.6; color: var(--ink2)">A short intake form about your product and the problem in front of you. Ten minutes, no meeting.</p>
-        </div>
-        <div style="background: var(--paper); border-radius: 18px; padding: 28px">
-          <span style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 999px; background: var(--mint); color: #06382B; font-family: 'Bricolage Grotesque', sans-serif; font-size: 18px; font-weight: 800; margin-bottom: 16px">2</span>
-          <h3 style="margin: 0 0 8px 0; font-family: 'Bricolage Grotesque', sans-serif; font-size: 23px; font-weight: 700">Get a scope and a price</h3>
-          <p style="margin: 0; font-size: 15px; line-height: 1.6; color: var(--ink2)">Within 2 business days you get a written scope, a fixed price, and a start date. A 30-minute call is optional, in a Wed or Fri window.</p>
-        </div>
-        <div style="background: var(--paper); border-radius: 18px; padding: 28px">
-          <span style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 999px; background: var(--mint); color: #06382B; font-family: 'Bricolage Grotesque', sans-serif; font-size: 18px; font-weight: 800; margin-bottom: 16px">3</span>
-          <h3 style="margin: 0 0 8px 0; font-family: 'Bricolage Grotesque', sans-serif; font-size: 23px; font-weight: 700">Watch it come together</h3>
-          <p style="margin: 0; font-size: 15px; line-height: 1.6; color: var(--ink2)">Design lands in working files with written rationale and recorded walkthroughs, so you always know where things stand.</p>
-        </div>
-        <div style="background: var(--ink); color: #F3F2FA; border-radius: 18px; padding: 28px">
-          <span style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 999px; background: var(--mint); color: #06382B; font-family: 'Bricolage Grotesque', sans-serif; font-size: 18px; font-weight: 800; margin-bottom: 16px">4</span>
-          <h3 style="margin: 0 0 8px 0; font-family: 'Bricolage Grotesque', sans-serif; font-size: 23px; font-weight: 700">Take it and ship</h3>
-          <p style="margin: 0; font-size: 15px; line-height: 1.6; color: #C4C3D8">Everything hands off with documentation, plus one structured round of revisions written into your scope.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ 03 OFFERS ============ -->
-  <section id="offers" style="border-top: 1px solid var(--line)">
-    <div style="max-width: 1200px; margin: 0 auto; padding: 84px 30px">
-      <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 14px">
-        <span style="font-family: 'Nunito', sans-serif; font-size: 13px; color: var(--ink2)">03</span>
-        <span style="width: 26px; height: 3px; background: var(--coral); border-radius: 2px"></span>
-        <h2 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: clamp(32px, 3.6vw, 48px); letter-spacing: -0.025em">Pick where you are</h2>
-      </div>
-      <p style="margin: 0 0 48px 0; font-size: 17px; line-height: 1.6; color: var(--ink2); max-width: 56ch; text-wrap: pretty">Four engagements, each with its price, timeline, and deliverables listed up front. Not sure which fits? Start an intake and I'll point you to the right one.</p>
-
-      <div style="display: grid; gap: 24px">
-
-        <!-- Offer A -->
-        <article style="border: 1px solid var(--line); border-radius: 22px; background: var(--paper); padding: 34px 36px 38px 36px; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 36px; position: relative; transition: box-shadow .2s, transform .2s" class="hv-card">
-          <span style="position: absolute; top: 24px; right: 30px; font-family: 'Nunito', sans-serif; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--blue); font-weight: 500">Best first step</span>
-          <div>
-            <span style="display: inline-flex; align-items: center; justify-content: center; width: 46px; height: 46px; border-radius: 14px; background: var(--blue); color: #fff; font-family: 'Bricolage Grotesque', sans-serif; font-size: 20px; font-weight: 800; margin-bottom: 18px">A</span>
-            <h3 style="margin: 0 0 12px 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 29px; letter-spacing: -0.02em; line-height: 1.08">Design System Audit + Roadmap</h3>
-            <p style="margin: 0; font-size: 16px; line-height: 1.6; color: var(--ink2); text-wrap: pretty">See exactly what's holding your design system back, and the order to fix it in.</p>
-          </div>
-          <div>
-            <p style="margin: 0 0 12px 0; font-family: 'Nunito', sans-serif; font-size: 11.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink2)">You get</p>
-            <ul style="margin: 0; padding: 0; list-style: none; display: grid; gap: 10px; font-size: 15px; line-height: 1.5">
-              <li style="display: flex; gap: 11px"><span style="width: 8px; height: 8px; border-radius: 999px; background: var(--blue); margin-top: 6px; flex-shrink: 0"></span>Written audit of tokens, components, accessibility, and workflow</li>
-              <li style="display: flex; gap: 11px"><span style="width: 8px; height: 8px; border-radius: 999px; background: var(--blue); margin-top: 6px; flex-shrink: 0"></span>Prioritized roadmap of what to fix first</li>
-              <li style="display: flex; gap: 11px"><span style="width: 8px; height: 8px; border-radius: 999px; background: var(--blue); margin-top: 6px; flex-shrink: 0"></span>Recorded walkthrough of the findings</li>
-            </ul>
-          </div>
-          <div style="display: flex; flex-direction: column; gap: 11px; font-family: 'Nunito', sans-serif; font-size: 13px">
-            <div style="display: flex; justify-content: space-between; gap: 12px; padding-bottom: 9px; border-bottom: 1px solid var(--line)"><span style="color: var(--ink2)">Timeline</span><span>2 weeks</span></div>
-            <div style="display: flex; justify-content: space-between; gap: 12px; padding-bottom: 9px; border-bottom: 1px solid var(--line)"><span style="color: var(--ink2)">Your time</span><span>~1 hr, async</span></div>
-            <div style="display: flex; justify-content: space-between; gap: 12px"><span style="color: var(--ink2)">Meetings</span><span>None</span></div>
-            <p style="margin: 12px 0 0 0; font-family: 'Bricolage Grotesque', sans-serif; font-size: 40px; font-weight: 800; letter-spacing: -0.02em">$3,500</p>
-            <a href="#intake" style="text-decoration: none; font-family: 'Geist', sans-serif; font-size: 14px; font-weight: 600; color: var(--ink); border: 1px solid var(--ink); border-radius: 12px; padding: 10px 18px; text-align: center; margin-top: 4px" class="hv-invert">Start an intake</a>
-          </div>
-        </article>
-
-        <!-- Offer B -->
-        <article style="border: 1px solid var(--line); border-radius: 22px; background: var(--paper); padding: 34px 36px 38px 36px; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 36px; transition: box-shadow .2s, transform .2s" class="hv-card">
-          <div>
-            <span style="display: inline-flex; align-items: center; justify-content: center; width: 46px; height: 46px; border-radius: 14px; background: #0FA074; color: #fff; font-family: 'Bricolage Grotesque', sans-serif; font-size: 20px; font-weight: 800; margin-bottom: 18px">B</span>
-            <h3 style="margin: 0 0 12px 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 29px; letter-spacing: -0.02em; line-height: 1.08">Brand-to-Token Pipeline</h3>
-            <p style="margin: 0; font-size: 16px; line-height: 1.6; color: var(--ink2); text-wrap: pretty">Turn your brand into a production token system your engineers will actually use.</p>
-          </div>
-          <div>
-            <p style="margin: 0 0 12px 0; font-family: 'Nunito', sans-serif; font-size: 11.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink2)">You get</p>
-            <ul style="margin: 0; padding: 0; list-style: none; display: grid; gap: 10px; font-size: 15px; line-height: 1.5">
-              <li style="display: flex; gap: 11px"><span style="width: 8px; height: 8px; border-radius: 999px; background: #0FA074; margin-top: 6px; flex-shrink: 0"></span>DTCG-format token architecture</li>
-              <li style="display: flex; gap: 11px"><span style="width: 8px; height: 8px; border-radius: 999px; background: #0FA074; margin-top: 6px; flex-shrink: 0"></span>Style Dictionary pipeline with platform outputs</li>
-              <li style="display: flex; gap: 11px"><span style="width: 8px; height: 8px; border-radius: 999px; background: #0FA074; margin-top: 6px; flex-shrink: 0"></span>Figma variables setup</li>
-              <li style="display: flex; gap: 11px"><span style="width: 8px; height: 8px; border-radius: 999px; background: #0FA074; margin-top: 6px; flex-shrink: 0"></span>Accessible color scale system</li>
-              <li style="display: flex; gap: 11px"><span style="width: 8px; height: 8px; border-radius: 999px; background: #0FA074; margin-top: 6px; flex-shrink: 0"></span>Documentation your team can maintain</li>
-            </ul>
-          </div>
-          <div style="display: flex; flex-direction: column; gap: 11px; font-family: 'Nunito', sans-serif; font-size: 13px">
-            <div style="display: flex; justify-content: space-between; gap: 12px; padding-bottom: 9px; border-bottom: 1px solid var(--line)"><span style="color: var(--ink2)">Timeline</span><span>2–3 weeks</span></div>
-            <div style="display: flex; justify-content: space-between; gap: 12px; padding-bottom: 9px; border-bottom: 1px solid var(--line)"><span style="color: var(--ink2)">Your time</span><span>Kickoff + handoff</span></div>
-            <div style="display: flex; justify-content: space-between; gap: 12px"><span style="color: var(--ink2)">Meetings</span><span>2 max, Wed/Fri</span></div>
-            <p style="margin: 12px 0 0 0; font-family: 'Bricolage Grotesque', sans-serif; font-size: 40px; font-weight: 800; letter-spacing: -0.02em">$7,500</p>
-            <a href="#intake" style="text-decoration: none; font-family: 'Geist', sans-serif; font-size: 14px; font-weight: 600; color: var(--ink); border: 1px solid var(--ink); border-radius: 12px; padding: 10px 18px; text-align: center; margin-top: 4px" class="hv-invert">Start an intake</a>
-          </div>
-        </article>
-
-        <!-- Offer C -->
-        <article style="border: 1px solid var(--line); border-radius: 22px; background: var(--paper); padding: 34px 36px 38px 36px; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 36px; transition: box-shadow .2s, transform .2s" class="hv-card">
-          <div>
-            <span style="display: inline-flex; align-items: center; justify-content: center; width: 46px; height: 46px; border-radius: 14px; background: var(--yellow); color: var(--ink); font-family: 'Bricolage Grotesque', sans-serif; font-size: 20px; font-weight: 800; margin-bottom: 18px">C</span>
-            <h3 style="margin: 0 0 12px 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 29px; letter-spacing: -0.02em; line-height: 1.08">Design System Foundation Sprint</h3>
-            <p style="margin: 0; font-size: 16px; line-height: 1.6; color: var(--ink2); text-wrap: pretty">The full foundation your design system needs to scale, and the docs to keep it healthy.</p>
-          </div>
-          <div>
-            <p style="margin: 0 0 12px 0; font-family: 'Nunito', sans-serif; font-size: 11.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink2)">You get</p>
-            <ul style="margin: 0; padding: 0; list-style: none; display: grid; gap: 10px; font-size: 15px; line-height: 1.5">
-              <li style="display: flex; gap: 11px"><span style="width: 8px; height: 8px; border-radius: 999px; background: var(--yellow); margin-top: 6px; flex-shrink: 0"></span>Full token set and pipeline</li>
-              <li style="display: flex; gap: 11px"><span style="width: 8px; height: 8px; border-radius: 999px; background: var(--yellow); margin-top: 6px; flex-shrink: 0"></span>Accessible color system, light and dark</li>
-              <li style="display: flex; gap: 11px"><span style="width: 8px; height: 8px; border-radius: 999px; background: var(--yellow); margin-top: 6px; flex-shrink: 0"></span>Type and spacing scales</li>
-              <li style="display: flex; gap: 11px"><span style="width: 8px; height: 8px; border-radius: 999px; background: var(--yellow); margin-top: 6px; flex-shrink: 0"></span>Core component scaffold</li>
-              <li style="display: flex; gap: 11px"><span style="width: 8px; height: 8px; border-radius: 999px; background: var(--yellow); margin-top: 6px; flex-shrink: 0"></span>Contribution and maintenance docs</li>
-            </ul>
-          </div>
-          <div style="display: flex; flex-direction: column; gap: 11px; font-family: 'Nunito', sans-serif; font-size: 13px">
-            <div style="display: flex; justify-content: space-between; gap: 12px; padding-bottom: 9px; border-bottom: 1px solid var(--line)"><span style="color: var(--ink2)">Timeline</span><span>3–4 weeks</span></div>
-            <div style="display: flex; justify-content: space-between; gap: 12px; padding-bottom: 9px; border-bottom: 1px solid var(--line)"><span style="color: var(--ink2)">Your time</span><span>30 min/wk + async</span></div>
-            <div style="display: flex; justify-content: space-between; gap: 12px"><span style="color: var(--ink2)">Meetings</span><span>Weekly, Wed/Fri</span></div>
-            <p style="margin: 12px 0 0 0; font-family: 'Bricolage Grotesque', sans-serif; font-size: 40px; font-weight: 800; letter-spacing: -0.02em">$12,500</p>
-            <a href="#intake" style="text-decoration: none; font-family: 'Geist', sans-serif; font-size: 14px; font-weight: 600; color: var(--ink); border: 1px solid var(--ink); border-radius: 12px; padding: 10px 18px; text-align: center; margin-top: 4px" class="hv-invert">Start an intake</a>
-          </div>
-        </article>
-
-        <!-- Offer D (flagship, dark) -->
-        <article style="border-radius: 22px; background: var(--night); color: #F3F2FA; padding: 34px 36px 38px 36px; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 36px; position: relative; overflow: hidden; transition: box-shadow .2s, transform .2s" class="hv-card-dark">
-          <span aria-hidden="true" style="position: absolute; top: -30px; right: -30px; width: 150px; height: 150px; border-radius: 999px; background: color-mix(in srgb, var(--accent) 30%, transparent); display: var(--confetti)"></span>
-          <span aria-hidden="true" style="position: absolute; bottom: 20px; right: 40px; width: 8px; height: 8px; border-radius: 999px; background: var(--coral); animation: twinkle 3s ease-in-out infinite; display: var(--confetti)"></span>
-          <div style="position: relative">
-            <span style="display: inline-flex; align-items: center; justify-content: center; width: 46px; height: 46px; border-radius: 14px; background: var(--coral); color: var(--ink); font-family: 'Bricolage Grotesque', sans-serif; font-size: 20px; font-weight: 800; margin-bottom: 18px">D</span>
-            <span style="display: block; font-family: 'Nunito', sans-serif; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--coral); margin-bottom: 10px">For a brand-new product</span>
-            <h3 style="margin: 0 0 12px 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 29px; letter-spacing: -0.02em; line-height: 1.08">0→1 Product Foundation</h3>
-            <p style="margin: 0; font-size: 16px; line-height: 1.6; color: #C4C3D8; text-wrap: pretty">Founding-designer judgment for your first product: direction, system, and core flows, ready to build.</p>
-          </div>
-          <div style="position: relative">
-            <p style="margin: 0 0 12px 0; font-family: 'Nunito', sans-serif; font-size: 11.5px; letter-spacing: 0.12em; text-transform: uppercase; color: #9d9cb8">You get</p>
-            <ul style="margin: 0; padding: 0; list-style: none; display: grid; gap: 10px; font-size: 15px; line-height: 1.5">
-              <li style="display: flex; gap: 11px"><span style="width: 8px; height: 8px; border-radius: 999px; background: var(--coral); margin-top: 6px; flex-shrink: 0"></span>Visual direction for the product</li>
-              <li style="display: flex; gap: 11px"><span style="width: 8px; height: 8px; border-radius: 999px; background: var(--coral); margin-top: 6px; flex-shrink: 0"></span>Design system foundation</li>
-              <li style="display: flex; gap: 11px"><span style="width: 8px; height: 8px; border-radius: 999px; background: var(--coral); margin-top: 6px; flex-shrink: 0"></span>3–5 core flows, designed and specced</li>
-              <li style="display: flex; gap: 11px"><span style="width: 8px; height: 8px; border-radius: 999px; background: var(--coral); margin-top: 6px; flex-shrink: 0"></span>Engineering handoff package</li>
-            </ul>
-          </div>
-          <div style="position: relative; display: flex; flex-direction: column; gap: 11px; font-family: 'Nunito', sans-serif; font-size: 13px">
-            <div style="display: flex; justify-content: space-between; gap: 12px; padding-bottom: 9px; border-bottom: 1px solid #35335A"><span style="color: #9d9cb8">Timeline</span><span>4–6 weeks</span></div>
-            <div style="display: flex; justify-content: space-between; gap: 12px; padding-bottom: 9px; border-bottom: 1px solid #35335A"><span style="color: #9d9cb8">Your time</span><span>30 min/wk + async</span></div>
-            <div style="display: flex; justify-content: space-between; gap: 12px"><span style="color: #9d9cb8">Meetings</span><span>Weekly, Wed/Fri</span></div>
-            <p style="margin: 12px 0 0 0; font-family: 'Bricolage Grotesque', sans-serif; font-size: 40px; font-weight: 800; letter-spacing: -0.02em; color: var(--coral)">$18,000</p>
-            <a href="#intake" style="text-decoration: none; font-family: 'Geist', sans-serif; font-size: 14px; font-weight: 600; color: var(--ink); background: var(--coral); border-radius: 12px; padding: 11px 18px; text-align: center; margin-top: 4px" class="hv-bright">Start an intake</a>
-          </div>
-        </article>
-      </div>
-
-      <!-- Add-on + agency note -->
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; margin-top: 28px">
-        <div style="border-radius: 18px; padding: 30px; background: #F1ECFF">
-          <p style="margin: 0 0 10px 0; font-family: 'Nunito', sans-serif; font-size: 11.5px; letter-spacing: 0.12em; text-transform: uppercase; color: #6D3BEA">Add-on</p>
-          <h3 style="margin: 0 0 10px 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 24px">Data Visualization Color System</h3>
-          <p style="margin: 0 0 16px 0; font-size: 15px; line-height: 1.6; color: var(--ink2); text-wrap: pretty">Accessible categorical and sequential chart palettes, verified for color-vision deficiency and delivered as tokens.</p>
-          <p style="margin: 0; font-family: 'Nunito', sans-serif; font-size: 13.5px; font-weight: 500">$3,500 with B or C · $4,500 on its own</p>
-        </div>
-        <div style="border-radius: 18px; padding: 30px; background: var(--paper); border: 1px solid var(--line)">
-          <p style="margin: 0 0 10px 0; font-family: 'Nunito', sans-serif; font-size: 11.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent)">For agencies and studios</p>
-          <h3 style="margin: 0 0 10px 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 24px">White-label and overflow</h3>
-          <p style="margin: 0; font-size: 15px; line-height: 1.6; color: var(--ink2); text-wrap: pretty">The same engagements, delivered under your name. Your client stays your client. Mention it in the intake and I'll scope it the same way.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ 04 WHY (night band) ============ -->
-  <section style="position: relative; overflow: hidden; background: var(--night); color: #F3F2FA">
-    
-    <div aria-hidden="true" style="position: absolute; inset: 0; z-index: 0; pointer-events: none; display: var(--confetti)">
-      <span style="position: absolute; top: 60px; left: 8%; width: 10px; height: 10px; border-radius: 999px; background: var(--yellow); animation: twinkle 3.4s ease-in-out infinite"></span>
-      <span style="position: absolute; top: 130px; right: 12%; width: 7px; height: 7px; border-radius: 999px; background: var(--pink); animation: twinkle 2.8s ease-in-out infinite .5s"></span>
-      <span style="position: absolute; bottom: 80px; left: 22%; width: 8px; height: 8px; border-radius: 999px; background: var(--mint); animation: twinkle 3.1s ease-in-out infinite .9s"></span>
-      <span style="position: absolute; bottom: 120px; right: 26%; width: 9px; height: 9px; border-radius: 999px; background: var(--accent-on-night); animation: twinkle 3.6s ease-in-out infinite .3s"></span>
-    </div>
-    <div style="position: relative; z-index: 1; max-width: 1200px; margin: 0 auto; padding: 96px 30px">
-      <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 46px">
-        <span style="font-family: 'Nunito', sans-serif; font-size: 13px; color: #9d9cb8">04</span>
-        <span style="width: 26px; height: 3px; background: var(--yellow); border-radius: 2px"></span>
-        <h2 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: clamp(32px, 3.6vw, 48px); letter-spacing: -0.025em">Why fixed scope, not a retainer</h2>
-      </div>
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px">
-        <div>
-          <p style="margin: 0 0 14px 0; font-family: 'Nunito', sans-serif; font-size: 12.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--yellow)">Scope you can see</p>
-          <p style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-size: 24px; line-height: 1.35; font-weight: 500; text-wrap: pretty">No open-ended discovery phase. You know the price and the finish line before any work begins.</p>
-        </div>
-        <div>
-          <p style="margin: 0 0 14px 0; font-family: 'Nunito', sans-serif; font-size: 12.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--mint)">Async by default</p>
-          <p style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-size: 24px; line-height: 1.35; font-weight: 500; text-wrap: pretty">Written rationale and recorded walkthroughs replace status meetings. Your calendar stays yours.</p>
-        </div>
-        <div>
-          <p style="margin: 0 0 14px 0; font-family: 'Nunito', sans-serif; font-size: 12.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--pink)">Built to last</p>
-          <p style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-size: 24px; line-height: 1.35; font-weight: 500; text-wrap: pretty">Every engagement ships with the tokens, docs, and pipelines your team needs to maintain it.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ 05 PROOF ============ -->
-  <section id="proof" style="border-top: 1px solid var(--line)">
-    <div style="max-width: 1200px; margin: 0 auto; padding: 84px 30px">
-      <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 46px">
-        <span style="font-family: 'Nunito', sans-serif; font-size: 13px; color: var(--ink2)">05</span>
-        <span style="width: 26px; height: 3px; background: var(--lilac); border-radius: 2px"></span>
-        <h2 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: clamp(32px, 3.6vw, 48px); letter-spacing: -0.025em">Who you're working with</h2>
-      </div>
-      <div style="display: grid; grid-template-columns: minmax(300px, 1.2fr) minmax(300px, 1fr); gap: 56px; align-items: start">
-        <div>
-          <p style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-size: clamp(22px, 2.4vw, 30px); line-height: 1.4; font-weight: 500; text-wrap: pretty">I've spent 14 years designing products and the systems underneath them: founding designer at an AI training platform, and product design lead on a 0→1 predictive analytics tool at Tableau. Since then I've specialized in design systems, token architecture in DTCG and Style Dictionary, and accessible color.</p>
-          <p style="margin: 24px 0 0 0; font-size: 16px; line-height: 1.6; color: var(--ink2); max-width: 54ch; text-wrap: pretty">You work with me directly on every engagement. No juniors, no outsourcing, no handoffs between people you've never met.</p>
-        </div>
-        <div style="display: grid; gap: 22px">
-          <a href="#intake" style="text-decoration: none; color: var(--ink); border-radius: 18px; padding: 28px; display: block; background: #EEF6FF; transition: transform .2s" class="hv-lift">
-            <p style="margin: 0 0 10px 0; font-family: 'Nunito', sans-serif; font-size: 11.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--blue)">Case study · 0→1</p>
-            <h3 style="margin: 0 0 8px 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 22px">A predictive analytics tool, from zero to shipped</h3>
-            <p style="margin: 0 0 14px 0; font-size: 15px; line-height: 1.55; color: var(--ink2)">Led the 0→1 design at Tableau, from first concept through a product in customers' hands.</p>
-            <span style="font-family: 'Nunito', sans-serif; font-size: 12.5px; color: var(--blue); font-weight: 500">Full write-up soon →</span>
-          </a>
-          <a href="#intake" style="text-decoration: none; color: var(--ink); border-radius: 18px; padding: 28px; display: block; background: #FFEFF5; transition: transform .2s" class="hv-lift">
-            <p style="margin: 0 0 10px 0; font-family: 'Nunito', sans-serif; font-size: 11.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--pink)">Case study · Systems</p>
-            <h3 style="margin: 0 0 8px 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 22px">A brand rebuilt as a token pipeline</h3>
-            <p style="margin: 0 0 14px 0; font-size: 15px; line-height: 1.55; color: var(--ink2)">Turned a brand language into a DTCG pipeline engineers ship from every day.</p>
-            <span style="font-family: 'Nunito', sans-serif; font-size: 12.5px; color: var(--pink); font-weight: 500">Full write-up soon →</span>
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ 06 QUESTIONS ============ -->
-  <section id="faq" style="position: relative; overflow: hidden; background: #FFF6DC; border-top: 1px solid var(--line)">
-    
-    <div style="position: relative; z-index: 1; max-width: 1200px; margin: 0 auto; padding: 84px 30px">
-      <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 46px">
-        <span style="font-family: 'Nunito', sans-serif; font-size: 13px; color: var(--ink2)">06</span>
-        <span style="width: 26px; height: 3px; background: var(--yellow); border-radius: 2px"></span>
-        <h2 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: clamp(32px, 3.6vw, 48px); letter-spacing: -0.025em">Good questions to ask</h2>
-      </div>
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px 56px">
-        <div>
-          <h3 style="margin: 0 0 10px 0; font-family: 'Bricolage Grotesque', sans-serif; font-size: 19px; font-weight: 700">How do meetings work?</h3>
-          <p style="margin: 0; font-size: 15.5px; line-height: 1.6; color: var(--ink2); text-wrap: pretty">Live calls happen in set windows on Wednesdays and Fridays, and several offers need none at all. Everything else moves async.</p>
-        </div>
-        <div>
-          <h3 style="margin: 0 0 10px 0; font-family: 'Bricolage Grotesque', sans-serif; font-size: 19px; font-weight: 700">What if my project doesn't fit an offer?</h3>
-          <p style="margin: 0; font-size: 15.5px; line-height: 1.6; color: var(--ink2); text-wrap: pretty">Send an intake anyway. Scoping is free, and if it isn't a fit I'll tell you honestly rather than stretch one to fit.</p>
-        </div>
-        <div>
-          <h3 style="margin: 0 0 10px 0; font-family: 'Bricolage Grotesque', sans-serif; font-size: 19px; font-weight: 700">What do you need from me to start?</h3>
-          <p style="margin: 0; font-size: 15.5px; line-height: 1.6; color: var(--ink2); text-wrap: pretty">Access to the relevant tools, your brand assets, and one decision-maker who can respond within a day.</p>
-        </div>
-        <div>
-          <h3 style="margin: 0 0 10px 0; font-family: 'Bricolage Grotesque', sans-serif; font-size: 19px; font-weight: 700">How do revisions work?</h3>
-          <p style="margin: 0; font-size: 15.5px; line-height: 1.6; color: var(--ink2); text-wrap: pretty">Each engagement includes one structured round of revisions, with its scope written into your agreement so there are no surprises.</p>
-        </div>
-        <div>
-          <h3 style="margin: 0 0 10px 0; font-family: 'Bricolage Grotesque', sans-serif; font-size: 19px; font-weight: 700">Who actually does the work?</h3>
-          <p style="margin: 0; font-size: 15.5px; line-height: 1.6; color: var(--ink2); text-wrap: pretty">I do, on every project. One senior designer, no juniors and no outsourcing.</p>
-        </div>
-        <div>
-          <h3 style="margin: 0 0 10px 0; font-family: 'Bricolage Grotesque', sans-serif; font-size: 19px; font-weight: 700">Do you work with agencies?</h3>
-          <p style="margin: 0; font-size: 15.5px; line-height: 1.6; color: var(--ink2); text-wrap: pretty">Yes. White-label and overflow engagements run in these same shapes, and your client relationship stays yours. Just mention it in the intake.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ 07 INTAKE ============ -->
-  <section id="intake" style="border-top: 1px solid var(--line)">
-    <div style="max-width: 1200px; margin: 0 auto; padding: 92px 30px; display: grid; grid-template-columns: minmax(280px, 1fr) minmax(320px, 1.2fr); gap: 64px; align-items: start">
+  <div class="wrap cred">
+    <div class="cred-grid">
       <div>
-        <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 26px">
-          <span style="font-family: 'Nunito', sans-serif; font-size: 13px; color: var(--ink2)">07</span>
-          <span style="width: 26px; height: 3px; background: var(--accent); border-radius: 2px"></span>
-        </div>
-        <h2 style="margin: 0 0 20px 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(38px, 4.4vw, 60px); letter-spacing: -0.03em; line-height: 1">Start an intake</h2>
-        <p style="margin: 0 0 24px 0; font-size: 17px; line-height: 1.6; color: var(--ink2); text-wrap: pretty">Ten minutes, no meeting. Within 2 business days you'll have a written scope, a fixed price, and a start date. If it isn't a fit, I'll say so, and the scoping costs you nothing.</p>
-        <div style="display: grid; gap: 12px; font-size: 15px">
-          <p style="margin: 0; display: flex; align-items: center; gap: 11px"><span style="width: 7px; height: 7px; border-radius: 999px; background: var(--mint)"></span>No sales call required</p>
-          <p style="margin: 0; display: flex; align-items: center; gap: 11px"><span style="width: 7px; height: 7px; border-radius: 999px; background: var(--blue)"></span>Optional 30-minute call, Wed/Fri windows</p>
-          <p style="margin: 0; display: flex; align-items: center; gap: 11px"><span style="width: 7px; height: 7px; border-radius: 999px; background: var(--coral)"></span>Agencies: mention white-label</p>
-        </div>
+        <p class="eyebrow text-label"><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="var(--color-accent-blue)"></circle></svg>Experience</p>
+        <p class="text-body-md" style="font-weight: 500">14+ years designing products and the systems under them</p>
+      </div>
+      <div>
+        <p class="eyebrow text-label"><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4 L20 19 H4 Z" fill="var(--color-accent-coral)"></path></svg>Track record</p>
+        <p class="text-body-md" style="font-weight: 500">Founding designer in AI. Led 0 to 1 design at Tableau</p>
+      </div>
+      <div>
+        <p class="eyebrow text-label"><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="5" width="14" height="14" rx="3.5" fill="var(--color-accent-mint)" transform="rotate(9 12 12)"></rect></svg>Specialty</p>
+        <p class="text-body-md" style="font-weight: 500">Design systems, tokens, and accessible color</p>
+      </div>
+      <div>
+        <p class="eyebrow text-label"><svg width="18" height="14" viewBox="0 0 24 14" aria-hidden="true"><path d="M1 13 A11 11 0 0 1 23 13 Z" fill="var(--color-accent-yellow)"></path></svg>Capacity</p>
+        <p class="text-body-md" style="font-weight: 500">One or two projects at a time, always</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 01 PROJECTS ============ -->
+<section id="engagements">
+  <div class="wrap" style="padding-block: 84px">
+    <div class="sec-head" style="margin-bottom: 14px">
+      <span class="sec-num" aria-hidden="true">01</span>
+      <span class="sec-rule" aria-hidden="true" style="background: var(--color-primary)"></span>
+      <h2 class="text-heading-lg">Three ways to start, plus one more.</h2>
+    </div>
+    <p class="text-body-lg" style="max-width: 60ch; margin-bottom: 46px">Clear deliverables, a fixed price, and a finish line you can see up front. Start with the one that fits where you are today.</p>
+
+    <div class="eng-grid">
+      <!-- Diagnose -->
+      <article class="eng-card">
+        <svg class="eng-edge" aria-hidden="true" viewBox="0 0 320 11" preserveAspectRatio="none"><path d="M0 8 Q9 2 18 6 Q27 10 38 5 Q48 9 58 4 Q70 8 82 6 Q92 2 104 7 Q116 10 130 5 Q142 9 154 4 Q168 8 182 6 Q194 3 208 7 Q220 10 234 5 Q248 9 262 5 Q276 3 290 7 Q304 10 320 5" fill="none" stroke="var(--color-on-surface)" stroke-width="1.5" stroke-linecap="round"></path></svg>
+        <span class="ico" aria-hidden="true" style="display:inline-flex; margin-bottom: 14px"><svg width="46" height="46" viewBox="0 0 48 48"><circle cx="24" cy="24" r="18" fill="var(--color-accent-blue)"></circle></svg></span>
+        <h3 class="eng-title">Diagnose</h3>
+        <div style="margin-bottom: 18px"><span class="chip">2 weeks</span></div>
+        <p class="text-body-md" style="margin-bottom: 22px">Your product's design, examined: what's broken, what to fix, and in what order, with a fixed quote for the fix.</p>
+        <p class="text-label" style="color: var(--color-on-surface-muted); margin-bottom: 12px">You get</p>
+        <ul class="youget">
+          <li><span class="dot" style="background: var(--color-accent-blue)"></span>Written findings</li>
+          <li><span class="dot" style="background: var(--color-accent-blue)"></span>Prioritized roadmap</li>
+          <li><span class="dot" style="background: var(--color-accent-blue)"></span>Recorded walkthrough</li>
+          <li><span class="dot" style="background: var(--color-accent-blue)"></span>Fixed follow-on quote</li>
+        </ul>
+        <div class="yourtime"><span style="color: var(--color-on-surface-muted)">Your time</span><span>About an hour, async</span></div>
+        <p class="price">$3,500</p>
+        <p class="text-caption" style="margin-bottom: 20px; line-height: 1.55">The fee credits in full toward Build the Foundation or Design the Product, booked within 60 days. <a href="engagement-details.html#credit">How the credit works</a>.</p>
+        <a href="#intake" class="btn btn-outline eng-flex-cta" style="width: 100%">Start a project</a>
+      </article>
+
+      <!-- Build the Foundation -->
+      <article class="eng-card">
+        <svg class="eng-edge" aria-hidden="true" viewBox="0 0 320 11" preserveAspectRatio="none"><path d="M0 8 L15 3 L27 9 L41 2 L55 9 L70 4 L86 9 L101 3 L118 8 L133 3 L150 9 L166 4 L183 9 L200 3 L218 8 L236 4 L255 9 L274 3 L294 8 L320 4" fill="none" stroke="var(--color-on-surface)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+        <span class="ico" aria-hidden="true" style="display:inline-flex; margin-bottom: 14px"><svg width="46" height="46" viewBox="0 0 48 48"><rect x="10" y="10" width="28" height="28" rx="7" fill="var(--color-accent-mint)" transform="rotate(10 24 24)"></rect></svg></span>
+        <h3 class="eng-title">Build the Foundation</h3>
+        <div style="margin-bottom: 18px"><span class="chip">2 to 4 weeks</span></div>
+        <p class="text-body-md" style="margin-bottom: 22px">A design system foundation your team can build on and keep consistent, shaped to what your product needs.</p>
+        <p class="text-label" style="color: var(--color-on-surface-muted); margin-bottom: 12px">You get</p>
+        <ul class="youget">
+          <li><span class="dot" style="background: var(--color-accent-mint)"></span>Design tokens and build pipeline</li>
+          <li><span class="dot" style="background: var(--color-accent-mint)"></span>Accessible color and theming, light and dark</li>
+          <li><span class="dot" style="background: var(--color-accent-mint)"></span>Component foundations</li>
+          <li><span class="dot" style="background: var(--color-accent-mint)"></span>AI-readable documentation to maintain it</li>
+        </ul>
+        <div class="yourtime"><span style="color: var(--color-on-surface-muted)">Your time</span><span>Weekly check-in + async</span></div>
+        <p class="price">$7,500<span style="font-size: 22px; color: var(--color-on-surface-muted)"> to </span>$12,500</p>
+        <a href="#intake" class="btn btn-outline eng-flex-cta" style="width: 100%; margin-top: 12px">Start a project</a>
+      </article>
+
+      <!-- Design the Product -->
+      <article class="eng-card">
+        <svg class="eng-edge" aria-hidden="true" viewBox="0 0 320 11" preserveAspectRatio="none"><path d="M0 8 Q10 0 20 8 Q30 0 40 8 Q52 1 64 8 Q74 0 84 8 Q96 1 108 8 Q118 0 128 8 Q140 1 152 8 Q162 0 172 8 Q184 1 196 8 Q206 0 216 8 Q228 1 240 8 Q250 0 260 8 Q272 1 284 8 Q294 0 304 8 Q314 3 320 6" fill="none" stroke="var(--color-on-surface)" stroke-width="1.5" stroke-linecap="round"></path></svg>
+        <span class="ico" aria-hidden="true" style="display:inline-flex; margin-bottom: 14px"><svg width="46" height="46" viewBox="0 0 48 48"><path d="M24 5 L45 43 H3 Z" fill="var(--color-accent-coral)"></path></svg></span>
+        <h3 class="eng-title">Design the Product</h3>
+        <div style="margin-bottom: 18px"><span class="chip">4 to 6 weeks</span></div>
+        <p class="text-body-md" style="margin-bottom: 22px">The founding-designer project: visual direction, the design foundation, and 3 to 5 core product flows, designed and specced for engineering handoff.</p>
+        <p class="text-label" style="color: var(--color-on-surface-muted); margin-bottom: 12px">You get</p>
+        <ul class="youget">
+          <li><span class="dot" style="background: var(--color-accent-coral)"></span>Visual direction</li>
+          <li><span class="dot" style="background: var(--color-accent-coral)"></span>The design foundation</li>
+          <li><span class="dot" style="background: var(--color-accent-coral)"></span>3 to 5 core flows, designed and specced</li>
+          <li><span class="dot" style="background: var(--color-accent-coral)"></span>Engineering handoff package</li>
+        </ul>
+        <div class="yourtime"><span style="color: var(--color-on-surface-muted)">Your time</span><span>Weekly check-in + async</span></div>
+        <p class="price">$18,000</p>
+        <a href="#intake" class="btn btn-outline eng-flex-cta" style="width: 100%; margin-top: 12px">Start a project</a>
+      </article>
+    </div>
+
+    <!-- 4th: flexible -->
+    <div class="wash-card">
+      <div style="max-width: 62ch">
+        <h3 class="text-heading-md" style="font-size: 24px; margin-bottom: 8px">Not sure which fits, or need something else?</h3>
+        <p class="text-body-md">If your project doesn't line up with one of these, or you're still figuring out the scope, tell me what you're working on. We'll find the right shape together, or scope something custom.</p>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 12px; align-items: flex-start">
+        <a href="#intake" class="btn btn-primary" style="box-shadow: var(--shadow-md)">Get in touch</a>
+        <a href="#problems" class="text-caption" style="text-decoration: none; color: var(--color-on-surface-muted)">Or find your fit below ↓</a>
+      </div>
+    </div>
+
+    <p class="text-body-sm" style="margin-top: 28px"><span class="text-label" style="color: var(--color-on-surface-muted)">Agencies:</span> I take white-label and overflow projects in these same shapes. Just mention it when you reach out.</p>
+  </div>
+</section>
+
+<!-- ============ 02 FIND YOUR FIT ============ -->
+<section id="problems" class="sel">
+  <div class="wrap-narrow" style="padding-block: 84px 90px">
+    <div style="display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 30px">
+      <p class="text-label" style="display: flex; align-items: center; gap: 16px; text-transform: none; letter-spacing: 0; color: var(--color-on-surface-muted)"><span>02</span><span class="sec-rule" aria-hidden="true" style="background: var(--color-accent-lilac)"></span>Find your fit</p>
+      <div class="progress" id="sel-progress" aria-hidden="true">
+        <span class="pd on"></span><span class="pl"></span><span class="pd" id="pdot"></span>
+      </div>
+    </div>
+
+    <!-- STAGE: ASK -->
+    <div id="sel-ask">
+      <h2 class="text-display" style="font-size: clamp(36px, 4.8vw, 60px); line-height: 1.0; margin-bottom: 16px">Which project fits your situation?</h2>
+      <p class="text-body-lg" style="max-width: 56ch; margin-bottom: 32px">Pick the one that sounds most like yours. I'll show which project is built for it, and its price, so you can see the packages through your own situation.</p>
+      <div role="group" aria-label="Situations" class="sit-grid">
+        <button type="button" class="sit" data-problem="0">
+          <span class="ico" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="var(--color-accent-blue)"></circle></svg></span>
+          <span class="t">We're shipping faster than we can stay consistent</span>
+          <span class="d">AI helps us ship features fast, but the UI is turning into five different apps.</span>
+        </button>
+        <button type="button" class="sit" data-problem="1">
+          <span class="ico" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 24 24"><path d="M12 4 L20 19 H4 Z" fill="var(--color-accent-coral)"></path></svg></span>
+          <span class="t">We need to look like a company worth funding</span>
+          <span class="d">We're raising or selling, and the product doesn't match the story yet.</span>
+        </button>
+        <button type="button" class="sit" data-problem="2">
+          <span class="ico" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 24 24"><rect x="5" y="5" width="14" height="14" rx="3.5" fill="var(--color-accent-mint)" transform="rotate(9 12 12)"></rect></svg></span>
+          <span class="t">Every engineer invents their own UI</span>
+          <span class="d">There's no designer, so patterns get reinvented screen by screen.</span>
+        </button>
+        <button type="button" class="sit" data-problem="3">
+          <span class="ico" aria-hidden="true"><svg width="26" height="18" viewBox="0 0 24 14"><path d="M1 13 A11 11 0 0 1 23 13 Z" fill="var(--color-accent-yellow)"></path></svg></span>
+          <span class="t">We have a rebrand to make real</span>
+          <span class="d">The new brand is approved. Now it has to live in the product, not just the deck.</span>
+        </button>
+        <button type="button" class="sit" data-problem="4">
+          <span class="ico" aria-hidden="true"><svg width="30" height="16" viewBox="0 0 30 14"><path d="M2 8 Q7 1 12 8 T22 8 T29 6" stroke="var(--color-accent-pink)" stroke-width="3.5" fill="none" stroke-linecap="round"></path></svg></span>
+          <span class="t">People sign up, then disappear</span>
+          <span class="d">We think the flows lose people somewhere, and want to know where.</span>
+        </button>
+        <button type="button" class="sit" id="sit-else" data-else="1" aria-pressed="false">
+          <span class="ico" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 24 24"><path d="M12 4 V20 M4 12 H20" stroke="var(--color-accent-lilac)" stroke-width="3.6" stroke-linecap="round"></path></svg></span>
+          <span class="t">Something else</span>
+          <span class="d">Tell me in your own words.</span>
+        </button>
       </div>
 
-      
-        <form id="intake-form" method="POST" action="/api/intake" novalidate="novalidate" style="display: grid; gap: 22px; border-radius: 22px; padding: 36px; background: var(--paper); border: 1px solid var(--line); box-shadow: 0 16px 44px rgba(26,24,48,0.08)">
-          <div aria-hidden="true" style="position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden">
-            <label>Leave this empty <input type="text" name="company_website" tabindex="-1" autocomplete="off"></label>
-          </div>
-          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 22px">
-            <label style="display: grid; gap: 8px">
-              <span style="font-family: 'Nunito', sans-serif; font-size: 11.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink2)">Name</span>
-              <input type="text" name="name" required="required" autocomplete="name" class="field">
-            </label>
-            <label style="display: grid; gap: 8px">
-              <span style="font-family: 'Nunito', sans-serif; font-size: 11.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink2)">Email</span>
-              <input type="email" name="email" required="required" autocomplete="email" class="field">
-            </label>
-          </div>
-          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 22px">
-            <label style="display: grid; gap: 8px">
-              <span style="font-family: 'Nunito', sans-serif; font-size: 11.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink2)">Company</span>
-              <input type="text" name="company" autocomplete="organization" class="field">
-            </label>
-            <label style="display: grid; gap: 8px">
-              <span style="font-family: 'Nunito', sans-serif; font-size: 11.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink2)">Which offer</span>
-              <select name="offer" class="field">
-                <option>A · Audit + Roadmap, $3,500</option>
-                <option>B · Brand-to-Token Pipeline, $7,500</option>
-                <option>C · Foundation Sprint, $12,500</option>
-                <option>D · 0→1 Product Foundation, $18,000</option>
-                <option>Add-on · Dataviz Color System</option>
-                <option>Not sure yet, help me pick</option>
-                <option>Agency / white-label inquiry</option>
-              </select>
-            </label>
-          </div>
-          <label style="display: grid; gap: 8px">
-            <span style="font-family: 'Nunito', sans-serif; font-size: 11.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink2)">When do you want to start</span>
-            <select name="timing" class="field">
-              <option>As soon as possible</option>
-              <option>Within a month</option>
-              <option>This quarter</option>
-              <option>Just exploring</option>
-            </select>
-          </label>
-          <label style="display: grid; gap: 8px">
-            <span style="font-family: 'Nunito', sans-serif; font-size: 11.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink2)">What are you building, and what's in the way?</span>
-            <textarea name="details" rows="5" required="required" class="field"></textarea>
-          </label>
-          <div style="display: flex; align-items: center; gap: 18px; flex-wrap: wrap">
-            <button type="submit" style="background: var(--accent); color: var(--accent-ink); border: none; border-radius: 12px; padding: 16px 30px; font-weight: 600; font-size: 16px; cursor: pointer; box-shadow: 0 8px 22px color-mix(in srgb, var(--accent) 34%, transparent)" class="hv-lift-sm">Send intake</button>
-            <span style="font-family: 'Nunito', sans-serif; font-size: 12.5px; color: var(--ink2)">Scope + price within 2 business days</span>
-          </div>
-        </form>
-      
-      
-        <div id="intake-success" hidden="hidden" style="position: relative; overflow: hidden; border-radius: 22px; padding: 46px 40px; background: var(--night); color: #F3F2FA; box-shadow: 0 16px 44px rgba(25,23,53,0.28)">
-          <span aria-hidden="true" style="position: absolute; top: -24px; right: -24px; width: 120px; height: 120px; border-radius: 999px; background: color-mix(in srgb, var(--accent) 30%, transparent); display: var(--confetti)"></span>
-          <span style="position: relative; display: inline-flex; align-items: center; justify-content: center; width: 46px; height: 46px; border-radius: 14px; background: var(--yellow); color: var(--ink); margin-bottom: 18px"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></span>
-          <p style="position: relative; margin: 0 0 12px 0; font-family: 'Nunito', sans-serif; font-size: 12.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--yellow)">Intake received</p>
-          <p style="position: relative; margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-size: 26px; line-height: 1.35; font-weight: 500; text-wrap: pretty">Thanks. You'll have a written scope, a fixed price, and a start date within 2 business days. If it isn't a fit, I'll tell you that instead.</p>
+      <form class="else-form" id="else-form" hidden>
+        <input id="else-input" name="q" type="text" autocomplete="off" aria-label="Describe what is slowing you down" placeholder="Describe what's slowing you down...">
+        <button type="submit" aria-label="Continue">→</button>
+      </form>
+    </div>
+
+    <!-- STAGE: RESULT -->
+    <div id="sel-result" aria-live="polite" hidden>
+      <button type="button" class="startover" id="startover"><span aria-hidden="true">←</span> Start over</button>
+      <p class="text-label" id="res-label" style="color: var(--color-on-surface-muted); margin-bottom: 14px">Recommended project</p>
+      <div class="result-card">
+        <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: 14px">
+          <h3 class="text-heading-md" id="res-title" tabindex="-1" style="font-size: clamp(28px, 3.4vw, 40px)">Diagnose</h3>
+          <span class="price" id="res-price" style="font-size: 26px; margin: 0"></span>
         </div>
-      
-    </div>
-  </section>
-
-  <!-- ============ FOOTER ============ -->
-  <footer style="border-top: 1px solid var(--line); padding: 40px 30px">
-    <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; font-family: 'Nunito', sans-serif; font-size: 12.5px; color: var(--ink2)">
-      <div style="display: flex; align-items: center; gap: 11px">
-        <span style="display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; border-radius: 8px; background: var(--accent)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2c1 3 2.5 3.5 3.5 4.5A5 5 0 0 1 17 10a5 5 0 1 1-10 0c0-.3 0-.6.1-.9a2 2 0 1 0 3.3-2C8 4.5 11 2 12 2Z"></path><path d="m5 22 14-4"></path><path d="m5 18 14 4"></path></svg></span>
-        <span>Ideacamp · ideacamp.co · © 2026</span>
+        <p class="text-body-lg" id="res-why" style="margin-bottom: 22px"></p>
+        <ul class="youget" id="res-bullets" style="margin: 0"></ul>
       </div>
-      <a href="mailto:hello@ideacamp.co" style="color: var(--ink2)" class="hv-ink">hello@ideacamp.co</a>
+      <div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: center; margin-top: 24px">
+        <button type="button" class="btn btn-primary" id="res-cta" style="box-shadow: var(--shadow-md)">Start a project with this →</button>
+        <a href="#engagements" class="text-caption" style="text-decoration: none; color: var(--color-on-surface-muted)">See all three projects →</a>
+      </div>
     </div>
-  </footer>
+  </div>
+</section>
 
-</div>
+<!-- ============ 03 PROCESS ============ -->
+<section id="process">
+  <div class="wrap" style="padding-block: 84px">
+    <div class="sec-head" style="margin-bottom: 46px">
+      <span class="sec-num" aria-hidden="true">03</span>
+      <span class="sec-rule" aria-hidden="true" style="background: var(--color-accent-mint)"></span>
+      <h2 class="text-heading-lg">How it works, start to finish</h2>
+    </div>
+    <ol class="cols4" style="margin: 0; padding: 0; list-style: none">
+      <li class="proc-card">
+        <span class="proc-num" aria-hidden="true" style="color: color-mix(in srgb, var(--color-accent-blue) 15%, var(--color-surface-raised))">1</span>
+        <span class="ico" aria-hidden="true" style="display:inline-flex; margin-bottom: 16px"><svg width="34" height="34" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="var(--color-accent-blue)"></circle></svg></span>
+        <h3 class="text-heading-sm" style="margin-bottom: 8px">Tell me about your project</h3>
+        <p class="text-body-sm">A short form about your product and the problem in front of you. Ten minutes, no meeting.</p>
+      </li>
+      <li class="proc-card">
+        <span class="proc-num" aria-hidden="true" style="color: color-mix(in srgb, var(--color-accent-mint) 18%, var(--color-surface-raised))">2</span>
+        <span class="ico" aria-hidden="true" style="display:inline-flex; margin-bottom: 16px"><svg width="34" height="34" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="4" fill="var(--color-accent-mint)" transform="rotate(10 12 12)"></rect></svg></span>
+        <h3 class="text-heading-sm" style="margin-bottom: 8px">Get a scope and a price</h3>
+        <p class="text-body-sm">Within 2 business days, a written scope, a fixed price, and a start date. If you'd rather talk it through first, a 30-minute call is there for the asking.</p>
+      </li>
+      <li class="proc-card">
+        <span class="proc-num" aria-hidden="true" style="color: color-mix(in srgb, var(--color-accent-coral) 15%, var(--color-surface-raised))">3</span>
+        <span class="ico" aria-hidden="true" style="display:inline-flex; margin-bottom: 16px"><svg width="34" height="34" viewBox="0 0 24 24"><path d="M12 3 L21 20 H3 Z" fill="var(--color-accent-coral)"></path></svg></span>
+        <h3 class="text-heading-sm" style="margin-bottom: 8px">Watch it come together</h3>
+        <p class="text-body-sm">Async build: working files, written rationale, recorded walkthroughs, and a short written update every week.</p>
+      </li>
+      <li class="proc-card">
+        <span class="proc-num" aria-hidden="true" style="color: color-mix(in srgb, var(--color-accent-yellow) 24%, var(--color-surface-raised))">4</span>
+        <span class="ico" aria-hidden="true" style="display:inline-flex; margin-bottom: 16px"><svg width="34" height="20" viewBox="0 0 24 14"><path d="M1 13 A11 11 0 0 1 23 13 Z" fill="var(--color-accent-yellow)"></path></svg></span>
+        <h3 class="text-heading-sm" style="margin-bottom: 8px">Take it and ship</h3>
+        <p class="text-body-sm">Handoff with documentation, and a structured revision round included in every project.</p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- ============ 04 WHY (night) ============ -->
+<section class="night">
+  <div class="wrap" style="padding-block: 92px">
+    <div class="sec-head" style="margin-bottom: 46px">
+      <span class="sec-num" aria-hidden="true" style="color: var(--on-night-muted)">04</span>
+      <span class="sec-rule" aria-hidden="true" style="background: var(--color-accent-yellow)"></span>
+      <h2 class="text-heading-lg">Why it works this way</h2>
+    </div>
+    <div class="why-grid">
+      <div>
+        <p class="why-label" style="color: var(--color-accent-yellow)">Scope you can see</p>
+        <p class="why-stmt">The price and the finish line are in writing before any work begins.</p>
+      </div>
+      <div>
+        <p class="why-label" style="color: var(--color-accent-mint)">You always know where it stands</p>
+        <p class="why-stmt">Working files, written rationale, recorded walkthroughs, and a short written update every week. Progress never waits on a calendar.</p>
+      </div>
+      <div>
+        <p class="why-label" style="color: var(--color-accent-pink)">Senior hands only</p>
+        <p class="why-stmt">One or two projects at a time, every hour of the work done by the same specialist. No juniors, no handoffs.</p>
+      </div>
+      <div>
+        <p class="why-label" style="color: var(--color-accent-coral)">Built to last</p>
+        <p class="why-stmt">Everything ships with the tokens, docs, and pipelines your team needs to maintain it.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 05 ABOUT ============ -->
+<section id="about">
+  <div class="wrap" style="padding-block: 84px">
+    <div class="sec-head" style="margin-bottom: 46px">
+      <span class="sec-num" aria-hidden="true">05</span>
+      <span class="sec-rule" aria-hidden="true" style="background: var(--color-accent-lilac)"></span>
+      <h2 class="text-heading-lg">Who you're working with</h2>
+    </div>
+    <div class="about-grid">
+      <div>
+        <p style="font-family: var(--type-display-family); font-size: clamp(21px, 2.3vw, 28px); line-height: 1.4; font-weight: 500; text-wrap: pretty; margin-bottom: 22px">I've spent 14 years designing products and the systems underneath them. I was the founding designer at an AI training platform, and product design lead on a 0 to 1 predictive analytics tool at Tableau. Since then I've specialized in design systems and 0 to 1 product design.</p>
+        <p class="text-body-md" style="margin-bottom: 16px">You work with me directly on every project. No juniors, no outsourcing, no handoffs between people you've never met.</p>
+        <ul class="taglist">
+          <li>Design systems</li>
+          <li>Token architecture, DTCG and Style Dictionary</li>
+          <li>Accessible color systems</li>
+          <li>0 to 1 product design</li>
+        </ul>
+      </div>
+      <div style="display: grid; gap: 18px">
+        <p class="text-label" style="color: var(--color-on-surface-muted)">Selected work</p>
+        <div class="work-card">
+          <p class="text-label" style="display: flex; align-items: center; gap: 9px; color: var(--color-on-surface-muted); margin-bottom: 10px"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4 L20 19 H4 Z" fill="var(--color-accent-coral)"></path></svg>0 to 1 product</p>
+          <h3 class="text-heading-sm" style="margin-bottom: 8px">A predictive analytics tool, from zero to shipped</h3>
+          <p class="text-body-sm" style="margin-bottom: 12px">Designed it from first concept through a product in customers' hands.</p>
+          <span class="text-caption" style="color: var(--color-on-surface-muted)">Write-up coming soon</span>
+        </div>
+        <div class="work-card">
+          <p class="text-label" style="display: flex; align-items: center; gap: 9px; color: var(--color-on-surface-muted); margin-bottom: 10px"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="5" width="14" height="14" rx="3.5" fill="var(--color-accent-mint)" transform="rotate(9 12 12)"></rect></svg>Design systems</p>
+          <h3 class="text-heading-sm" style="margin-bottom: 8px">A brand rebuilt as a token pipeline</h3>
+          <p class="text-body-sm" style="margin-bottom: 12px">Turned a brand language into a DTCG pipeline engineers ship from every day.</p>
+          <span class="text-caption" style="color: var(--color-on-surface-muted)">Write-up coming soon</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="tspace">
+      <p class="text-label" style="color: var(--color-on-surface-muted); margin-bottom: 18px">Client words, once the first projects wrap</p>
+      <div class="tgrid">
+        <div class="tcard"><span class="q" aria-hidden="true">"</span><p class="text-body-sm">Reserved for a founder's words after their project ships.</p></div>
+        <div class="tcard"><span class="q" aria-hidden="true">"</span><p class="text-body-sm">Reserved for an agency partner's words on a white-label build.</p></div>
+        <div class="tcard"><span class="q" aria-hidden="true">"</span><p class="text-body-sm">Reserved for an engineer's words on the handoff and docs.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 06 FAQ ============ -->
+<section id="faq" class="sel">
+  <div class="wrap faqgrid" style="padding-block: 84px">
+    <div>
+      <div class="sec-head" style="margin-bottom: 20px">
+        <span class="sec-num" aria-hidden="true">06</span>
+        <span class="sec-rule" aria-hidden="true" style="background: var(--color-accent-coral)"></span>
+      </div>
+      <h2 class="text-heading-lg">Good questions</h2>
+      <p class="text-body-md" style="margin-top: 18px; color: var(--color-on-surface-muted); max-width: 34ch">The things worth knowing before we start. Still curious about something? Add it to your project note and I'll answer.</p>
+    </div>
+    <div style="max-width: 720px">
+      <details class="faq" open>
+        <summary><span class="faq-ico" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="var(--color-accent-blue)"></circle></svg></span><span class="faq-q">How will I know where things stand?</span><span class="plus" aria-hidden="true">+</span></summary>
+        <p class="faq-a">Working files, written rationale, recorded walkthroughs, and a weekly written update: what's done, what's next, and what I need from you. Calls happen whenever they'd genuinely help.</p>
+      </details>
+      <details class="faq">
+        <summary><span class="faq-ico" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24"><path d="M12 4 L20 19 H4 Z" fill="var(--color-accent-coral)"></path></svg></span><span class="faq-q">Will this fit our stack?</span><span class="plus" aria-hidden="true">+</span></summary>
+        <p class="faq-a">It's standards-based: DTCG tokens, Style Dictionary outputs to whatever platforms you ship, plain CSS variables if that's your stack. Your engineers see the pipeline before handoff, and the docs are written for them.</p>
+      </details>
+      <details class="faq">
+        <summary><span class="faq-ico" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24"><rect x="5" y="5" width="14" height="14" rx="3.5" fill="var(--color-accent-mint)" transform="rotate(9 12 12)"></rect></svg></span><span class="faq-q">What if my project doesn't fit one of these?</span><span class="plus" aria-hidden="true">+</span></summary>
+        <p class="faq-a">Get in touch anyway. Scoping is free, and if it isn't a fit I'll say so honestly rather than stretch one to fit.</p>
+      </details>
+      <details class="faq">
+        <summary><span class="faq-ico" aria-hidden="true"><svg width="22" height="13" viewBox="0 0 24 14"><path d="M1 13 A11 11 0 0 1 23 13 Z" fill="var(--color-accent-yellow)"></path></svg></span><span class="faq-q">What do you need from me to start?</span><span class="plus" aria-hidden="true">+</span></summary>
+        <p class="faq-a">Access to the relevant tools, your brand assets, and a decision-maker who can respond within a day.</p>
+      </details>
+      <details class="faq">
+        <summary><span class="faq-ico" aria-hidden="true"><svg width="24" height="12" viewBox="0 0 30 14"><path d="M2 8 Q7 1 12 8 T22 8 T29 6" stroke="var(--color-accent-pink)" stroke-width="3.5" fill="none" stroke-linecap="round"></path></svg></span><span class="faq-q">How do revisions work?</span><span class="plus" aria-hidden="true">+</span></summary>
+        <p class="faq-a">Every project includes one structured revision round, with its scope written into the agreement so there are no surprises. <a href="engagement-details.html#revisions">What a round includes</a>.</p>
+      </details>
+      <details class="faq">
+        <summary><span class="faq-ico" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24"><path d="M12 4 V20 M4 12 H20" stroke="var(--color-accent-lilac)" stroke-width="3.6" stroke-linecap="round"></path></svg></span><span class="faq-q">Who does the work?</span><span class="plus" aria-hidden="true">+</span></summary>
+        <p class="faq-a">I do, on every project. One senior designer, no juniors and no outsourcing.</p>
+      </details>
+      <details class="faq">
+        <summary><span class="faq-ico" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="var(--color-accent-blue)"></circle></svg></span><span class="faq-q">Do you work with agencies?</span><span class="plus" aria-hidden="true">+</span></summary>
+        <p class="faq-a">Yes, white-label. The same projects, delivered under your name, and your client relationship stays yours. Just mention it when you reach out.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 07 INTAKE ============ -->
+<section id="intake">
+  <div class="wrap intake-grid" style="padding-block: 90px">
+    <div>
+      <div class="sec-head" style="margin-bottom: 24px">
+        <span class="sec-num" aria-hidden="true">07</span>
+        <span class="sec-rule" aria-hidden="true" style="background: var(--color-primary)"></span>
+      </div>
+      <h2 class="text-display" style="font-size: clamp(38px, 4.4vw, 58px); margin-bottom: 20px">Tell me about your project</h2>
+      <p class="text-body-lg" style="margin-bottom: 24px">Ten minutes, no meeting. Within 2 business days you'll have a written scope, a fixed price, and a start date. If it isn't a fit, I'll say so, and the scoping costs you nothing.</p>
+      <ul style="margin: 0; padding: 0; list-style: none; display: grid; gap: 12px; font-size: 15px">
+        <li style="display: flex; align-items: center; gap: 11px"><span class="dot" style="background: var(--color-accent-mint); margin: 0"></span>No sales call required</li>
+        <li style="display: flex; align-items: center; gap: 11px"><span class="dot" style="background: var(--color-accent-blue); margin: 0"></span>Agencies welcome</li>
+      </ul>
+    </div>
+
+    <form class="intake-form" id="intake-form" method="POST" action="/api/intake" novalidate>
+      <div aria-hidden="true" style="position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden">
+        <label>Leave this field empty <input type="text" name="company_website" tabindex="-1" autocomplete="off"></label>
+      </div>
+      <div class="field-row">
+        <label class="field-group"><span class="field-label">Name</span><input class="field" type="text" name="name" required autocomplete="name"></label>
+        <label class="field-group"><span class="field-label">Email</span><input class="field" type="email" name="email" required autocomplete="email"></label>
+      </div>
+      <label class="field-group"><span class="field-label">Company or product link <span style="text-transform: none; letter-spacing: 0">(optional)</span></span><input class="field" type="text" name="company" autocomplete="organization"></label>
+      <label class="field-group"><span class="field-label">What best describes your situation?</span>
+        <select class="field" id="problem" name="problem">
+          <option value="">Choose one, or leave blank</option>
+          <option value="AI-fast shipping, inconsistent UI">Shipping fast with AI, the UI is drifting apart</option>
+          <option value="Raising or selling, product looks unfunded">Raising or selling, the product doesn't look fundable</option>
+          <option value="No designer, every engineer invents UI">No designer, every engineer invents their own UI</option>
+          <option value="Rebrand approved, color lives everywhere">Rebrand approved, color lives in forty places</option>
+          <option value="Users sign up, then vanish">People sign up and then vanish</option>
+          <option value="Something else">Something else</option>
+        </select>
+      </label>
+      <label class="field-group"><span class="field-label">What are you building, and what's in the way?</span><textarea class="field" id="details" name="details" rows="5" required></textarea></label>
+      <div class="field-row">
+        <label class="field-group"><span class="field-label">Timeline</span>
+          <select class="field" name="timeline"><option>As soon as possible</option><option>Within a month</option><option>This quarter</option><option>Just exploring</option></select>
+        </label>
+        <label class="field-group"><span class="field-label">How did you find Ideacamp?</span>
+          <select class="field" name="source"><option>A referral</option><option>Search</option><option>Social</option><option>An email from me</option><option>Other</option></select>
+        </label>
+      </div>
+      <label class="choice"><input type="checkbox" name="agency"> This is an agency or white-label inquiry.</label>
+      <div style="display: flex; align-items: center; gap: 18px; flex-wrap: wrap; margin-top: 4px">
+        <button type="submit" class="btn btn-primary" style="box-shadow: var(--shadow-md)">Send</button>
+        <span class="text-caption">Scope, price, and start date within 2 business days</span>
+      </div>
+    </form>
+
+    <div class="success-card" id="intake-success" hidden>
+      <span aria-hidden="true" style="display: inline-flex; align-items: center; justify-content: center; width: 46px; height: 46px; border-radius: var(--radius-md); background: var(--color-accent-yellow); color: var(--color-on-surface); margin-bottom: 18px"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span>
+      <p class="text-label" style="color: var(--color-accent-yellow); margin-bottom: 12px">Got it</p>
+      <p style="font-family: var(--type-display-family); font-size: 25px; line-height: 1.35; font-weight: 500; text-wrap: pretty">Thanks. You'll have a written scope, a fixed price, and a start date within 2 business days. If it isn't a fit, I'll tell you that instead.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer night">
+  <div class="wrap footer-inner">
+    <a href="#top" class="brand" style="color: var(--color-on-night)">
+      <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent-yellow)" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2c1 3 2.5 3.5 3.5 4.5A5 5 0 0 1 17 10a5 5 0 1 1-10 0c0-.3 0-.6.1-.9a2 2 0 1 0 3.3-2C8 4.5 11 2 12 2Z"></path><path d="m5 22 14-4"></path><path d="m5 18 14 4"></path></svg>
+      <span class="name" style="font-size: 19px">ideacamp</span>
+    </a>
+    <div class="links">
+      <a href="#intake">Start a project</a>
+      <a href="engagement-details.html">Project details</a>
+      <a href="mailto:hello@ideacamp.co">hello@ideacamp.co</a>
+      <span style="color: var(--on-night-muted)">© 2026 Ideacamp</span>
+    </div>
+  </div>
+</footer>
+
 <script>
-  (function () {
-    var form = document.getElementById('intake-form');
-    var success = document.getElementById('intake-success');
-    if (!form) return;
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
-      if (!form.reportValidity()) return;
-      var btn = form.querySelector('button[type="submit"]');
-      if (btn) { btn.disabled = true; btn.textContent = 'Sending...'; }
-      var data = Object.fromEntries(new FormData(form).entries());
-      fetch(form.action, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data)
-      }).then(function (r) {
-        if (!r.ok) throw new Error('Request failed: ' + r.status);
-        form.hidden = true;
-        if (success) { success.hidden = false; success.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
-      }).catch(function () {
-        if (btn) { btn.disabled = false; btn.textContent = 'Send intake'; }
-        alert('Something went wrong sending your intake. Please email hello@ideacamp.co and I will follow up.');
-      });
+(function () {
+  // ---------- Mobile nav ----------
+  var navToggle = document.getElementById('nav-toggle');
+  var mobileMenu = document.getElementById('mobile-menu');
+  if (navToggle && mobileMenu) {
+    var setOpen = function (open) {
+      if (open) mobileMenu.removeAttribute('hidden'); else mobileMenu.setAttribute('hidden', '');
+      navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      navToggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    };
+    navToggle.addEventListener('click', function () { setOpen(mobileMenu.hasAttribute('hidden')); });
+    mobileMenu.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', function () { setOpen(false); }); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !mobileMenu.hasAttribute('hidden')) { setOpen(false); navToggle.focus(); } });
+  }
+
+  // ---------- Find your fit selector ----------
+  var RESULTS = [
+    { eng: 'Build the Foundation', price: '$7,500 to $12,500', accent: 'var(--color-accent-mint)', sel: 'AI-fast shipping, inconsistent UI',
+      why: "When output outpaces consistency, the answer is a shared foundation: one documented set of tokens, color, and components every engineer builds from, so shipping fast stops fragmenting the UI. Prefer to map the drift first? A Diagnose comes off the price later." },
+    { eng: 'Design the Product', price: '$18,000', accent: 'var(--color-accent-coral)', sel: 'Raising or selling, product looks unfunded',
+      why: "Investors and buyers read polish as competence. Design the Product sets the visual direction, builds the foundation beneath it, and designs the core flows, so the product finally looks like the company you're describing." },
+    { eng: 'Build the Foundation', price: '$7,500 to $12,500', accent: 'var(--color-accent-mint)', sel: 'No designer, every engineer invents UI',
+      why: "Without a designer, consistency depends on whoever wrote the last screen. Build the Foundation gives your engineers one documented system to assemble from, so the product holds together between design hires." },
+    { eng: 'Build the Foundation', price: '$7,500 to $12,500', accent: 'var(--color-accent-mint)', sel: 'Rebrand approved, color lives everywhere',
+      why: "A brand only ships when it's in the code. Build the Foundation turns the approved brand into design tokens and a build pipeline, so the next color change happens in one place instead of forty." },
+    { eng: 'Diagnose', price: '$3,500', accent: 'var(--color-accent-blue)', sel: 'Users sign up, then vanish',
+      why: "Guessing is expensive. Diagnose finds exactly where your flows lose people and lays out the fixes in priority order, with a fixed quote to carry them out. The fee credits toward the redesign that follows." }
+  ];
+  var ELSE_RESULT = { eng: null, title: 'Tell me directly', price: '', accent: 'var(--color-accent-lilac)', sel: 'Something else',
+    why: "Thanks, that helps. Add anything else worth knowing below and I'll point you to the project that fits, or tell you honestly if it isn't a fit." };
+  var BULLETS = {
+    'Diagnose': ['Written findings', 'Prioritized roadmap', 'Recorded walkthrough', 'Fixed follow-on quote'],
+    'Build the Foundation': ['Design tokens and build pipeline', 'Accessible color and theming', 'Component foundations', 'AI-readable documentation'],
+    'Design the Product': ['Visual direction', 'The design foundation', '3 to 5 core flows, specced', 'Engineering handoff package']
+  };
+
+  var ask = document.getElementById('sel-ask');
+  var result = document.getElementById('sel-result');
+  var elseForm = document.getElementById('else-form');
+  var elseBtn = document.getElementById('sit-else');
+  var pdot = document.getElementById('pdot');
+  var current = null, typed = '';
+
+  function showResult(r, typedVal) {
+    current = r; typed = typedVal || '';
+    document.getElementById('res-label').textContent = r.eng ? 'Recommended project' : 'Let’s talk it through';
+    var title = document.getElementById('res-title');
+    title.textContent = r.eng || r.title;
+    title.style.color = r.accent;
+    document.getElementById('res-price').textContent = r.price || '';
+    document.getElementById('res-why').textContent = r.why;
+    var ul = document.getElementById('res-bullets');
+    ul.innerHTML = '';
+    var bl = r.eng ? (BULLETS[r.eng] || []) : [];
+    bl.forEach(function (b) {
+      var li = document.createElement('li');
+      li.innerHTML = '<span class="dot" style="background:' + r.accent + '"></span>';
+      li.appendChild(document.createTextNode(b));
+      ul.appendChild(li);
     });
-  })();
+    document.getElementById('res-cta').firstChild.textContent = (r.eng ? 'Start a project with this ' : 'Tell me more ');
+    ask.hidden = true; result.hidden = false;
+    if (pdot) pdot.classList.add('on');
+    title.focus();
+  }
+  function startOver() {
+    result.hidden = true; ask.hidden = false;
+    if (pdot) pdot.classList.remove('on');
+    if (elseBtn) elseBtn.setAttribute('aria-pressed', 'false');
+    elseForm.hidden = true;
+    ask.querySelector('.sit').focus();
+  }
+
+  document.querySelectorAll('.sit[data-problem]').forEach(function (btn) {
+    btn.addEventListener('click', function () { showResult(RESULTS[+btn.dataset.problem], ''); });
+  });
+  if (elseBtn) elseBtn.addEventListener('click', function () {
+    var open = elseForm.hidden;
+    elseForm.hidden = !open;
+    elseBtn.setAttribute('aria-pressed', open ? 'true' : 'false');
+    if (open) { var i = document.getElementById('else-input'); if (i) i.focus(); }
+  });
+  elseForm.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var v = document.getElementById('else-input').value.trim();
+    if (!v) { document.getElementById('else-input').focus(); return; }
+    showResult(ELSE_RESULT, v);
+  });
+  document.getElementById('startover').addEventListener('click', startOver);
+  document.getElementById('res-cta').addEventListener('click', function () {
+    if (!current) return;
+    var sel = document.getElementById('problem');
+    if (sel) sel.value = current.sel;
+    if (typed) { var d = document.getElementById('details'); if (d && !d.value) d.value = typed; }
+    var intake = document.getElementById('intake');
+    window.scrollTo({ top: intake.getBoundingClientRect().top + window.scrollY - 16, behavior: 'smooth' });
+    setTimeout(function () { if (sel) sel.focus(); }, 480);
+  });
+
+  // ---------- Intake submit ----------
+  var form = document.getElementById('intake-form');
+  var success = document.getElementById('intake-success');
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    if (!form.reportValidity()) return;
+    var btn = form.querySelector('button[type="submit"]');
+    if (btn) { btn.disabled = true; btn.textContent = 'Sending...'; }
+    var data = Object.fromEntries(new FormData(form).entries());
+    fetch(form.action, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) })
+      .then(function (r) { if (!r.ok) throw new Error('bad status'); form.hidden = true; success.hidden = false; success.scrollIntoView({ behavior: 'smooth', block: 'center' }); })
+      .catch(function () { if (btn) { btn.disabled = false; btn.textContent = 'Send'; } alert('Something went wrong sending your note. Please email hello@ideacamp.co and I will follow up.'); });
+  });
+})();
 </script>
 </body>
 </html>
