@@ -60,25 +60,25 @@
   --color-yellow-850: #3c2b03;
   --color-yellow-900: #2c1f01;
   --color-yellow-950: #170f00;
-  --color-mint-50: #f2fdf8;
-  --color-mint-100: #bff7e1;
-  --color-mint-150: #6ff1c5;
-  --color-mint-200: #4fe1b3;
-  --color-mint-250: #30d2a3;
-  --color-mint-300: #16c296;
-  --color-mint-350: #13b389;
-  --color-mint-400: #10a47e;
-  --color-mint-450: #0d9673;
-  --color-mint-500: #0b8968;
-  --color-mint-550: #087c5f;
-  --color-mint-600: #067055;
-  --color-mint-650: #05644c;
-  --color-mint-700: #035943;
-  --color-mint-750: #024d39;
-  --color-mint-800: #014130;
-  --color-mint-850: #013526;
-  --color-mint-900: #01271b;
-  --color-mint-950: #02140d;
+  --color-mint-50: #f3fdf6;
+  --color-mint-100: #c9f6d5;
+  --color-mint-150: #7af2a3;
+  --color-mint-200: #60e290;
+  --color-mint-250: #48d27f;
+  --color-mint-300: #32c370;
+  --color-mint-350: #2cb466;
+  --color-mint-400: #27a55e;
+  --color-mint-450: #239755;
+  --color-mint-500: #1f8a4d;
+  --color-mint-550: #1b7d45;
+  --color-mint-600: #17713e;
+  --color-mint-650: #136537;
+  --color-mint-700: #105930;
+  --color-mint-750: #0c4d28;
+  --color-mint-800: #084222;
+  --color-mint-850: #05351a;
+  --color-mint-900: #052712;
+  --color-mint-950: #031408;
   --color-coral-50: #fdf9f8;
   --color-coral-100: #f8e8e5;
   --color-coral-150: #f5d2cb;
@@ -211,10 +211,10 @@
   --type-code-weight: 400;
   --type-code-line-height: 1.5;
   --type-code-letter-spacing: 0em;
-  --color-primary: var(--color-blue-650); /** Primary action / brand. blue-650 #243EE8 (OKLCH H267°, electric violet-blue). on-primary 7.07:1 AA. */
-  --color-on-primary: var(--color-neutral-paper); /** Text/icons on primary. paper #FEFDFF on primary → 7.07:1 · AA text ✓ (Sistema contrast API). */
-  --color-primary-container: var(--color-blue-100); /** Tonal primary surface (info cards, subtle emphasis). blue-100 #E7EBF6. */
-  --color-on-primary-container: var(--color-blue-900); /** Text on primary-container. blue-900 #0A175F → 13.54:1 · AA text ✓. */
+  --color-primary: var(--color-mint-600); /** Primary action / brand. mint-600 #17713E (vivid warm green, one stop lighter than the deep 650). on-primary (paper) → 5.97:1 · AA text ✓. */
+  --color-on-primary: var(--color-neutral-paper); /** Text/icons on primary. paper #FEFDFF on primary (mint-600) → 5.97:1 · AA text ✓. */
+  --color-primary-container: var(--color-mint-100); /** Tonal primary surface (info cards, subtle emphasis). mint-100 #BFF7E1. */
+  --color-on-primary-container: var(--color-mint-900); /** Text on primary-container. mint-900 #01271B on mint-100 → very high contrast · AA text ✓. */
   --color-secondary: var(--color-pink-400); /** Secondary emphasis. pink-400 #FF4B8C. Distinct hue from primary; dark-ink on-text. */
   --color-on-secondary: var(--color-neutral-900); /** Text on secondary. ink neutral-900 #201D39 → 5.12:1 · AA text ✓ (white would fail; dark-on-bright signature). */
   --color-secondary-container: var(--color-pink-100); /** Tonal secondary surface. pink-100 #F8E7EB. */
@@ -226,7 +226,7 @@
   --color-on-surface-muted: var(--color-neutral-650); /** Secondary/muted text. neutral-650 #56518C → 6.82:1 (surface) / 7.02:1 (raised) · AA text ✓. */
   --color-border: var(--color-neutral-100); /** Default border/divider. neutral-100 #EBEBF0. */
   --color-border-strong: var(--color-neutral-200); /** Stronger border for inputs and interactive edges. neutral-200 #C8C8DB. */
-  --color-border-focus: var(--color-blue-650); /** Focus ring. blue-650 #243EE8 vs surface → 6.87:1 · AA UI (≥3:1) ✓. */
+  --color-border-focus: var(--color-mint-600); /** Focus ring. mint-600 #17713E vs surface → 5.81:1 · AA UI (≥3:1) ✓. */
   --color-error: var(--color-coral-400); /** Error/danger. coral-400 #FF5638; dark-ink on-text. */
   --color-on-error: var(--color-neutral-900); /** Text on error. ink neutral-900 #201D39 → 5.12:1 · AA text ✓. */
   --color-success: var(--color-mint-300); /** Success/confirmation. mint-300 #16C296; dark-ink on-text. */

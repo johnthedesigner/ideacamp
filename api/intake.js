@@ -93,8 +93,27 @@ export default async function handler(req, res) {
     if (!r.ok) {
       const detail = await r.text();
       console.error('Resend error', r.status, detail);
-      return res.status(502).json({ error: 'Could not send intake. Please email hello@ideacamp.co.' });
+      return res.status(502).json({ error: 'Could not send your message. Please email hello@ideacamp.co.' });
     }
+
+    // Best-effort plain confirmation to the visitor (no tips, no jokes).
+    const firstName = name.split(/\s+/)[0] || 'there';
+    try {
+      await fetch('https://api.resend.com/emails', {
+        method: 'POST',
+        headers: { Authorization: `Bearer ${apiKey}`, 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          from: FROM,
+          to: [email],
+          subject: 'Got your message — scope on the way',
+          text: `Hi ${firstName},\n\nYour message made it. Within 2 business days you'll have a written scope, a fixed price, and a start date from me personally.\n\nTalk soon,\nJohn · ideacamp.co`,
+          html: `<div style="font-family:sans-serif;font-size:15px;line-height:1.6;color:#1A1830"><p>Hi ${escapeHtml(firstName)},</p><p>Your message made it. Within 2 business days you'll have a written scope, a fixed price, and a start date from me personally.</p><p>Talk soon,<br>John · ideacamp.co</p></div>`,
+        }),
+      });
+    } catch (confErr) {
+      console.error('Confirmation email failed (non-fatal)', confErr);
+    }
+
     return res.status(200).json({ ok: true });
   } catch (err) {
     console.error('Intake send failed', err);

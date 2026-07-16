@@ -2,23 +2,23 @@
   "color": {
     "primary": {
       "$type": "color",
-      "$value": "{color.blue.650}",
-      "$description": "Primary action / brand. blue-650 #243EE8 (OKLCH H267°, electric violet-blue). on-primary 7.07:1 AA."
+      "$value": "{color.mint.600}",
+      "$description": "Primary action / brand. mint-600 #17713E (vivid warm green, one stop lighter than the deep 650). on-primary (paper) → 5.97:1 · AA text ✓."
     },
     "on-primary": {
       "$type": "color",
       "$value": "{color.neutral.paper}",
-      "$description": "Text/icons on primary. paper #FEFDFF on primary → 7.07:1 · AA text ✓ (Sistema contrast API)."
+      "$description": "Text/icons on primary. paper #FEFDFF on primary (mint-600) → 5.97:1 · AA text ✓."
     },
     "primary-container": {
       "$type": "color",
-      "$value": "{color.blue.100}",
-      "$description": "Tonal primary surface (info cards, subtle emphasis). blue-100 #E7EBF6."
+      "$value": "{color.mint.100}",
+      "$description": "Tonal primary surface (info cards, subtle emphasis). mint-100 #BFF7E1."
     },
     "on-primary-container": {
       "$type": "color",
-      "$value": "{color.blue.900}",
-      "$description": "Text on primary-container. blue-900 #0A175F → 13.54:1 · AA text ✓."
+      "$value": "{color.mint.900}",
+      "$description": "Text on primary-container. mint-900 #01271B on mint-100 → very high contrast · AA text ✓."
     },
 
     "secondary": {
@@ -80,8 +80,8 @@
     },
     "border-focus": {
       "$type": "color",
-      "$value": "{color.blue.650}",
-      "$description": "Focus ring. blue-650 #243EE8 vs surface → 6.87:1 · AA UI (≥3:1) ✓."
+      "$value": "{color.mint.600}",
+      "$description": "Focus ring. mint-600 #17713E vs surface → 5.81:1 · AA UI (≥3:1) ✓."
     },
 
     "error": {

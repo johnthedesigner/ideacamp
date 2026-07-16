@@ -77,7 +77,7 @@
         "$type": "color",
         "$value": "#040C34"
       },
-      "$description": "Primitive ramp generated from seed #2540E8 via Sistema palette generator. Perceptually-even stops 50–950."
+      "$description": "Primitive ramp generated from seed #2540E8 via Sistema palette generator. Perceptually-even stops 50\u2013950."
     },
     "pink": {
       "50": {
@@ -156,7 +156,7 @@
         "$type": "color",
         "$value": "#26040F"
       },
-      "$description": "Primitive ramp generated from seed #FF4D8D via Sistema palette generator. Perceptually-even stops 50–950."
+      "$description": "Primitive ramp generated from seed #FF4D8D via Sistema palette generator. Perceptually-even stops 50\u2013950."
     },
     "yellow": {
       "50": {
@@ -235,86 +235,86 @@
         "$type": "color",
         "$value": "#170F00"
       },
-      "$description": "Primitive ramp generated from seed #FFC22E via Sistema palette generator. Perceptually-even stops 50–950."
+      "$description": "Primitive ramp generated from seed #FFC22E via Sistema palette generator. Perceptually-even stops 50\u2013950."
     },
     "mint": {
       "50": {
         "$type": "color",
-        "$value": "#F2FDF8"
+        "$value": "#F3FDF6"
       },
       "100": {
         "$type": "color",
-        "$value": "#BFF7E1"
+        "$value": "#C9F6D5"
       },
       "150": {
         "$type": "color",
-        "$value": "#6FF1C5"
+        "$value": "#7AF2A3"
       },
       "200": {
         "$type": "color",
-        "$value": "#4FE1B3"
+        "$value": "#60E290"
       },
       "250": {
         "$type": "color",
-        "$value": "#30D2A3"
+        "$value": "#48D27F"
       },
       "300": {
         "$type": "color",
-        "$value": "#16C296"
+        "$value": "#32C370"
       },
       "350": {
         "$type": "color",
-        "$value": "#13B389"
+        "$value": "#2CB466"
       },
       "400": {
         "$type": "color",
-        "$value": "#10A47E"
+        "$value": "#27A55E"
       },
       "450": {
         "$type": "color",
-        "$value": "#0D9673"
+        "$value": "#239755"
       },
       "500": {
         "$type": "color",
-        "$value": "#0B8968"
+        "$value": "#1F8A4D"
       },
       "550": {
         "$type": "color",
-        "$value": "#087C5F"
+        "$value": "#1B7D45"
       },
       "600": {
         "$type": "color",
-        "$value": "#067055"
+        "$value": "#17713E"
       },
       "650": {
         "$type": "color",
-        "$value": "#05644C"
+        "$value": "#136537"
       },
       "700": {
         "$type": "color",
-        "$value": "#035943"
+        "$value": "#105930"
       },
       "750": {
         "$type": "color",
-        "$value": "#024D39"
+        "$value": "#0C4D28"
       },
       "800": {
         "$type": "color",
-        "$value": "#014130"
+        "$value": "#084222"
       },
       "850": {
         "$type": "color",
-        "$value": "#013526"
+        "$value": "#05351A"
       },
       "900": {
         "$type": "color",
-        "$value": "#01271B"
+        "$value": "#052712"
       },
       "950": {
         "$type": "color",
-        "$value": "#02140D"
+        "$value": "#031408"
       },
-      "$description": "Primitive ramp generated from seed #17C89A via Sistema palette generator. Perceptually-even stops 50–950."
+      "$description": "Primitive ramp generated from seed #17C89A via Sistema palette generator. Perceptually-even stops 50\u2013950."
     },
     "coral": {
       "50": {
@@ -393,7 +393,7 @@
         "$type": "color",
         "$value": "#270401"
       },
-      "$description": "Primitive ramp generated from seed #FF5A3C via Sistema palette generator. Perceptually-even stops 50–950."
+      "$description": "Primitive ramp generated from seed #FF5A3C via Sistema palette generator. Perceptually-even stops 50\u2013950."
     },
     "lilac": {
       "50": {
@@ -472,7 +472,7 @@
         "$type": "color",
         "$value": "#160632"
       },
-      "$description": "Primitive ramp generated from seed #9B6DFF via Sistema palette generator. Perceptually-even stops 50–950."
+      "$description": "Primitive ramp generated from seed #9B6DFF via Sistema palette generator. Perceptually-even stops 50\u2013950."
     },
     "neutral": {
       "50": {
@@ -551,7 +551,7 @@
         "$type": "color",
         "$value": "#100E1E"
       },
-      "$description": "Primitive ramp generated from seed #1A1830 via Sistema palette generator. Perceptually-even stops 50–950.",
+      "$description": "Primitive ramp generated from seed #1A1830 via Sistema palette generator. Perceptually-even stops 50\u2013950.",
       "paper": {
         "$type": "color",
         "$value": "#FEFDFF",

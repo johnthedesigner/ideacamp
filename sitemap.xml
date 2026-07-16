@@ -6,6 +6,16 @@
     <priority>1.0</priority>
   </url>
   <url>
+    <loc>https://ideacamp.co/case-planning.html</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ideacamp.co/case-forma.html</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://ideacamp.co/engagement-details.html</loc>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>

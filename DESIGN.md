@@ -190,7 +190,7 @@ Colors are organized in three tiers. **Primitive ramps** (Tier 1, `color-blue-50
 - **Dark-ink-on-bright signature:** every bright fill (secondary, success, warning, error, categorical accents) pairs with dark ink text. White text fails AA on mint (2.15:1), coral (3.10:1), and pink (3.14:1), so dark-on-bright is both an accessibility requirement and a brand signature.
 - **Categorical accents** (blue, pink, yellow, mint, coral, lilac) are a documented decorative/sectioning/data set — they are *not* semantic roles and must not stand in for success/warning/error.
 
-**Verified pairings (WCAG 2.2 AA):** on-surface 16.0:1 · on-surface-muted 6.69:1 · on-primary 7.05:1 · primary-as-link/focus vs surface 6.56:1 (≥3:1 UI) · on-secondary 5.50:1 · on-success 8.02:1 · on-warning 10.7:1 · on-error 5.57:1 · on-primary-container 12.6:1. Every `on-*` pair is re-verified through the Sistema contrast API in Step 4.
+**Verified pairings (WCAG 2.2 AA):** on-surface 16.0:1 · on-surface-muted 6.69:1 · on-primary 5.97:1 (primary = mint-600 green as of 2026-07-15; was blue-650 7.05:1) · primary-as-link/focus vs surface 5.81:1 (≥3:1 UI) · on-secondary 5.50:1 · on-success 8.02:1 · on-warning 10.7:1 · on-error 5.57:1 · on-primary-container 12.6:1. Every `on-*` pair is re-verified through the Sistema contrast API in Step 4.
 
 ## Typography
 

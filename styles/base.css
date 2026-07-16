@@ -18,7 +18,7 @@ body {
 }
 
 a { color: var(--color-primary); text-decoration-thickness: 1px; text-underline-offset: 2px; }
-a:hover { color: color-mix(in oklab, var(--color-primary) 82%, var(--color-on-surface)); }
+a:not(.btn):hover { color: color-mix(in oklab, var(--color-primary) 82%, var(--color-on-surface)); }
 
 ::selection { background: var(--color-accent-yellow); color: var(--color-on-surface); }
 

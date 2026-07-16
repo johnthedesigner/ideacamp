@@ -21,7 +21,7 @@
 .btn:active { transform: translateY(1px); }
 .btn:disabled, .btn[aria-disabled="true"] { opacity: .45; cursor: not-allowed; transform: none; }
 
-/* Primary — light text on deep blue */
+/* Primary — light text on brand primary */
 .btn-primary { background: var(--color-primary); color: var(--color-on-primary); box-shadow: var(--shadow-sm); }
 .btn-primary:hover:not(:disabled) { background: color-mix(in oklab, var(--color-primary) 88%, var(--color-on-surface)); box-shadow: var(--shadow-md); }
 .btn-primary:active { background: color-mix(in oklab, var(--color-primary) 80%, var(--color-on-surface)); }

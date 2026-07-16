@@ -40,7 +40,7 @@
   main { padding-block: 72px 96px; }
   .back { font-family: var(--type-label-family); text-transform: none; letter-spacing: 0; font-size: 13px; text-decoration: none; }
   .quicknav { display: flex; flex-wrap: wrap; gap: 8px; margin: 48px 0; padding-bottom: 40px; border-bottom: var(--border-width-sm) solid var(--color-border); }
-  .quicknav a { font-family: var(--type-label-family); text-transform: none; letter-spacing: 0; font-size: 12.5px; text-decoration: none; color: var(--color-on-surface-muted); background: color-mix(in oklab, var(--color-primary-container) 55%, var(--color-surface)); border: var(--border-width-sm) solid var(--color-border); padding: 7px 13px; border-radius: var(--radius-full); }
+  .quicknav a { font-family: var(--type-label-family); text-transform: none; letter-spacing: 0; font-size: 12.5px; text-decoration: none; color: var(--color-on-surface-muted); background: color-mix(in oklab, var(--color-neutral-100) 60%, var(--color-surface)); border: var(--border-width-sm) solid var(--color-border); padding: 7px 13px; border-radius: var(--radius-full); }
   .quicknav a:hover { color: var(--color-on-surface); }
   .det { margin-bottom: 44px; scroll-margin-top: 90px; }
   .det h2 { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
@@ -49,7 +49,7 @@
   .det ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 12px; }
   .det li { display: flex; gap: 12px; font-size: 16px; line-height: 1.55; }
   .det li .dot { width: 7px; height: 7px; border-radius: var(--radius-full); background: var(--color-primary); margin-top: 8px; flex-shrink: 0; }
-  .cta-band { margin-top: 56px; padding: 28px 30px; border-radius: var(--radius-lg); background: color-mix(in oklab, var(--color-primary-container) 55%, var(--color-surface)); border: var(--border-width-sm) solid var(--color-border); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 18px; }
+  .cta-band { margin-top: 56px; padding: 28px 30px; border-radius: var(--radius-lg); background: color-mix(in oklab, var(--color-neutral-100) 60%, var(--color-surface)); border: var(--border-width-sm) solid var(--color-border); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 18px; }
   .footer { border-top: var(--border-width-sm) solid var(--color-border); background: var(--color-night); color: var(--color-on-night); }
   .footer-inner { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 18px; padding-block: 40px; font-family: var(--type-label-family); text-transform: none; letter-spacing: 0; font-size: 12.5px; }
   .footer-inner a { color: var(--on-night-muted); text-decoration: none; } .footer-inner a:hover { color: var(--color-on-night); }
@@ -63,7 +63,7 @@
       <span class="mark" aria-hidden="true"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2c1 3 2.5 3.5 3.5 4.5A5 5 0 0 1 17 10a5 5 0 1 1-10 0c0-.3 0-.6.1-.9a2 2 0 1 0 3.3-2C8 4.5 11 2 12 2Z"></path><path d="m5 22 14-4"></path><path d="m5 18 14 4"></path></svg></span>
       <span class="name">Ideacamp</span>
     </a>
-    <a href="index.html#intake" class="btn btn-primary btn-sm">Start a project</a>
+    <a href="index.html#start" class="btn btn-primary btn-sm">Get a scope</a>
   </nav>
 </header>
 
@@ -119,13 +119,13 @@
   </section>
 
   <section id="privacy" class="det" style="margin-bottom: 8px">
-    <h2 class="text-heading-md" style="font-size: 28px"><span class="bead" style="background: var(--color-accent-yellow)"></span>What happens to intake data</h2>
-    <p style="margin-bottom: 0">The intake form collects your name, email, an optional company or product link, and what you tell me about your project. I use it only to respond to you and scope the work. It is never sold or shared, and if we don't work together you can ask me to delete it.</p>
+    <h2 class="text-heading-md" style="font-size: 28px"><span class="bead" style="background: var(--color-accent-yellow)"></span>What happens to the details you share</h2>
+    <p style="margin-bottom: 0">The form collects your name, email, an optional company or product link, and what you tell me about your project. I use those details only to respond to you and scope the work. They are never sold or shared, and if we don't work together you can ask me to delete them.</p>
   </section>
 
   <div class="cta-band">
-    <p class="text-body-md" style="color: var(--color-on-surface-muted); max-width: 44ch; margin: 0">Have a question these don't answer? Ask it in the intake, or email me.</p>
-    <a href="index.html#intake" class="btn btn-primary" style="white-space: nowrap">Start a project</a>
+    <p class="text-body-md" style="color: var(--color-on-surface-muted); max-width: 44ch; margin: 0">Have a question these don't answer? Ask it when you get in touch, or email me.</p>
+    <a href="index.html#start" class="btn btn-primary" style="white-space: nowrap">Get your scope</a>
   </div>
 </main>
 
@@ -133,7 +133,7 @@
   <div class="wrap footer-inner">
     <a href="index.html" style="font-family: var(--type-heading-md-family); font-size: 18px; font-weight: 800; letter-spacing: -0.02em; color: var(--color-on-night)">ideacamp</a>
     <div style="display: flex; flex-wrap: wrap; gap: 22px">
-      <a href="index.html#intake">Start a project</a>
+      <a href="index.html#start">Get your scope</a>
       <a href="mailto:hello@ideacamp.co">hello@ideacamp.co</a>
       <span style="color: var(--on-night-muted)">© 2026 Ideacamp</span>
     </div>
